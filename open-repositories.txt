@@ -10,6 +10,7 @@ examples
 getting-started
 ic-staking-documentation
 icx-proxy
+interface-spec
 keysmith
 linkedup
 motoko

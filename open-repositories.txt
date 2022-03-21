@@ -4,6 +4,7 @@ awesome-dfinity
 bigmap-poc
 cancan
 candid
+capsules
 cdk-rs
 conventional-pr-title-action
 examples

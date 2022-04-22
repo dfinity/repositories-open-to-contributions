@@ -10,6 +10,7 @@ conventional-pr-title-action
 examples
 getting-started
 ic-staking-documentation
+ic-wasm
 icx-proxy
 interface-spec
 keysmith

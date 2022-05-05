@@ -18,6 +18,7 @@ linkedup
 motoko
 motoko-base
 motoko-playground
+portal
 quill
 sdk
 vessel

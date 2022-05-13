@@ -13,6 +13,7 @@ ic-staking-documentation
 ic-wasm
 icx-proxy
 interface-spec
+internet-identity
 keysmith
 linkedup
 motoko

@@ -19,6 +19,7 @@ motoko
 motoko-base
 motoko-playground
 quill
+rules_motoko
 sdk
 vessel
 vessel-package-set

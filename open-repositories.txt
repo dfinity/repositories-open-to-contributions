@@ -12,6 +12,7 @@ getting-started
 ic-staking-documentation
 ic-wasm
 icx-proxy
+ICRC-1
 interface-spec
 internet-identity
 keysmith

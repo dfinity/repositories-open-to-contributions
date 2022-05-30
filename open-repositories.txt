@@ -9,6 +9,7 @@ cdk-rs
 conventional-pr-title-action
 examples
 getting-started
+hardware-wallet-cli
 ic-staking-documentation
 ic-wasm
 icx-proxy

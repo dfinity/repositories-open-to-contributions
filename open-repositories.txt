@@ -1,3 +1,4 @@
+ICRC-1
 agent-js
 agent-rs
 awesome-dfinity

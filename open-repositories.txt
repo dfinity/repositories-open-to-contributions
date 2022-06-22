@@ -24,6 +24,7 @@ motoko-base
 motoko-playground
 portal
 quill
+rules_motoko
 sdk
 vessel
 vessel-package-set

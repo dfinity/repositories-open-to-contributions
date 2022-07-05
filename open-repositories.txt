@@ -11,6 +11,7 @@ conventional-pr-title-action
 examples
 getting-started
 hardware-wallet-cli
+ic-js
 ic-staking-documentation
 ic-wasm
 icx-proxy

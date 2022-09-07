@@ -29,3 +29,4 @@ sdk
 vessel
 vessel-package-set
 vscode-motoko
+wg-identity-authentication

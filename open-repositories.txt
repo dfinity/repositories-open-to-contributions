@@ -26,6 +26,7 @@ portal
 quill
 rules_motoko
 sdk
+stable-structures
 vessel
 vessel-package-set
 vscode-motoko

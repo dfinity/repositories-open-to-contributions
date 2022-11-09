@@ -31,4 +31,5 @@ stable-structures
 vessel
 vessel-package-set
 vscode-motoko
+wg-education
 wg-identity-authentication

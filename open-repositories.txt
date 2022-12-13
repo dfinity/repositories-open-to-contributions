@@ -20,6 +20,7 @@ interface-spec
 internet-identity
 keysmith
 linkedup
+metrics-encoder
 motoko
 motoko-base
 motoko-playground

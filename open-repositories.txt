@@ -5,6 +5,7 @@ awesome-dfinity
 bigmap-poc
 cancan
 candid
+canister-profiling
 capsules
 cdk-rs
 conventional-pr-title-action

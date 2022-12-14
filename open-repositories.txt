@@ -9,6 +9,7 @@ capsules
 cdk-rs
 conventional-pr-title-action
 examples
+exchange-rate-canister
 getting-started
 hardware-wallet-cli
 ic-js

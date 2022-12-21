@@ -12,6 +12,7 @@ examples
 exchange-rate-canister
 getting-started
 hardware-wallet-cli
+ic-hs
 ic-js
 ic-staking-documentation
 ic-wasm

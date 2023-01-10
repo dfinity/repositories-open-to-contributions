@@ -25,6 +25,7 @@ linkedup
 metrics-encoder
 motoko
 motoko-base
+motoko-dev-server
 motoko-playground
 portal
 quill

@@ -31,6 +31,7 @@ quill
 rules_motoko
 sdk
 stable-structures
+test-state-machine-client
 vessel
 vessel-package-set
 vscode-motoko

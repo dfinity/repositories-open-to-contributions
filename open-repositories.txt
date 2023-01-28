@@ -29,6 +29,7 @@ motoko
 motoko-base
 motoko-playground
 portal
+prettier-plugin-motoko
 quill
 rules_motoko
 sdk

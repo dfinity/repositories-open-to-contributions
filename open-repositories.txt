@@ -15,6 +15,7 @@ examples
 exchange-rate-canister
 getting-started
 hardware-wallet-cli
+ic-docutrack
 ic-hs
 ic-js
 ic-staking-documentation

@@ -14,6 +14,7 @@ examples
 exchange-rate-canister
 getting-started
 hardware-wallet-cli
+ic-docutrack
 ic-hs
 ic-js
 ic-staking-documentation
@@ -39,4 +40,3 @@ vessel-package-set
 vscode-motoko
 wg-governance
 wg-identity-authentication
-ic-docutrack

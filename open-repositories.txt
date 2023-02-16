@@ -23,7 +23,6 @@ ic-wasm
 icx-proxy
 idl2json
 interface-spec
-internet-identity
 keysmith
 linkedup
 metrics-encoder

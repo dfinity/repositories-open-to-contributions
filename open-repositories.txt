@@ -23,8 +23,8 @@ ic-wasm
 icx-proxy
 idl2json
 interface-spec
-linkedup
 keysmith
+linkedup
 metrics-encoder
 motoko
 motoko-base

@@ -3,8 +3,6 @@ def check_sort():
         data = my_file.read()
         repo_list = data.split("\n")
         repo_list.remove("")
-        print(repo_list)
-        print(sorted(repo_list))
         if repo_list != sorted(repo_list):
             raise Exception("open-repositories.txt is not correctly sorted")
 

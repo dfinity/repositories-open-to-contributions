@@ -1,4 +1,4 @@
-def check_sort():
+def check_sort() -> None:
     with open("open-repositories.txt") as my_file:
         data = my_file.read()
         repo_list = data.split("\n")

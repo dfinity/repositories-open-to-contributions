@@ -15,14 +15,12 @@ jobs:
     runs-on: ubuntu-latest
       - name: Check if repository is compliant
         id:  check-compliance
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         uses: ./.github/actions/check_compliance/
           with:
             repo_name: {{ inputs.repo-name }}
 
       - name: Has README
         id: has-readme
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
           if [ "${{ steps.check-compliance.outputs.has_readme }}" = "False" ]; then
             echo "Repo is not compliant - missing README"
@@ -33,7 +31,6 @@ jobs:
 
       - name: Has Codeowners file
         id: has-codeowners
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
           if [ "${{ steps.check-compliance.outputs.has_codeowners }}" = "False" ]; then
             echo "Repo is not compliant - missing Codeowners file"
@@ -44,7 +41,6 @@ jobs:
 
       - name: Has License file
         id:  has-license
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
           if [ "${{ steps.check-compliance.outputs.has_license }}" = "False" ]; then
             echo "Repo is not compliant - missing License file"
@@ -55,7 +51,6 @@ jobs:
 
       - name: Is branch protected
         id: is-branch-protected
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
           if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" = "False" ]; then
             echo "Repo is not compliant - is not branch protected"

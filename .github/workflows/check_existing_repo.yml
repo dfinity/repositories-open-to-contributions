@@ -19,7 +19,6 @@ jobs:
 
       - name: Check if accepting external contributions
         id: accepts_external_contrib
-        if: steps.is_public_repo.outputs.is_public == 'true'
         uses:  ./.github/actions/check_external_contrib/
 
   check-compliance:

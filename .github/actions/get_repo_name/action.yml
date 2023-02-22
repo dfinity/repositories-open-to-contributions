@@ -3,7 +3,7 @@ description: 'Gets the repository name that was added to the open-repositories.t
 outputs:
   repo-name:
     value: ${{ steps.get-repo-name.outputs.new_repo }}
-    description: "Boolean if the repository accepts external contributions."
+    description: "The name of the repository that was added."
 
 runs:
   using: 'composite'
@@ -25,6 +25,6 @@ runs:
 
       - name: debug
         run: |
-          echo ${{join(steps.get-repo-name.outputs.*, '\n')}}
-          echo ${{ steps.get-repo-name.ouptuts.new_repo }}
+          echo "${{ join(steps.get-repo-name.outputs.*, '\n') }}"
+          echo "${{ steps.get-repo-name.outputs.new_repo }}"
         shell: bash

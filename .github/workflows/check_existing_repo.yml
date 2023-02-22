@@ -23,4 +23,6 @@ jobs:
 
   check-compliance:
     name: Check Compliance
+    needs: check-accepting-external-contributions
+    if: needs.check-accepting-external-contributions.outputs.accepts_contrib == 'true'
     uses: ./.github/workflows/check_repo_compliance.yml

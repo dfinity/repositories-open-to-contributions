@@ -34,10 +34,10 @@ quill
 rules_motoko
 sdk
 stable-structures
+repositories-open-to-contributions
 test-state-machine-client
 vessel
 vessel-package-set
 vscode-motoko
 wg-governance
 wg-identity-authentication
-repositoriest-open-to-contributions

@@ -14,6 +14,9 @@ jobs:
   check-repo-compliance:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check if repository is compliant
         id:  check-compliance
         uses: ./.github/actions/check_compliance/

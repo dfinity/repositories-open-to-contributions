@@ -1,0 +1,13 @@
+name: 'Check Sorting'
+description: 'Check that the repos in open-repositories.txt is sorted.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Check sort
+      run: python custom_python_actions/check_sort.py
+      shell: bash

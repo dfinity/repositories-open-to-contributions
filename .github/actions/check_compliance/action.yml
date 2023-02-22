@@ -1,0 +1,44 @@
+name: 'Check External Contribution'
+description: 'Check if the repository accepts external contributions.'
+inputs:
+  org:
+    description: "Organization of the repository"
+    default: ${{ github.repository_owner }}
+    required: false
+  github-token:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
+  repo-name:
+    description: "The name of the repository"
+    default: ${{github.event.repository.name}}
+    required: false
+
+outputs:
+  has_codeowners:
+    value: ${{ steps.check_compliance.outputs.has_codeowners }}
+    description: "Boolean if the repository has a codeowners file."
+  has_readme:
+    value: ${{ steps.check_compliance.outputs.has_readme }}
+    description: "Boolean if the repository has a README."
+  has_license:
+    value: ${{ steps.check_compliance.outputs.has_license }}
+    description: "Boolean if the repository has a license file."
+  is_branch_protected:
+    value: ${{ steps.check_compliance.outputs.is_branch_protected }}
+    description: "Boolean if the repository is branch protected."
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: ./.github/actions/install_python
+    - name: Check External Contribution
+      id: check_compliance
+      run: python custom_python_actions/check_compliance.py
+      shell: bash
+      env:
+        GH_ORG: ${{ inputs.org }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        REPO: ${{ inputs.repo-name }}

@@ -1,0 +1,23 @@
+name: 'Check External Contribution'
+description: 'Check if the repository accepts external contributions.'
+inputs:
+  repo-name:
+    description: "The name of the repository"
+    default: ${{github.event.repository.name}}
+    required: false
+outputs:
+  accepts_contrib:
+    value: ${{ steps.check-external-contrib.outputs.accepts_contrib }}
+    description: "Boolean if the repository accepts external contributions."
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: ./.github/actions/install_python
+    - name: Check External Contribution
+      id: check-external-contrib
+      run: python custom_python_actions/check_external_contrib.py
+      shell: bash
+      env:
+        REPO: ${{ inputs.repo-name }}

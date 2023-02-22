@@ -21,8 +21,47 @@ jobs:
         id: accepts_external_contrib
         uses:  ./.github/actions/check_external_contrib/
 
-  check-compliance:
-    name: Check Compliance
-    needs: check-accepting-external-contributions
-    if: needs.check-accepting-external-contributions.outputs.accepts_contrib == 'true'
-    uses: ./.github/workflows/check_repo_compliance.yml
+      - name: Check if repository is compliant
+        id:  check-compliance
+        uses: ./.github/actions/check_compliance/
+
+      - name: Has README
+        id: has-readme
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_readme }}" = "False" ]; then
+            echo "Repo is not compliant - missing README"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has Codeowners file
+        id: has-codeowners
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" = "False" ]; then
+            echo "Repo is not compliant - missing Codeowners file"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has License file
+        id:  has-license
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_license }}" = "False" ]; then
+            echo "Repo is not compliant - missing License file"
+            exit 1
+          else
+             exit 0
+          fi
+
+      - name: Is branch protected
+        id: is-branch-protected
+        run: |
+          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" = "False" ]; then
+            echo "Repo is not compliant - is not branch protected"
+            exit 1
+          else
+            exit 0
+          fi
+

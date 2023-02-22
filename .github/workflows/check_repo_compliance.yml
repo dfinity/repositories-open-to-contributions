@@ -1,0 +1,65 @@
+# Resuable worflow to check if the repository is compliant
+name: Check Repo Compliance
+
+on:
+  workflow_call:
+    inputs:
+      repo-name:
+        required: false
+        default: ${{ github.event.repository.name }}
+        type: string
+
+
+jobs:
+  check-repo-compliance:
+    runs-on: ubuntu-latest
+      - name: Check if repository is compliant
+        id:  check-compliance
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        uses: ./.github/actions/check_compliance/
+          with:
+            repo_name: {{ inputs.repo-name }}
+
+      - name: Has README
+        id: has-readme
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_readme }}" = "False" ]; then
+            echo "Repo is not compliant - missing README"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has Codeowners file
+        id: has-codeowners
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" = "False" ]; then
+            echo "Repo is not compliant - missing Codeowners file"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has License file
+        id:  has-license
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_license }}" = "False" ]; then
+            echo "Repo is not compliant - missing License file"
+            exit 1
+          else
+             exit 0
+          fi
+
+      - name: Is branch protected
+        id: is-branch-protected
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" = "False" ]; then
+            echo "Repo is not compliant - is not branch protected"
+            exit 1
+          else
+            exit 0
+          fi

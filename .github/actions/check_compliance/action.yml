@@ -11,7 +11,7 @@ inputs:
     required: false
   repo-name:
     description: "The name of the repository"
-    default: ${{github.event.repository.name}}
+    default: ${{ github.event.repository.name }}
     required: false
 
 outputs:

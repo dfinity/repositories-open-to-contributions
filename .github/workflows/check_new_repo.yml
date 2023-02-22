@@ -20,13 +20,15 @@ jobs:
 
       - name: Get repo name
         id: get-repo-name
-        run: git diff open-repostories.txt
+        run:
+          NEW_REPO=$(git diff master...HEAD open-repositories.txt | grep "+" | tail -n 1 | sed 's/+//')
+          echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
 
       - name: Check if repository is compliant
         id:  check-compliance
         uses: ./.github/actions/check_compliance/
         with:
-          repo-name: ${{ steps.get-repo-name.ouptuts.diff }}
+          repo-name: ${{ steps.get-repo-name.ouptuts.new_repo }}
 
       - name: Has README
         id: has-readme

@@ -23,4 +23,4 @@ jobs:
 
   check-compliance:
     name: Check Compliance
-    uses: ./.github/workflows/check_repo_comliance.yml
+    uses: ./.github/workflows/check_repo_compliance.yml

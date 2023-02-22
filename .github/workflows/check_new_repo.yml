@@ -17,19 +17,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Get repo name
         id: get-repo-name
-        run: |
-          git fetch origin master:rgefs/remotes/origin/master
-          NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "+" | tail -n 1 | sed 's/+//')
-          echo $NEW_REPO
-          echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
-
-      - name: debug
-        run: echo ${{ steps.get-repo-name.ouptuts.new_repo }}
+        uses:  ./.github/actions/get_repo_name/
 
       - name: Check if repository is compliant
         id:  check-compliance

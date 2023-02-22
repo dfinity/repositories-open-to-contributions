@@ -21,6 +21,5 @@ jobs:
         id: accepts_external_contrib
         uses:  ./.github/actions/check_external_contrib/
 
-  check-compliance:
-    name: Check Compliance
-    uses: ./.github/workflows/check_repo_compliance.yml
+      - name: Check Compliance
+        uses: ./.github/workflows/check_repo_compliance.yml

@@ -21,7 +21,7 @@ jobs:
         id:  check-compliance
         uses: ./.github/actions/check_compliance/
         with:
-          repo_name: ${{ inputs.repo-name }}
+          repo-name: ${{ inputs.repo-name }}
 
       - name: Has README
         id: has-readme

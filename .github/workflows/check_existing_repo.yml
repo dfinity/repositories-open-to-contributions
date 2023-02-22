@@ -1,6 +1,6 @@
 # Workflow to check that a repository meets compliance requirements
 
-name: Repository Compliance
+name: Existing Repository Compliance
 
 on:
   pull_request:
@@ -21,5 +21,6 @@ jobs:
         id: accepts_external_contrib
         uses:  ./.github/actions/check_external_contrib/
 
-      - name: Check Compliance
-        uses: ./.github/workflows/check_repo_compliance.yml
+  check-compliance:
+    name: Check Compliance
+    uses: ./.github/workflows/check_repo_compliance.yml

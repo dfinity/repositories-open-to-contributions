@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-existing-repo-compliance:
+  check-accepting-external-contributions:
     name: Check if repository is compliant
     runs-on: ubuntu-latest
     steps:
@@ -22,5 +22,6 @@ jobs:
         if: steps.is_public_repo.outputs.is_public == 'true'
         uses:  ./.github/actions/check_external_contrib/
 
-      - name: Check Compliance
-        uses: ./.github/workflows/check_repo_comliance.yml
+  check-compliance:
+    name: Check Compliance
+    uses: ./.github/workflows/check_repo_comliance.yml

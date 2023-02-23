@@ -21,10 +21,9 @@ runs:
           if (( $REPO_COUNT > 1 )); then
             echo "Only one repository can be added at a time. Please create separate PRs."
             exit 1
-          elif (( $REPO_COUNT = 0 )); then
-            echo "No new repository found. Please check the open-repositories.txt file again."
-            exit 1
-          else
+          elif (( $REPO_COUNT = 1 )); then
             echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
+            echo "new_repo_added=true" >> $GITHUB_OUTPUT
+
           fi
         shell: bash

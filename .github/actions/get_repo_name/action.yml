@@ -1,0 +1,35 @@
+name: 'Get Repo Name'
+description: 'Gets the repository name that was added to the open-repositories.txt file.'
+outputs:
+  repo-name:
+    value: ${{ steps.get-repo-name.outputs.new_repo }}
+    description: "The name of the repository that was added."
+  new_repo_added:
+    value: ${{ steps.get-repo-name.outputs.new_repo_added }}
+    description: "Boolean if a new repo was added."
+
+runs:
+  using: 'composite'
+  steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get repo name
+        id: get-repo-name
+        run: |
+          NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "^+[a-zA-Z]" | sed 's/+//' || echo "")
+          if [ "$NEW_REPO" = "" ]; then
+            echo "No repository added."
+            exit 0
+          fi
+          REPO_COUNT=$(echo "$NEW_REPO" | wc -l)
+          if (( REPO_COUNT > 1 )); then
+            echo "Only one repository can be added at a time. Please create separate PRs."
+            exit 1
+          elif (( REPO_COUNT = 1 )); then
+            echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
+            echo "new_repo_added=true" >> $GITHUB_OUTPUT
+          fi
+        shell: bash

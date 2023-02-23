@@ -9,7 +9,6 @@ def check_code_owners(repo: github3.github.repo) -> bool:
     valid_codowner_paths = [
         "/CODEOWNERS",
         "/.github/CODEOWNERS",
-        "/.gitlab/CODEOWNERS",
     ]
     for path in valid_codowner_paths:
         x = requests.head(repo_url + path, allow_redirects=True)

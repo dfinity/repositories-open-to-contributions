@@ -1,5 +1,5 @@
-name: 'Check External Contribution'
-description: 'Check if the repository accepts external contributions.'
+name: 'Check Repository Compliance'
+description: 'Check if the repository meets all compliance checks.'
 inputs:
   org:
     description: "Organization of the repository"

@@ -16,7 +16,7 @@ runs:
       - name: Get repo name
         id: get-repo-name
         run: |
-          NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "^+[a-zA-Z]" | sed 's/+//')
+          NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "^+[a-zA-Z]" | sed 's/+//' || echo "")
           if [ "$NEW_REPO" = "" ]; then
             echo "No repository added."
             exit 0

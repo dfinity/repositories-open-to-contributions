@@ -4,6 +4,9 @@ outputs:
   repo-name:
     value: ${{ steps.get-repo-name.outputs.new_repo }}
     description: "The name of the repository that was added."
+  new_repo_added:
+    value: ${{ steps.get-repo-name.outputs.new_repo_added }}
+    description: "Boolean if a new repo was added."
 
 runs:
   using: 'composite'

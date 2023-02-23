@@ -36,3 +36,6 @@ jobs:
         mypy custom_python_actions/
         black custom_python_actions/
         flake8 custom_python_actions/
+
+    - name: Run all tests
+      run: pytest --runslow

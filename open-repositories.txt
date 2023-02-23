@@ -34,6 +34,7 @@ quill
 rules_motoko
 sdk
 stable-structures
+TEST
 test-state-machine-client
 threshold
 vessel

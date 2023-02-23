@@ -11,7 +11,6 @@ capsules
 cdk-rs
 conventional-pr-title-action
 dfx-extensions
-examples
 exchange-rate-canister
 getting-started
 hardware-wallet-cli
@@ -31,10 +30,8 @@ motoko-base
 motoko-playground
 portal
 quill
-repositories-open-to-contributions
 rules_motoko
 sdk
-some-other-repo
 stable-structures
 test-state-machine-client
 vessel

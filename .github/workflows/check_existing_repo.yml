@@ -31,43 +31,35 @@ jobs:
         id: has-readme
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
-          if [ "${{ steps.check-compliance.outputs.has_readme }}" = "False" ]; then
+          if [ "${{ steps.check-compliance.outputs.has_readme }}" != "True" ]; then
             echo "Repo is not compliant - missing README"
             exit 1
-          else
-            exit 0
           fi
 
       - name: Has Codeowners file
         id: has-codeowners
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
-          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" = "False" ]; then
+          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" != "True" ]; then
             echo "Repo is not compliant - missing Codeowners file"
             exit 1
-          else
-            exit 0
           fi
 
       - name: Has License file
         id:  has-license
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
-          if [ "${{ steps.check-compliance.outputs.has_license }}" = "False" ]; then
+          if [ "${{ steps.check-compliance.outputs.has_license }}" != "True" ]; then
             echo "Repo is not compliant - missing License file"
             exit 1
-          else
-             exit 0
           fi
 
       - name: Is branch protected
         id: is-branch-protected
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         run: |
-          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" = "False" ]; then
+          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" != "True" ]; then
             echo "Repo is not compliant - is not branch protected"
             exit 1
-          else
-            exit 0
           fi
 

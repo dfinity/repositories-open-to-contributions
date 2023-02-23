@@ -1,0 +1,68 @@
+# Workflow to check that a repository meets compliance requirements
+# This workflow will be applied to all public repositories
+
+name: Existing Repository Compliance
+
+on:
+  pull_request:
+    branches: '**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check-accepting-external-contributions:
+    name: Check if repository is compliant
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check if accepting external contributions
+        id: accepts_external_contrib
+        uses:  ./.github/actions/check_external_contrib/
+
+      - name: Check if repository is compliant
+        id:  check-compliance
+        uses: ./.github/actions/check_compliance/
+
+      - name: Has README
+        id: has-readme
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_readme }}" = "False" ]; then
+            echo "Repo is not compliant - missing README"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has Codeowners file
+        id: has-codeowners
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" = "False" ]; then
+            echo "Repo is not compliant - missing Codeowners file"
+            exit 1
+          else
+            exit 0
+          fi
+
+      - name: Has License file
+        id:  has-license
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_license }}" = "False" ]; then
+            echo "Repo is not compliant - missing License file"
+            exit 1
+          else
+             exit 0
+          fi
+
+      - name: Is branch protected
+        id: is-branch-protected
+        run: |
+          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" = "False" ]; then
+            echo "Repo is not compliant - is not branch protected"
+            exit 1
+          else
+            exit 0
+          fi
+

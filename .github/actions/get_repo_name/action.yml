@@ -16,15 +16,6 @@ runs:
       - name: Get repo name
         id: get-repo-name
         run: |
-          git fetch origin master:rgefs/remotes/origin/master
           NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "+" | tail -n 1 | sed 's/+//')
-          echo $NEW_REPO
-          echo "new_repo=$NEW_REPO"
           echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: debug
-        run: |
-          echo "${{ join(steps.get-repo-name.outputs.*, '\n') }}"
-          echo "${{ steps.get-repo-name.outputs.new_repo }}"
         shell: bash

@@ -34,6 +34,7 @@ quill
 repositories-open-to-contributions
 rules_motoko
 sdk
+some-other-repo
 stable-structures
 test-state-machine-client
 vessel

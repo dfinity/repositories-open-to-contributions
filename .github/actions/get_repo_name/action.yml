@@ -17,6 +17,10 @@ runs:
         id: get-repo-name
         run: |
           NEW_REPO=$(git diff origin/master...HEAD open-repositories.txt | grep "^+[a-zA-Z]" | sed 's/+//')
+          if [ "$NEW_REPO" = "" ]; then
+            echo "No repository added."
+            exit 0
+          fi
           REPO_COUNT=$(echo "$NEW_REPO" | wc -l)
           if (( $REPO_COUNT > 1 )); then
             echo "Only one repository can be added at a time. Please create separate PRs."
@@ -24,6 +28,5 @@ runs:
           elif (( $REPO_COUNT = 1 )); then
             echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
             echo "new_repo_added=true" >> $GITHUB_OUTPUT
-
           fi
         shell: bash

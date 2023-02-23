@@ -16,7 +16,6 @@ def test_check_code_owners_succeeds(mock_head):
     repo = mock.MagicMock()
     repo.html_url = "github_url"
     repo.default_branch = "main"
-
     response = mock.MagicMock()
     response.status_code = 200
     mock_head.return_value = response
@@ -66,6 +65,7 @@ def test_check_license_other_error():
     repo.license.side_effect = Exception("some exception")
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
+
     license = check_license(repo)
     sys.stdout = sys.__stdout__
 
@@ -96,6 +96,7 @@ def test_check_readme_other_error():
     repo.readme.side_effect = Exception("some exception")
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
+
     readme = check_readme(repo)
     sys.stdout = sys.__stdout__
 

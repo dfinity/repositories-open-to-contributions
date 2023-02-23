@@ -1,4 +1,5 @@
 # Workflow to check if a new repository has been added to list and is compliant
+# This workflow is only run inside the repositories-open-to-contributions repository
 
 name: Check New Repo
 

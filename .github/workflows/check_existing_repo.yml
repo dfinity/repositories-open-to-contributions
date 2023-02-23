@@ -1,4 +1,5 @@
 # Workflow to check that a repository meets compliance requirements
+# This workflow will be applied to all public repositories
 
 name: Existing Repository Compliance
 

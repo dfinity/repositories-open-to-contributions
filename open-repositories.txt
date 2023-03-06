@@ -35,6 +35,7 @@ rules_motoko
 sdk
 stable-structures
 test-state-machine-client
+threshold
 vessel
 vessel-package-set
 vscode-motoko

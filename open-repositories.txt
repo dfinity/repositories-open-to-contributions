@@ -1,3 +1,4 @@
+ICRC
 ICRC-1
 agent-js
 agent-rs
@@ -5,13 +6,16 @@ awesome-dfinity
 bigmap-poc
 cancan
 candid
+canister-profiling
 capsules
 cdk-rs
 conventional-pr-title-action
+dfx-extensions
 examples
 exchange-rate-canister
 getting-started
 hardware-wallet-cli
+ic-docutrack
 ic-hs
 ic-js
 ic-staking-documentation
@@ -19,7 +23,6 @@ ic-wasm
 icx-proxy
 idl2json
 interface-spec
-internet-identity
 keysmith
 linkedup
 metrics-encoder

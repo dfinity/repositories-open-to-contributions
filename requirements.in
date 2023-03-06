@@ -1,0 +1,6 @@
+github3.py
+requests
+mypy
+black
+flake8
+pytest

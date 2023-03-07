@@ -41,4 +41,3 @@ vessel-package-set
 vscode-motoko
 wg-governance
 wg-identity-authentication
-repositories-open-to-contributions

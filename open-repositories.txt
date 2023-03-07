@@ -42,3 +42,4 @@ vscode-motoko
 wg-governance
 wg-identity-authentication
 test
+repositories-open-to-contribution

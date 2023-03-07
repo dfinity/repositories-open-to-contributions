@@ -54,8 +54,7 @@ def main() -> None:
         repo = gh.repository(owner=org, repository=repo_name)
     except github3.exceptions.NotFoundError as e:
         raise Exception(
-            f"""Github repo {repo_name} not found. Double check the spelling and that your repository 
-            is public."""
+            f"Github repo {repo_name} not found. Double check the spelling and that your repository is public." # noqa
         ) from e
 
     has_codeowners = check_code_owners(repo)

@@ -6,7 +6,7 @@ import pytest
 from custom_python_actions.check_external_contrib import download_file, decode_file
 
 
-@mock.patch("requests.Session.get")
+@mock.patch("requests.get")
 def test_download_file_succeeds_first_try(mock_get):
     data_response = {"content": "file_contents", "encoding": "base64"}
     response_mock = mock.MagicMock()

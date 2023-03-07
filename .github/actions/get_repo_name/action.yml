@@ -30,6 +30,6 @@ runs:
             exit 1
           elif (( REPO_COUNT = 1 )); then
             echo "new_repo=$NEW_REPO" >> $GITHUB_OUTPUT
-            echo "new_repo_added=true" >> $GITHUB_OUTPUT
+            echo "new_repo_added=True" >> $GITHUB_OUTPUT
           fi
         shell: bash

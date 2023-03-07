@@ -25,14 +25,14 @@ jobs:
 
       - name: Check if repository is compliant
         id:  check-compliance
-        if: steps.get-repo-name.outputs.new_repo_added == 'true'
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         uses: ./.github/actions/check_compliance/
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
 
       - name: Has README
         id: has-readme
-        if: steps.get-repo-name.outputs.new_repo_added == 'true'
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         run: |
           if [ "${{ steps.check-compliance.outputs.has_readme }}" != "True" ]; then
             echo "Repo is not compliant - missing README"
@@ -41,7 +41,7 @@ jobs:
 
       - name: Has Codeowners file
         id: has-codeowners
-        if: steps.get-repo-name.outputs.new_repo_added == 'true'
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         run: |
           if [ "${{ steps.check-compliance.outputs.has_codeowners }}" != "True" ]; then
             echo "Repo is not compliant - missing Codeowners file"
@@ -49,7 +49,7 @@ jobs:
           fi
 
       - name: Has License file
-        if: steps.get-repo-name.outputs.new_repo_added == 'true'
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         id:  has-license
         run: |
           if [ "${{ steps.check-compliance.outputs.has_license }}" != "True" ]; then
@@ -58,7 +58,7 @@ jobs:
           fi
 
       - name: Is branch protected
-        if: steps.get-repo-name.outputs.new_repo_added == 'true'
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         id: is-branch-protected
         run: |
           if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" != "True" ]; then

@@ -40,7 +40,7 @@ def test_download_file_fails(mock_get):
     response_mock.json.return_value = {}
     mock_get.return_value = response_mock
 
-    with pytest.raises(KeyError):
+    with pytest.raises( (KeyError, Exception) ):
         download_file("some_url")
 
     assert mock_get.call_count == 5

@@ -47,10 +47,15 @@ def check_readme(repo: github3.github.repo) -> bool:
 def main() -> None:
     org = os.environ["GH_ORG"]
     gh_token = os.environ["GH_TOKEN"]
-    repo = os.environ["REPO"]
+    repo_name = os.environ["REPO"]
 
     gh = github3.login(token=gh_token)
-    repo = gh.repository(owner=org, repository=repo)
+    try:
+        repo = gh.repository(owner=org, repository=repo_name)
+    except github3.exceptions.NotFoundError as e:
+        raise Exception(
+            f"Github repo {repo_name} not found. Double check the spelling and that your repository is public." # noqa
+        ) from e
 
     has_codeowners = check_code_owners(repo)
     has_readme = check_readme(repo)

@@ -7,11 +7,10 @@ import requests
 
 
 def download_file(url: str) -> Union[Dict, NoReturn]:
-    s = requests.Session()
 
     # sometimes the request does not work the first time, so set a retry
     for attempt in range(5):
-        x = s.get(url)
+        x = requests.get(url)
         data = x.json()
         try:
             data["content"]
@@ -23,7 +22,7 @@ def download_file(url: str) -> Union[Dict, NoReturn]:
                 continue
             else:
                 # if it hasn't succeeded after 5 tries, raise the error
-                raise error
+                raise Exception("Error downloading data. Try rerunning the CI job") from error
     return data
 
 

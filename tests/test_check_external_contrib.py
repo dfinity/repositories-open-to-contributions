@@ -6,7 +6,7 @@ import pytest
 from custom_python_actions.check_external_contrib import download_file, decode_file
 
 
-@mock.patch("requests.Session.get")
+@mock.patch("requests.get")
 def test_download_file_succeeds_first_try(mock_get):
     data_response = {"content": "file_contents", "encoding": "base64"}
     response_mock = mock.MagicMock()
@@ -20,7 +20,7 @@ def test_download_file_succeeds_first_try(mock_get):
 
 
 @pytest.mark.slow
-@mock.patch("requests.Session.get")
+@mock.patch("requests.get")
 def test_download_file_succeeds_third_try(mock_get):
     data_response = {"content": "file_contents", "encoding": "base64"}
     response_mock = mock.MagicMock()
@@ -34,13 +34,13 @@ def test_download_file_succeeds_third_try(mock_get):
 
 
 @pytest.mark.slow
-@mock.patch("requests.Session.get")
+@mock.patch("requests.get")
 def test_download_file_fails(mock_get):
     response_mock = mock.MagicMock()
     response_mock.json.return_value = {}
     mock_get.return_value = response_mock
 
-    with pytest.raises(KeyError):
+    with pytest.raises( (KeyError, Exception) ):
         download_file("some_url")
 
     assert mock_get.call_count == 5

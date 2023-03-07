@@ -1,0 +1,67 @@
+# Workflow to check if a new repository has been added to list and is compliant
+# This workflow is only run inside the repositories-open-to-contributions repository
+
+name: Check New Repo
+
+on:
+  pull_request:
+    paths:
+      - open-repositories.txt
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check-repo-compliance:
+    name: Check if repository is compliant
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get repo name
+        id: get-repo-name
+        uses:  ./.github/actions/get_repo_name/
+
+      - name: Check if repository is compliant
+        id:  check-compliance
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        uses: ./.github/actions/check_compliance/
+        with:
+          repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
+
+      - name: Has README
+        id: has-readme
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_readme }}" != "True" ]; then
+            echo "Repo is not compliant - missing README"
+            exit 1
+          fi
+
+      - name: Has Codeowners file
+        id: has-codeowners
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_codeowners }}" != "True" ]; then
+            echo "Repo is not compliant - missing Codeowners file"
+            exit 1
+          fi
+
+      - name: Has License file
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        id:  has-license
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_license }}" != "True" ]; then
+            echo "Repo is not compliant - missing License file"
+            exit 1
+          fi
+
+      - name: Is branch protected
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        id: is-branch-protected
+        run: |
+          if [ "${{ steps.check-compliance.outputs.is_branch_protected }}" != "True" ]; then
+            echo "Repo is not compliant - is not branch protected"
+            exit 1
+          fi

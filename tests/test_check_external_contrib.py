@@ -3,62 +3,47 @@ from unittest import mock
 
 import pytest
 
-from custom_python_actions.check_external_contrib import download_file, decode_file
+from custom_python_actions.check_external_contrib import download_gh_file
 
 
-@mock.patch("requests.get")
-def test_download_file_succeeds_first_try(mock_get):
-    data_response = {"content": "file_contents", "encoding": "base64"}
-    response_mock = mock.MagicMock()
-    response_mock.json.return_value = data_response
-    mock_get.return_value = response_mock
+def test_download_file_succeeds_first_try():
+    repo = mock.MagicMock()
+    file_content_obj = mock.Mock()
+    file_content_obj.decoded = b"file_contents"
+    repo.file_contents.return_value = file_content_obj
 
-    data = download_file("some_url")
+    data = download_gh_file(repo, "file_path")
 
-    assert data == data_response
-    assert mock_get.call_count == 1
+    assert data == "file_contents"
+    assert repo.file_contents.called_with("file_path")
+    assert repo.file_contents.call_count == 1
 
 
 @pytest.mark.slow
-@mock.patch("requests.get")
-def test_download_file_succeeds_third_try(mock_get):
-    data_response = {"content": "file_contents", "encoding": "base64"}
-    response_mock = mock.MagicMock()
-    response_mock.json.side_effect = [{}, {}, data_response]
-    mock_get.return_value = response_mock
+def test_download_file_succeeds_third_try():
+    repo = mock.MagicMock()
+    file_content_obj = mock.Mock()
+    file_content_obj.decoded = b"file_contents"
+    repo.file_contents = mock.Mock(
+        side_effect=[ConnectionResetError(), ConnectionResetError, file_content_obj]
+    )
 
-    data = download_file("some_url")
+    data = download_gh_file(repo, "file_path")
 
-    assert data == data_response
-    assert mock_get.call_count == 3
+    assert data == "file_contents"
+    assert repo.file_contents.called_with("file_path")
+    assert repo.file_contents.call_count == 3
 
 
 @pytest.mark.slow
 @mock.patch("requests.get")
 def test_download_file_fails(mock_get):
-    response_mock = mock.MagicMock()
-    response_mock.json.return_value = {}
-    mock_get.return_value = response_mock
+    repo = mock.MagicMock()
+    file_content_obj = mock.Mock()
+    repo.file_contents = mock.Mock(side_effect=ConnectionResetError)
 
-    with pytest.raises( (KeyError, Exception) ):
-        download_file("some_url")
+    with pytest.raises((ConnectionResetError, Exception)):
+        download_gh_file(repo, "file_path")
 
-    assert mock_get.call_count == 5
-
-
-def test_decode_file():
-    data_response = {"content": "file_contents", "encoding": "base64"}
-    data_response["content"] = base64.b64encode("file_contents".encode("ascii"))
-
-    file_content = decode_file(data_response)
-
-    assert "file_contents" == file_content
-
-
-def test_file_not_decoded():
-    data_response = {"content": "file_contents"}
-    data_response["content"] = base64.b64encode("file_contents".encode("ascii"))
-
-    file_content = decode_file(data_response)
-
-    assert data_response["content"] == file_content
+    assert repo.file_contents.call_count == 5
+    file_content_obj.decoded.assert_not_called

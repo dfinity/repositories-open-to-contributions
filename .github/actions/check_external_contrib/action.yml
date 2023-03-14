@@ -5,6 +5,10 @@ inputs:
     description: "The name of the repository"
     default: ${{github.event.repository.name}}
     required: false
+  github-token:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
 outputs:
   accepts_contrib:
     value: ${{ steps.check-external-contrib.outputs.accepts_contrib }}

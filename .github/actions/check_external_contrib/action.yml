@@ -30,3 +30,4 @@ runs:
       shell: bash
       env:
         REPO: ${{ inputs.repo-name }}
+        GH_TOKEN: ${{ inputs.github-token }}

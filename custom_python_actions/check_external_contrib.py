@@ -8,7 +8,7 @@ import github3
 SCRIPT_DIR = file = Path(__file__).parents[0]
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from custom_python_actions.utils import download_gh_file
+from custom_python_actions.utils import download_gh_file  # noqa
 
 
 def get_repos_open_to_contributions(gh: github3.login) -> List[str]:

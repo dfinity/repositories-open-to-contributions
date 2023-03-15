@@ -2,6 +2,7 @@ import io
 import sys
 from unittest import mock
 
+import pytest
 from github3.exceptions import NotFoundError
 
 from custom_python_actions.check_compliance import (
@@ -11,34 +12,34 @@ from custom_python_actions.check_compliance import (
 )
 
 
-@mock.patch("requests.head")
-def test_check_code_owners_succeeds(mock_head):
-    repo = mock.MagicMock()
-    repo.html_url = "github_url"
-    repo.default_branch = "main"
-    response = mock.MagicMock()
-    response.status_code = 200
-    mock_head.return_value = response
+def test_check_code_owners_succeeds():
+    repo = mock.Mock()
+    code_owners_file = "* @dfinity/idx\n"
+    repo.file_contents = mock.Mock(
+        side_effect=[NotFoundError(mock.Mock()), code_owners_file]
+    )
 
     code_owners_check = check_code_owners(repo)
 
-    mock_head.assert_called_with(
-        "github_url/blob/main/CODEOWNERS", allow_redirects=True
+    assert repo.file_contents.call_count == 2
+    repo.file_contents.assert_has_calls(
+        [mock.call("/.github/CODEOWNERS"), mock.call("/CODEOWNERS")], any_order=True
     )
     assert code_owners_check == True
 
 
-@mock.patch("requests.head")
-def test_check_code_owners_fails(mock_head):
-    repo = mock.MagicMock()
-    repo.html_url = "github_url"
-    repo.default_branch = "main"
-    response = mock.MagicMock()
-    response.status_code = 404
-    mock_head.return_value = response
+def test_check_code_owners_fails():
+    repo = mock.Mock()
+    repo.file_contents = mock.Mock(
+        side_effect=[NotFoundError(mock.Mock()), NotFoundError(mock.Mock())]
+    )
 
     code_owners_check = check_code_owners(repo)
 
+    assert repo.file_contents.call_count == 2
+    repo.file_contents.assert_has_calls(
+        [mock.call("/.github/CODEOWNERS"), mock.call("/CODEOWNERS")], any_order=True
+    )
     assert code_owners_check == False
 
 
@@ -53,7 +54,7 @@ def test_check_license_exists():
 
 def test_check_license_is_missing():
     repo = mock.MagicMock()
-    repo.license.side_effect = NotFoundError
+    repo.license.side_effect = NotFoundError(mock.Mock())
 
     license = check_license(repo)
 
@@ -66,11 +67,8 @@ def test_check_license_other_error():
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
 
-    license = check_license(repo)
-    sys.stdout = sys.__stdout__
-
-    assert license == False
-    assert capturedOutput.getvalue() == "Raised error: some exception\n"
+    with pytest.raises(Exception):
+        readme = check_license(repo)
 
 
 def test_check_readme_exists():
@@ -84,7 +82,7 @@ def test_check_readme_exists():
 
 def test_check_readme_is_missing():
     repo = mock.MagicMock()
-    repo.readme.side_effect = NotFoundError
+    repo.readme.side_effect = NotFoundError(mock.Mock())
 
     readme = check_readme(repo)
 
@@ -97,8 +95,5 @@ def test_check_readme_other_error():
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
 
-    readme = check_readme(repo)
-    sys.stdout = sys.__stdout__
-
-    assert readme == False
-    assert capturedOutput.getvalue() == "Raised error: some exception\n"
+    with pytest.raises(Exception):
+        readme = check_readme(repo)

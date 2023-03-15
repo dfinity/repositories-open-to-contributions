@@ -1,19 +1,19 @@
 import os
 
 import github3
-import requests
 
 
 def check_code_owners(repo: github3.github.repo) -> bool:
-    repo_url = repo.html_url + f"/blob/{repo.default_branch}"
     valid_codowner_paths = [
         "/CODEOWNERS",
         "/.github/CODEOWNERS",
     ]
     for path in valid_codowner_paths:
-        x = requests.head(repo_url + path, allow_redirects=True)
-        if x.status_code >= 200 and x.status_code < 300:
+        try:
+            repo.file_contents(path)
             return True
+        except github3.exceptions.NotFoundError:
+            pass
     return False
 
 
@@ -28,9 +28,6 @@ def check_license(repo: github3.github.repo) -> bool:
         return True
     except github3.exceptions.NotFoundError:
         return False
-    except Exception as error:
-        print(f"Raised error: {error}")
-        return False
 
 
 def check_readme(repo: github3.github.repo) -> bool:
@@ -38,9 +35,6 @@ def check_readme(repo: github3.github.repo) -> bool:
         repo.readme()
         return True
     except github3.exceptions.NotFoundError:
-        return False
-    except Exception as error:
-        print(f"Raised error: {error}")
         return False
 
 

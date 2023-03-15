@@ -24,7 +24,7 @@ def test_download_file_succeeds_third_try():
     file_content_obj = mock.Mock()
     file_content_obj.decoded = b"file_contents"
     repo.file_contents = mock.Mock(
-        side_effect=[ConnectionResetError(), ConnectionResetError, file_content_obj]
+        side_effect=[ConnectionResetError, ConnectionResetError, file_content_obj]
     )
 
     data = download_gh_file(repo, "file_path")

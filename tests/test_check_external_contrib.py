@@ -7,8 +7,9 @@ SCRIPT_DIR = file = f"{Path(__file__).parents[1]}/custom_python_actions/"
 print(SCRIPT_DIR)
 sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-
-from custom_python_actions.check_external_contrib import get_repos_open_to_contributions
+from custom_python_actions.check_external_contrib import (
+    get_repos_open_to_contributions,
+)  # noqa
 
 
 def test_check_repos_open_to_contributions():

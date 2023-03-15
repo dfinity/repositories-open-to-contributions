@@ -1,11 +1,9 @@
 import os
-from pathlib import Path
-import sys
 from typing import List
 
 import github3
 
-from utils import download_gh_file  # noqa
+from utils import download_gh_file
 
 
 def get_repos_open_to_contributions(gh: github3.login) -> List[str]:

@@ -11,7 +11,8 @@ def download_gh_file(repo: github3.github.repo, file_path: str) -> str:
             break
         except ConnectionResetError as error:
             if attempt < 4:
-                time.sleep(3)
+                time.sleep(pow(2, attempt))
+                print(f"Retrying file download, waiting {pow(2, attempt)} seconds.")
                 continue
             else:
                 # if it hasn't succeeded after 5 tries, raise the error

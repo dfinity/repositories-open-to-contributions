@@ -1,49 +1,25 @@
-import base64
+import os
+from pathlib import Path
+import sys
 from unittest import mock
 
-import pytest
+SCRIPT_DIR = file = f"{Path(__file__).parents[1]}/custom_python_actions/"
+print(SCRIPT_DIR)
+sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-from custom_python_actions.check_external_contrib import download_gh_file
-
-
-def test_download_file_succeeds_first_try():
-    repo = mock.MagicMock()
-    file_content_obj = mock.Mock()
-    file_content_obj.decoded = b"file_contents"
-    repo.file_contents.return_value = file_content_obj
-
-    data = download_gh_file(repo, "file_path")
-
-    assert data == "file_contents"
-    assert repo.file_contents.called_with("file_path")
-    assert repo.file_contents.call_count == 1
+from custom_python_actions.check_external_contrib import (
+    get_repos_open_to_contributions,
+)  # noqa
 
 
-@pytest.mark.slow
-def test_download_file_succeeds_third_try():
-    repo = mock.MagicMock()
-    file_content_obj = mock.Mock()
-    file_content_obj.decoded = b"file_contents"
-    repo.file_contents = mock.Mock(
-        side_effect=[ConnectionResetError(), ConnectionResetError, file_content_obj]
-    )
+def test_check_repos_open_to_contributions():
+    gh = mock.Mock()
+    gh_repo = mock.Mock()
+    file_contents = mock.Mock()
+    file_contents.decoded.decode.return_value = "one-repo\nanother-repo\n"
+    gh_repo.file_contents.return_value = file_contents
+    gh.repository.return_value = gh_repo
 
-    data = download_gh_file(repo, "file_path")
+    repo_list = get_repos_open_to_contributions(gh)
 
-    assert data == "file_contents"
-    assert repo.file_contents.called_with("file_path")
-    assert repo.file_contents.call_count == 3
-
-
-@pytest.mark.slow
-@mock.patch("requests.get")
-def test_download_file_fails(mock_get):
-    repo = mock.MagicMock()
-    file_content_obj = mock.Mock()
-    repo.file_contents = mock.Mock(side_effect=ConnectionResetError)
-
-    with pytest.raises((ConnectionResetError, Exception)):
-        download_gh_file(repo, "file_path")
-
-    assert repo.file_contents.call_count == 5
-    file_content_obj.decoded.assert_not_called
+    assert repo_list == ["one-repo", "another-repo"]

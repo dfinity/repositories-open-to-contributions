@@ -3,7 +3,7 @@ from typing import List
 
 import github3
 
-from .utils import download_gh_file
+from custom_python_actions.utils import download_gh_file
 
 
 def get_repos_open_to_contributions(gh: github3.login) -> List[str]:

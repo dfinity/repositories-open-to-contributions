@@ -1,7 +1,7 @@
 import os
 import re
 import sys
-from typing import Optional, Union
+from typing import Union
 
 import github3
 
@@ -21,7 +21,7 @@ def get_code_owners(repo: github3.github.repo) -> Union[str, None]:
     return None
 
 
-def check_code_owners(code_owners: Optional[str]) -> bool:
+def check_code_owners(code_owners: Union[str, None]) -> bool:
     return True if code_owners else False
 
 

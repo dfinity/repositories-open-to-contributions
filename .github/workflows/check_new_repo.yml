@@ -65,3 +65,12 @@ jobs:
             echo "Repo is not compliant - is not branch protected"
             exit 1
           fi
+
+      - name: Team Has Correct Permissions
+        id: has-permissions
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        run: |
+          if [ "${{ steps.check-compliance.outputs.has_permissions }}" = "False" ]; then
+            echo "Repo is not compliant - team listed in codeowners file must have at least write permissions."
+            exit 1
+          fi

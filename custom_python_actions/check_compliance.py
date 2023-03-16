@@ -47,23 +47,21 @@ def check_readme(repo: github3.github.repo) -> bool:
 
 
 def get_team_name(code_owners: str, org_name: str) -> str:
-    code_owner_file_lines = code_owners.split("\n")
-    for line in code_owner_file_lines:
+    code_owner_file = code_owners.strip("\n")
+    regex_output = re.findall(
         # If anyone is a regex wizard, please help me out here!
-        if "#" in line:
-            team_handle = re.findall(r"(?=\*. *@).*(@.*)(?= *#)(?<=\w)", line)
-        else:
-            team_handle = re.findall(r"(?=\*. *@).*(@.*)", line)
-        if len(team_handle) > 0:
-            print(f"Codeowners found {team_handle}")
-            break
-    if len(team_handle) > 1:
-        print("Only one team can be listed for repo-level codeowners.")
-        sys.exit(1)
-    if len(team_handle) == 0:
+        r"(?=\*. *@).*(@\S*).*(@\S*)|(?=\*. *@).*(@\S*)",
+        code_owner_file,
+    )
+    print(f"Codeowners found {regex_output}")
+    if len(regex_output) == 0:
         print(
             "No repo-level team owner found. Double check the format of your CODEOWNERS file."
         )
+        sys.exit(1)
+    team_handle = [a for a in regex_output[0] if a != ""]
+    if len(team_handle) > 1:
+        print("Only one team can be listed for repo-level codeowners.")
         sys.exit(1)
     codeowner_team = team_handle[0]
     team_name = codeowner_team.strip(f"@{org_name}").strip("/")

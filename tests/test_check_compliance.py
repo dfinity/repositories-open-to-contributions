@@ -146,3 +146,30 @@ def test_get_team_name_succeeds(test_input, org_name, expected):
     team_name = get_team_name(test_input, org_name)
 
     assert team_name == expected
+
+
+code_owners_test_file_4 = "* @dfinity/idx @dfinity/another-team \n"
+code_owners_test_file_5 = "/build/logs/ @doctocat"
+code_owners_test_file_6 = "*.js    @js-owner #This is an inline comment."
+
+too_many_teams_message = "Only one team can be listed for repo-level codeowners."
+no_repo_owner_message = (
+    "No repo-level team owner found. Double check the format of your CODEOWNERS file."
+)
+
+
+@pytest.mark.parametrize(
+    "test_input,org_name,message",
+    [
+        (code_owners_test_file_4, "dfinity", too_many_teams_message),
+        (code_owners_test_file_5, "dfinity", no_repo_owner_message),
+        (code_owners_test_file_6, "dfinity", no_repo_owner_message),
+    ],
+)
+def test_get_team_name_fails(test_input, org_name, message):
+    with pytest.raises(SystemExit):
+        capturedOutput = io.StringIO()
+        get_team_name(test_input, org_name)
+        sys.stdout = capturedOutput
+
+        assert capturedOutput.getvalue() == message

@@ -48,24 +48,18 @@ def test_check_get_code_owners_fails():
 
 
 def test_check_code_owners_succeeds():
-    repo = mock.Mock()
-    code_owners_file = mock.Mock()
-    code_owners_file.decoded.decode.return_value = "* @dfinity/idx\n"
-    repo.file_contents.return_value = code_owners_file
+    code_owners = "* @dfinity/idx\n"
 
-    check_succeeds = check_code_owners(repo)
+    check_succeeds = check_code_owners(code_owners)
 
-    assert repo.file_contents.call_count == 1
     assert check_succeeds == True
 
 
 def test_check_code_owners_fails():
-    repo = mock.Mock()
-    repo.file_contents.side_effect = NotFoundError(mock.Mock())
+    code_owners = None
 
-    check_succeeds = check_code_owners(repo)
+    check_succeeds = check_code_owners(code_owners)
 
-    assert repo.file_contents.call_count == 2
     assert check_succeeds == False
 
 

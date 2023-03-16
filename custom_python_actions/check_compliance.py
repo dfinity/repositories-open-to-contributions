@@ -21,8 +21,8 @@ def get_code_owners(repo: github3.github.repo) -> Union[str, None]:
     return None
 
 
-def check_code_owners(repo: github3.github.repo) -> bool:
-    return True if get_code_owners(repo) else False
+def check_code_owners(code_owners: str) -> bool:
+    return True if code_owners else False
 
 
 def check_branch_protection(repo: github3.github.repo) -> bool:
@@ -104,13 +104,13 @@ def main() -> None:
             f"Github repo {repo_name} not found. Double check the spelling and that your repository is public."  # noqa
         ) from e
 
-    has_codeowners = check_code_owners(repo)
+    code_owners = get_code_owners(repo)
+    has_codeowners = check_code_owners(code_owners)
     has_readme = check_readme(repo)
     has_license = check_license(repo)
     is_branch_protected = check_branch_protection(repo)
 
-    if has_codeowners:
-        code_owners = get_code_owners()
+    if code_owners:
         team_name = get_team_name(code_owners, org_name)
         has_permissions = check_permissions(repo_name, team_name, org)
     else:

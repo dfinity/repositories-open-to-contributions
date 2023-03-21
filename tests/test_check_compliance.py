@@ -6,6 +6,7 @@ import pytest
 from github3.exceptions import NotFoundError
 
 from custom_python_actions.check_compliance import (
+    check_branch_protection,
     check_code_owners,
     check_license,
     check_readme,
@@ -44,7 +45,7 @@ def test_check_code_owners_fails():
 
 
 def test_check_license_exists():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.return_value = "license"
 
     license = check_license(repo)
@@ -53,7 +54,7 @@ def test_check_license_exists():
 
 
 def test_check_license_is_missing():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.side_effect = NotFoundError(mock.Mock())
 
     license = check_license(repo)
@@ -62,7 +63,7 @@ def test_check_license_is_missing():
 
 
 def test_check_license_other_error():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.side_effect = Exception("some exception")
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
@@ -72,7 +73,7 @@ def test_check_license_other_error():
 
 
 def test_check_readme_exists():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.readme.return_value = "readme"
 
     readme = check_readme(repo)
@@ -81,7 +82,7 @@ def test_check_readme_exists():
 
 
 def test_check_readme_is_missing():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.readme.side_effect = NotFoundError(mock.Mock())
 
     readme = check_readme(repo)
@@ -90,10 +91,36 @@ def test_check_readme_is_missing():
 
 
 def test_check_readme_other_error():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.readme.side_effect = Exception("some exception")
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
 
     with pytest.raises(Exception):
         readme = check_readme(repo)
+
+
+def test_branch_protection_enabled():
+    repo = mock.Mock()
+    repo.default_branch = "main"
+    branch = mock.Mock()
+    branch.protected = True
+    repo.branch.return_value = branch
+
+    branch_protection = check_branch_protection(repo)
+
+    assert repo.branch.called_with("main")
+    assert branch_protection == True
+
+
+def test_branch_protection_disabled():
+    repo = mock.Mock()
+    repo.default_branch = "main"
+    branch = mock.Mock()
+    branch.protected = False
+    repo.branch.return_value = branch
+
+    branch_protection = check_branch_protection(repo)
+
+    assert repo.branch.called_with("main")
+    assert branch_protection == False

@@ -29,6 +29,7 @@ jobs:
         uses: ./.github/actions/check_compliance/
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
+          github-token: ${{ secret.GH_TOKEN_READ_ORG }}
 
       - name: Has README
         id: has-readme

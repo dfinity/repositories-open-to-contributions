@@ -120,7 +120,6 @@ def test_check_readme_other_error():
         readme = check_readme(repo)
 
 
-<<<<<<< HEAD
 code_owners_test_file_1 = "* @dfinity/idx\n"
 code_owners_test_file_2 = "* @another-org/another-team # some comment"
 

@@ -45,7 +45,7 @@ def test_check_code_owners_fails():
 
 
 def test_check_license_exists():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.return_value = "license"
 
     license = check_license(repo)
@@ -54,7 +54,7 @@ def test_check_license_exists():
 
 
 def test_check_license_is_missing():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.side_effect = NotFoundError(mock.Mock())
 
     license = check_license(repo)
@@ -63,7 +63,7 @@ def test_check_license_is_missing():
 
 
 def test_check_license_other_error():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.license.side_effect = Exception("some exception")
     capturedOutput = io.StringIO()
     sys.stdout = capturedOutput
@@ -73,7 +73,7 @@ def test_check_license_other_error():
 
 
 def test_check_readme_exists():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.readme.return_value = "readme"
 
     readme = check_readme(repo)
@@ -82,7 +82,7 @@ def test_check_readme_exists():
 
 
 def test_check_readme_is_missing():
-    repo = mock.MagicMock()
+    repo = mock.Mock()
     repo.readme.side_effect = NotFoundError(mock.Mock())
 
     readme = check_readme(repo)

@@ -30,7 +30,6 @@ motoko
 motoko-base
 motoko-playground
 portal
-repositories-open-to-contributions
 quill
 rules_motoko
 sdk

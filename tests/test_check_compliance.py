@@ -120,21 +120,17 @@ def test_check_readme_other_error():
         readme = check_readme(repo)
 
 
-code_owners_test_file_1 = "* @dfinity/idx\n"
-code_owners_test_file_2 = "* @another-org/another-team # some comment"
-
-
-def code_owners_test_file_3():
-    code_owners = open("tests/test_data/CODEOWNERS3", "r").read()
+def code_owners_test_file(n):
+    code_owners = open(f"tests/test_data/CODEOWNERS{n}", "r").read()
     return code_owners
 
 
 @pytest.mark.parametrize(
     "test_input,org_name,expected",
     [
-        (code_owners_test_file_1, "dfinity", "idx"),
-        (code_owners_test_file_2, "another-org", "another-team"),
-        (code_owners_test_file_3(), "dfinity-lab", "some-team"),
+        (code_owners_test_file(1), "dfinity", "idx"),
+        (code_owners_test_file(2), "another-org", "another-team"),
+        (code_owners_test_file(3), "dfinity-lab", "some-team"),
     ],
 )
 def test_get_team_name_succeeds(test_input, org_name, expected):
@@ -142,10 +138,6 @@ def test_get_team_name_succeeds(test_input, org_name, expected):
 
     assert team_name == expected
 
-
-code_owners_test_file_4 = "* @dfinity/idx @dfinity/another-team \n"
-code_owners_test_file_5 = "/build/logs/ @doctocat"
-code_owners_test_file_6 = "*.js    @js-owner #This is an inline comment."
 
 too_many_teams_message = "Only one team can be listed for repo-level codeowners."
 no_repo_owner_message = (
@@ -156,9 +148,10 @@ no_repo_owner_message = (
 @pytest.mark.parametrize(
     "test_input,org_name,message",
     [
-        (code_owners_test_file_4, "dfinity", too_many_teams_message),
-        (code_owners_test_file_5, "dfinity", no_repo_owner_message),
-        (code_owners_test_file_6, "dfinity", no_repo_owner_message),
+        (code_owners_test_file(4), "dfinity", too_many_teams_message),
+        (code_owners_test_file(5), "dfinity", no_repo_owner_message),
+        (code_owners_test_file(6), "dfinity", no_repo_owner_message),
+        (code_owners_test_file(7), "dfinity", no_repo_owner_message),
     ],
 )
 def test_get_team_name_fails(test_input, org_name, message):
@@ -168,6 +161,7 @@ def test_get_team_name_fails(test_input, org_name, message):
         sys.stdout = capturedOutput
 
         assert capturedOutput.getvalue() == message
+
 
 def test_branch_protection_enabled():
     repo = mock.Mock()

@@ -50,8 +50,9 @@ def get_team_name(code_owners: str, org_name: str) -> str:
     code_owner_file = code_owners.strip("\n")
     regex_output = re.findall(
         # If anyone is a regex wizard, please help me out here!
-        r"(?=\*. *@).*(@\S*).*(@\S*)|(?=\*. *@).*(@\S*)",
+        r"(?=^\*. *@).*(@\S*).*(@\S*)|(?=^\*. *@).*(@\S*)",
         code_owner_file,
+        re.MULTILINE,
     )
     print(f"Codeowners found {regex_output}")
     if len(regex_output) == 0:

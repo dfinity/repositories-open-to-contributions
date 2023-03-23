@@ -10,38 +10,58 @@ from custom_python_actions.check_compliance import (
     check_code_owners,
     check_license,
     check_readme,
+    get_code_owners,
+    get_team_name,
 )
 
 
-def test_check_code_owners_succeeds():
+def test_check_get_code_owners_succeeds():
     repo = mock.Mock()
-    code_owners_file = "* @dfinity/idx\n"
+    code_owners_file = mock.Mock()
+    code_owners_file.decoded.decode.return_value = "* @dfinity/idx\n"
     repo.file_contents = mock.Mock(
         side_effect=[NotFoundError(mock.Mock()), code_owners_file]
     )
 
-    code_owners_check = check_code_owners(repo)
+    code_owners = get_code_owners(repo)
 
     assert repo.file_contents.call_count == 2
+    assert code_owners_file.decoded.decode.call_count == 1
     repo.file_contents.assert_has_calls(
         [mock.call("/.github/CODEOWNERS"), mock.call("/CODEOWNERS")], any_order=True
     )
-    assert code_owners_check == True
+    assert code_owners == "* @dfinity/idx\n"
 
 
-def test_check_code_owners_fails():
+def test_check_get_code_owners_fails():
     repo = mock.Mock()
     repo.file_contents = mock.Mock(
         side_effect=[NotFoundError(mock.Mock()), NotFoundError(mock.Mock())]
     )
 
-    code_owners_check = check_code_owners(repo)
+    code_owners = get_code_owners(repo)
 
     assert repo.file_contents.call_count == 2
     repo.file_contents.assert_has_calls(
         [mock.call("/.github/CODEOWNERS"), mock.call("/CODEOWNERS")], any_order=True
     )
-    assert code_owners_check == False
+    assert code_owners == None
+
+
+def test_check_code_owners_succeeds():
+    code_owners = "* @dfinity/idx\n"
+
+    check_succeeds = check_code_owners(code_owners)
+
+    assert check_succeeds == True
+
+
+def test_check_code_owners_fails():
+    code_owners = None
+
+    check_succeeds = check_code_owners(code_owners)
+
+    assert check_succeeds == False
 
 
 def test_check_license_exists():
@@ -98,6 +118,49 @@ def test_check_readme_other_error():
 
     with pytest.raises(Exception):
         readme = check_readme(repo)
+
+
+def code_owners_test_file(n):
+    code_owners = open(f"tests/test_data/CODEOWNERS{n}", "r").read()
+    return code_owners
+
+
+@pytest.mark.parametrize(
+    "test_input,org_name,expected",
+    [
+        (code_owners_test_file(1), "dfinity", "idx"),
+        (code_owners_test_file(2), "another-org", "another-team"),
+        (code_owners_test_file(3), "dfinity-lab", "some-team"),
+    ],
+)
+def test_get_team_name_succeeds(test_input, org_name, expected):
+    team_name = get_team_name(test_input, org_name)
+
+    assert team_name == expected
+
+
+too_many_teams_message = "Only one team can be listed for repo-level codeowners."
+no_repo_owner_message = (
+    "No repo-level team owner found. Double check the format of your CODEOWNERS file."
+)
+
+
+@pytest.mark.parametrize(
+    "test_input,org_name,message",
+    [
+        (code_owners_test_file(4), "dfinity", too_many_teams_message),
+        (code_owners_test_file(5), "dfinity", no_repo_owner_message),
+        (code_owners_test_file(6), "dfinity", no_repo_owner_message),
+        (code_owners_test_file(7), "dfinity", no_repo_owner_message),
+    ],
+)
+def test_get_team_name_fails(test_input, org_name, message):
+    with pytest.raises(SystemExit):
+        capturedOutput = io.StringIO()
+        get_team_name(test_input, org_name)
+        sys.stdout = capturedOutput
+
+        assert capturedOutput.getvalue() == message
 
 
 def test_branch_protection_enabled():

@@ -37,7 +37,7 @@ runs:
       with:
         python-version: '3.10'
     - name: Install Dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r --quiet requirements.txt
       shell: bash
     - name: Check External Contribution
       id: check_compliance

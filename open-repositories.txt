@@ -2,7 +2,7 @@ ICRC
 ICRC-1
 agent-js
 agent-rs
-awesome-dfinity
+awesome-internet-computer
 bigmap-poc
 cancan
 candid

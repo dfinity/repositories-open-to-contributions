@@ -43,7 +43,7 @@ def main() -> None:
         else:
             print("Check failed")
             checks_passed = False
-        if compliance_check.message:
+        if compliance_check.message is not None:
             print(compliance_check.message)
     if not checks_passed:
         print("One or more checks failed.")

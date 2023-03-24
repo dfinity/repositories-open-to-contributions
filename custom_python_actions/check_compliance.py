@@ -36,14 +36,15 @@ def main() -> None:
         RepoPermissions(),  # Repo Permissions needs to be after CodeOwners
     ]:
         helper = ComplianceCheckHelper(repo, org)
-        compliance_check.check(helper)
         print(f"Checking {compliance_check.name}")
+        compliance_check.check(helper)
         if compliance_check.succeeds:
             print("Check succeeded")
         else:
             print("Check failed")
             checks_passed = False
-        print(compliance_check.message)
+        if compliance_check.message:
+            print(compliance_check.message)
     if not checks_passed:
         print("One or more checks failed.")
         sys.exit(1)

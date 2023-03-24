@@ -44,7 +44,7 @@ def main() -> None:
             print("Check failed")
             checks_passed = False
         print(compliance_check.message)
-    if checks_passed == False:
+    if not checks_passed:
         print("One or more checks failed.")
         sys.exit(1)
 

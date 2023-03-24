@@ -37,7 +37,7 @@ def get_team_name(code_owners: str, org_name: str) -> str:
     team_handle = [a for a in regex_output[0] if a != ""]
     if len(team_handle) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
-    codeowner_team = team_handle[0]
+    codeowner_team = team_handle[0].lower()
     team_name = codeowner_team.strip(f"@{org_name.lower()}").strip("/")
     return team_name
 

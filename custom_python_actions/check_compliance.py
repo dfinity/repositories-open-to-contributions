@@ -3,7 +3,7 @@ import sys
 
 import github3
 
-rom compliance_checks import (
+from compliance_checks import (
     BranchProtection,
     ComplianceCheckHelper,
     CodeOwners,

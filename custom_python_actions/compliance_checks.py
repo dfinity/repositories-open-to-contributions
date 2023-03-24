@@ -100,13 +100,20 @@ class RepoPermissions(ComplianceCheck):
             self.message = f"Raised error: {error}"
             return
 
+        print(team_name)
+        print(f"{org.name}/{repo.name}")
         try:
-            team = org.team_by_name(team_name)
-            permissions = team.permissions_for(f"{org.name}/{repo.name}")
-            role = permissions.role_name
-        # except github3.exceptions.NotFoundError:
-        #     self.message = "Repository Permissions could not be found"
-        #     return
+            role = (
+                org.team_by_name(team_name)
+                .permissions_for(f"{org.name}/{repo.name}")
+                .role_name
+            )
+            # team = org.team_by_name(team_name)
+            # permissions = team.permissions_for(f"{org.name}/{repo.name}")
+            # role = permissions.role_name
+        except github3.exceptions.NotFoundError:
+            self.message = "Repository Permissions could not be found"
+            return
         except Exception as error:
             self.message = f"Raised error: {error}"
             return

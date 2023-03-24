@@ -81,7 +81,7 @@ def check_permissions(repo_name: str, team_name: str, org: github3.github.orgs) 
         print("Repository Permissions could not be found")
         return False
 
-    if role in ["admin", "write"]:
+    if role in ["maintain", "write"]:
         print(f"Team {team_name} has {role} permissions.")
         return True
     else:

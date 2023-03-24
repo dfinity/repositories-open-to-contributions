@@ -50,8 +50,8 @@ class ComplianceCheckHelper:
 
     def get_code_owners(self) -> str:
         if not self.code_owners:
-            self.code_owners = get_code_owners(self.repo)
-        return self.code_owners
+            self.code_owners = get_code_owners(self.repo)  # ignore
+        return self.code_owners  # ignore
 
 
 @dataclass

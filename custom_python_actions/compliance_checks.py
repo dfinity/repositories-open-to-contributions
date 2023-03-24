@@ -38,7 +38,7 @@ def get_team_name(code_owners: str, org_name: str) -> str:
     if len(team_handle) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
     codeowner_team = team_handle[0]
-    team_name = codeowner_team.strip(f"@{org_name}").strip("/")
+    team_name = codeowner_team.strip(f"@{org_name.lower()}").strip("/")
     return team_name
 
 
@@ -100,17 +100,10 @@ class RepoPermissions(ComplianceCheck):
             self.message = f"Raised error: {error}"
             return
 
-        print(team_name)
-        print(f"{org.name}/{repo.name}")
         try:
-            role = (
-                org.team_by_name(team_name)
-                .permissions_for(f"{org.name}/{repo.name}")
-                .role_name
-            )
-            # team = org.team_by_name(team_name)
-            # permissions = team.permissions_for(f"{org.name}/{repo.name}")
-            # role = permissions.role_name
+            team = org.team_by_name(team_name)
+            permissions = team.permissions_for(f"{org.name}/{repo.name}")
+            role = permissions.role_name
         except github3.exceptions.NotFoundError:
             self.message = "Repository Permissions could not be found"
             return

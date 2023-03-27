@@ -115,8 +115,7 @@ class RepoPermissions(ComplianceCheck):
             self.succeeds = True
             self.message = f"Team {team_name} has {role} permissions."
         else:
-            self.message = f"Insufficient permissions. Requires write or \
-            maintain, but team {team_name} has {role}."
+            self.message = f"Insufficient permissions. Requires write or maintain, but team {team_name} has {role}."  # noqa: E501
 
 
 @dataclass

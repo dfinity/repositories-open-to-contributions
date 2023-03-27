@@ -31,7 +31,6 @@ motoko-base
 motoko-playground
 portal
 quill
-repositories-open-to-contributions
 rules_motoko
 sdk
 stable-structures

@@ -43,3 +43,5 @@ vscode-motoko
 wg-governance
 wg-identity-authentication
 fake-repository
+fake-repository
+fake-repository

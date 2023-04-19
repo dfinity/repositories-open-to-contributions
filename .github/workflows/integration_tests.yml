@@ -1,0 +1,27 @@
+# Workflow to run integration tests
+# Checks that check_new_repo workflow works as expected
+
+name: Integration Tests
+
+on:
+  pull_request:
+    paths:
+      - custom_python_actions/**
+      - tests/**
+      - workflows/**
+  merge_group:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  integration-test-1:
+    name: Integration Test 1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Integration Test 1
+      run:  bash ${GITHUB_WORKSPACE}/.github/integration_tests/script.sh
+      with:
+        github-token: ${{ github.token }}

@@ -9,7 +9,7 @@ git add open-repositories.txt
 git commit -m 'add nonexistent repository'
 
 # create pull request
-git push --set-upstream origin integration-test-1
+git push "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git" --set-upstream origin integration-test-1
 hub pull-request --draft -m 'Integration Test 1'
 
 # check CI

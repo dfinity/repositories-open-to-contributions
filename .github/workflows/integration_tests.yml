@@ -23,5 +23,5 @@ jobs:
 
     - name: Integration Test 1
       run:  bash ${GITHUB_WORKSPACE}/.github/integration_tests/script.sh
-      with:
-        github-token: ${{ github.token }}
+      env:
+        GH_TOKEN: ${{ github.token }}

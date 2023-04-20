@@ -1,5 +1,8 @@
 # Integration test to ensure CI fails when a non-existent repository is added
 
+# debug to find user
+curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/user
+
 # create new branch
 git checkout -b integration-test-1
 

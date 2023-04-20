@@ -4,7 +4,7 @@
 curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
 
 git config user.name "dfinity"
-git config user.password $GH_TOKEN"
+git config user.password "$GH_TOKEN"
 
 # create new branch
 git checkout -b integration-test-1

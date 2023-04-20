@@ -4,8 +4,8 @@
 git checkout -b integration-test-1
 
 # add a fake repository
-echo "fake-repository" >> ../../open-repositories.txt
-git add ../../open-repositories.txt
+echo "fake-repository" >> open-repositories.txt
+git add open-repositories.txt
 git commit -m 'add nonexistent repository'
 
 # create pull request

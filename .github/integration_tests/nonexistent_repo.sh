@@ -1,7 +1,10 @@
 # Integration test to ensure CI fails when a non-existent repository is added
 
 # debug to find user
-curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/user
+curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
+
+git config user.name "dfinity"
+git config user.password $GH_TOKEN"
 
 # create new branch
 git checkout -b integration-test-1
@@ -12,7 +15,8 @@ git add open-repositories.txt
 git commit -m 'add nonexistent repository'
 
 # create pull request
-git push -c http.extraheader="AUTHORIZATION: Bearer $GH_TOKEN" --set-upstream origin integration-test-1
+git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
+git push --set-upstream origin integration-test-1
 hub pull-request --draft -m 'Integration Test 1'
 
 # # check CI

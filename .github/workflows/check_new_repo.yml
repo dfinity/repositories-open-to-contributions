@@ -1,0 +1,32 @@
+# Workflow to check if a new repository has been added to list and is compliant
+# This workflow is only run inside the repositories-open-to-contributions repository
+
+name: Check New Repo
+
+on:
+  pull_request:
+    paths:
+      - open-repositories.txt
+  merge_group:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check-repo-compliance:
+    name: Check if repository is compliant
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Get repo name
+        id: get-repo-name
+        uses:  ./.github/actions/get_repo_name/
+
+      - name: Check if repository is compliant
+        id:  check-compliance
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+        uses: ./.github/actions/check_compliance/
+        with:
+          repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
+          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}

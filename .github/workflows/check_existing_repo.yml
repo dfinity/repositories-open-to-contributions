@@ -1,0 +1,28 @@
+# Workflow to check that a repository meets compliance requirements
+# This workflow will be applied to all public repositories
+
+name: Existing Repository Compliance
+
+on:
+  pull_request:
+    branches: '**'
+  merge_group:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check-accepting-external-contributions:
+    name: Check if repository is compliant
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check if accepting external contributions
+        id: accepts_external_contrib
+        uses:  ./.github/actions/check_external_contrib/
+
+      - name: Check if repository is compliant
+        id:  check-compliance
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        uses: ./.github/actions/check_compliance/

@@ -1,0 +1,34 @@
+name: 'Check Repository Compliance'
+description: 'Check if the repository meets all compliance checks.'
+inputs:
+  org:
+    description: "Organization of the repository"
+    default: ${{ github.repository_owner }}
+    required: false
+  github-token:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
+  repo-name:
+    description: "The name of the repository"
+    default: ${{ github.event.repository.name }}
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -q -r requirements.txt
+      shell: bash
+    - name: Check External Contribution
+      id: check_compliance
+      run: python custom_python_actions/check_compliance.py
+      shell: bash
+      env:
+        GH_ORG: ${{ inputs.org }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        REPO: ${{ inputs.repo-name }}

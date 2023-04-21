@@ -20,7 +20,7 @@ runs:
         id: get-repo-name
         run: |
           set -euo pipefail
-          NEW_REPO=$(curl --silent --retry 5 https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/open-repositories.txt | grep -vFf- open-repositories.txt)
+          NEW_REPO=$(curl --silent --retry 5 https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/open-repositories.txt | grep -vFxf- open-repositories.txt)
           if [ -z "$NEW_REPO" ]; then
             echo "No repository added."
             exit 0

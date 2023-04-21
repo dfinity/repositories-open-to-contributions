@@ -20,6 +20,7 @@ touch ~/.git-credentials
 echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
 hub config --global credential.helper store
 
+echo "credentials set"
 hub status
 
 # create new branch
@@ -33,6 +34,7 @@ git commit -m 'add nonexistent repository'
 # create pull request
 #git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
 git push --set-upstream origin integration-test-1
+hub remote add upstream  https://github.com/dfinity/repositories-open-to-contributions
 hub pull-request --draft -m 'Integration Test 1'
 
 

@@ -22,6 +22,7 @@ hub config --global credential.helper store
 
 echo "credentials set"
 hub status
+echo "status"
 
 # create new branch
 git checkout -b integration-test-1
@@ -34,8 +35,10 @@ git commit -m 'add nonexistent repository'
 # create pull request
 #git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
 git push --set-upstream origin integration-test-1
-hub remote add upstream  https://github.com/dfinity/repositories-open-to-contributions
-hub pull-request --draft -m 'Integration Test 1'
+#hub remote add upstream  https://github.com/dfinity/repositories-open-to-contributions
+#hub pull-request --draft -m 'Integration Test 1'
+echo org:integration-test-1 -h ${github_username}:integration-test-1 -m 'Integration Test 1'  
+hub pull-request --draft -b org:integration-test-1 -h ${github_username}:integration-test-1  -m 'Integration Test 1' 
 
 
 # # check CI

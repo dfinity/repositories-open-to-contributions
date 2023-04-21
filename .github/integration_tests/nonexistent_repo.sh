@@ -2,9 +2,6 @@
 
 # Integration test to ensure CI fails when a non-existent repository is added
 
-# debug to find user
-curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
-
 # git config --global user.name "dfinity"
 
 git config user.name github-actions[bot]

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Integration test to ensure CI fails when a non-existent repository is added
 
 # See if var is even set

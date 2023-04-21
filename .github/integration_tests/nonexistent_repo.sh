@@ -5,8 +5,11 @@
 # debug to find user
 curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
 
-git config --global user.name "dfinity"
-git config --global user.password "$GH_TOKEN"
+# git config --global user.name "dfinity"
+
+git config user.name github-actions[bot]
+git config user.email github-actions[bot]@users.noreply.github.com
+git config user.password "$GH_TOKEN"
 
 # create new branch
 git checkout -b integration-test-1

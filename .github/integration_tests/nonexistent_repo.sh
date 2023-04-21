@@ -5,8 +5,8 @@
 # set git credentials
 # git config user.name github-actions[bot]
 # git config user.email github-actions[bot]@users.noreply.github.com
-# git config user.name dfinity
-# git config user.email dfinity@dfinity.org
+git config user.name dfinity
+git config user.email dfinity@dfinity.org
 # git config user.password $GH_TOKEN
 
 gh auth login

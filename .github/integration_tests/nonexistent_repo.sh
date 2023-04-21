@@ -42,4 +42,4 @@ else
 fi
 
 # delete branch and close PR
-git push origin -d integration-test-1
+#git push origin -d integration-test-1

@@ -24,7 +24,7 @@ jobs:
     - name: Integration Test 1
       run: |
         set -euo pipefail
-        curl -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }} https://api.github.com/user
+        curl -L -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/user
  #       bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

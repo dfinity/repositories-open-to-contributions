@@ -16,6 +16,7 @@ on:
 jobs:
   integration-test-1:
     name: Integration Test 1
+    permissions: read-all
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

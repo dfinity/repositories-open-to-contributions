@@ -2,8 +2,11 @@
 
 # Integration test to ensure CI fails when a non-existent repository is added
 
-git config user.name "dfinity"
-git config user.password "$GH_TOKEN"
+# debug to find user
+curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
+
+git config --global user.name "dfinity"
+git config --global user.password "$GH_TOKEN"
 
 # create new branch
 git checkout -b integration-test-1

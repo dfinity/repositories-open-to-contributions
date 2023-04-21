@@ -17,12 +17,10 @@ git config user.password ${github_token}
 hub config user.name ${github_username}
 hub config user.email ${github_username}
 touch ~/.git-credentials
-echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
-hub config --global credential.helper store
+#echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
+echo -e "---\n github.com:\n - oauth_token: ${github_token}\n user: ${github_username}" > ~/.config/hub
 
-echo "credentials set"
-hub status
-echo "status"
+hub config --global credential.helper store
 
 # create new branch
 git checkout -b integration-test-1

@@ -1,5 +1,8 @@
 # Integration test to ensure CI fails when a non-existent repository is added
 
+# See if var is even set
+[[ ! -z "$GH_TOKEN" ]] && echo "Not empty" || echo "Empty"
+
 # debug to find user
 curl -L -H "Authorization: token $GH_TOKEN" https://api.github.com/user
 
@@ -15,7 +18,7 @@ git add open-repositories.txt
 git commit -m 'add nonexistent repository'
 
 # create pull request
-git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
+#git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
 git push --set-upstream origin integration-test-1
 hub pull-request --draft -m 'Integration Test 1'
 

@@ -8,7 +8,7 @@ on:
     paths:
       - custom_python_actions/*
       - tests/*
-      - workflows/*
+      - .github/workflows/*
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

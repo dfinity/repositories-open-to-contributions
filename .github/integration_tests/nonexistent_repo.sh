@@ -16,8 +16,10 @@ git config user.password "$GH_TOKEN"
 hub config user.name ${github_username}
 hub config user.email ${github_username}
 touch ~/.git-credentials
-echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
+echo "https://${github_username}:${GH_TOKEN}@github.com" > ~/.git-credentials
 hub config --global credential.helper store
+
+hub status
 
 # create new branch
 git checkout -b integration-test-1
@@ -50,4 +52,4 @@ hub pull-request --draft -m 'Integration Test 1'
 # fi
 
 # delete branch and close PR
-# git push origin -d integration-test-1
+git push origin -d integration-test-1

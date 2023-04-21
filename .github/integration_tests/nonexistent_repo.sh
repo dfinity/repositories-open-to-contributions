@@ -4,28 +4,35 @@
 
 # git config --global user.name "dfinity"
 
-git config user.name github-actions[bot]
-git config user.email github-actions[bot]@users.noreply.github.com
+github_username=github-actions[bot]
+github_useremail=github-actions[bot]@users.noreply.github.com
+
+# set git credentials
+git config user.name ${github_username}
+git config user.email ${github_username}
 git config user.password "$GH_TOKEN"
+
+# set hub credentials
+hub config user.name ${github_username}
+hub config user.email ${github_username}
+hub config user.password "$GH_TOKEN"
+# touch ~/.git-credentials
+# echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
+# hub config credential.helper store
 
 # create new branch
 git checkout -b integration-test-1
-
-echo "checked out branch"
 
 # add a fake repository
 echo "fake-repository" >> open-repositories.txt
 git add open-repositories.txt
 git commit -m 'add nonexistent repository'
 
-echo "committed to repo"
-
 # create pull request
 #git remote add origin "https://$GH_TOKEN@github.com/dfinity/repositories-open-to-contributions.git"
 git push --set-upstream origin integration-test-1
 hub pull-request --draft -m 'Integration Test 1'
 
-echo "made it to the end"
 
 # # check CI
 # while true

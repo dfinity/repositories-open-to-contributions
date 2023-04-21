@@ -6,17 +6,18 @@
 
 github_username=github-actions[bot]
 github_useremail=github-actions[bot]@users.noreply.github.com
+github_token=$GH_TOKEN
 
 # set git credentials
 git config user.name ${github_username}
 git config user.email ${github_username}
-git config user.password "$GH_TOKEN"
+git config user.password ${github_token}
 
 # set hub credentials
 hub config user.name ${github_username}
 hub config user.email ${github_username}
 touch ~/.git-credentials
-echo "https://${github_username}:${GH_TOKEN}@github.com" > ~/.git-credentials
+echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
 hub config --global credential.helper store
 
 hub status

@@ -15,10 +15,9 @@ git config user.password "$GH_TOKEN"
 # set hub credentials
 hub config user.name ${github_username}
 hub config user.email ${github_username}
-hub config user.password "$GH_TOKEN"
-# touch ~/.git-credentials
-# echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
-# hub config credential.helper store
+touch ~/.git-credentials
+echo "https://${github_username}:${github_token}@github.com" > ~/.git-credentials
+hub config --global credential.helper store
 
 # create new branch
 git checkout -b integration-test-1

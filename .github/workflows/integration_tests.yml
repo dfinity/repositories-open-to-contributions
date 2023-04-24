@@ -25,6 +25,7 @@ jobs:
       if: ${{ github.event.label.name != 'integration_test' }}
       run: |
         set -euo pipefail
+        echo ${{ github.event.label.name }}
         bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

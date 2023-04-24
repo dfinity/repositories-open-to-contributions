@@ -26,4 +26,5 @@ jobs:
         id:  check-compliance
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         uses: ./.github/actions/check_compliance/
-        github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
+        with:
+          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}

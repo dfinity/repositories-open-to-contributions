@@ -9,8 +9,9 @@ on:
       - custom_python_actions/*
       - tests/*
       - .github/workflows/*
+  push:
     branches-ignore:
-      - 'integration-test-1'
+      - integration-test-1
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

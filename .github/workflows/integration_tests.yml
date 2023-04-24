@@ -5,9 +5,8 @@ name: Integration Tests
 
 on:
   pull_request:
-    branches:
-      - *
-      - !integration-test-1
+    branches-ignore:
+      - integration-test-1
     paths:
       - custom_python_actions/*
       - tests/*

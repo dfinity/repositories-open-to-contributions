@@ -9,7 +9,6 @@ on:
       - custom_python_actions/*
       - tests/*
       - .github/workflows/*
-  push:
     branches-ignore:
       - integration-test-1
   merge_group:

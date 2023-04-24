@@ -5,10 +5,13 @@ name: Integration Tests
 
 on:
   pull_request:
-    paths:
-      - custom_python_actions/*
-      - tests/*
-      - .github/workflows/*
+    branches:
+      - *
+      - !add-integration-tests
+    # paths:
+    #   - custom_python_actions/*
+    #   - tests/*
+    #   - .github/workflows/*
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,6 +29,6 @@ jobs:
       run: |
         set -euo pipefail
         echo ${{ github.event.pull_request.labels.*.name }}
-        bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+ #       bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

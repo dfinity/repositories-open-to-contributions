@@ -7,7 +7,7 @@ inputs:
     required: false
   github-token:
     description: 'Github token of the repository (automatically created by Github)'
-    required: true
+    required: false
   repo-name:
     description: "The name of the repository"
     default: ${{ github.event.repository.name }}

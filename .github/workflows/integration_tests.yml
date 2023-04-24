@@ -31,6 +31,7 @@ jobs:
             RUN_INTEGRATION_TESTS="false"
         else
             RUN_INTEGRATION_TESTS="true"
+        fi
         echo $RUN_INTEGRATION_TESTS
         echo "run_tests=$RUN_INTEGRATION_TESTS" >> $GITHUB_OUTPUT
 

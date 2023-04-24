@@ -5,10 +5,10 @@ name: Integration Tests
 
 on:
   pull_request:
-    paths:
-      - custom_python_actions/*
-      - tests/*
-      - .github/workflows/*
+    # paths:
+    #   - custom_python_actions/*
+    #   - tests/*
+    #   - .github/workflows/*
     branches-ignore:
       - add-integration-tests
   merge_group:

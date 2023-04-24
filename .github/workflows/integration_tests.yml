@@ -1,0 +1,32 @@
+# Workflow to run integration tests
+# Checks that check_new_repo workflow works as expected
+
+name: Integration Tests
+
+on:
+  pull_request:
+    paths:
+      - custom_python_actions/*
+      - tests/*
+      - .github/workflows/*
+    branches:
+      - '*'
+      - '!integration-test-1'
+  merge_group:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  integration-test-1:
+    name: Integration Test 1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Integration Test 1
+      run: |
+        set -euo pipefail
+        bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

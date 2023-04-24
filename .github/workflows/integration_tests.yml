@@ -8,10 +8,10 @@ on:
     branches:
       - *
       - !add-integration-tests
-    # paths:
-    #   - custom_python_actions/*
-    #   - tests/*
-    #   - .github/workflows/*
+    paths:
+      - custom_python_actions/*
+      - tests/*
+      - .github/workflows/*
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

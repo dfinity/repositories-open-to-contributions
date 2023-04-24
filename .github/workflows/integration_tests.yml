@@ -21,11 +21,24 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Integration Test 1
-      if: github.ref != 'refs/heads/integration-test-1'
+    - name: Check if Integration Test should be run
       run: |
         set -euo pipefail
-        echo ${GITHUB_REF#refs/heads/}
-    #    bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+        BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+        echo $BRANCH_NAME
+        if [[ $BRANCH_NAME == '"integration-test-1"' ]]
+        then
+            RUN_INTEGRATION_TESTS="false"
+        else
+            RUN_INTEGRATION_TESTS="true"
+        echo $RUN_INTEGRATION_TESTS
+        echo "run_tests=$RUN_INTEGRATION_TESTS" >> $GITHUB_OUTPUT
+
+    # - name: Integration Test 1
+    #   if: github.ref != 'refs/heads/integration-test-1'
+    #   run: |
+    #     set -euo pipefail
+    #     echo ${GITHUB_REF#refs/heads/}
+    #     bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+    #   env:
+    #     GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

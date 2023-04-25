@@ -26,7 +26,7 @@ runs:
       shell: bash
     - name: Check External Contribution
       id: check-external-contrib
-      run: .github/python custom_python_actions/check_external_contrib.py
+      run: python .github/custom_python_actions/check_external_contrib.py
       shell: bash
       env:
         REPO: ${{ inputs.repo-name }}

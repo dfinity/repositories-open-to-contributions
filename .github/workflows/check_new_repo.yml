@@ -7,9 +7,6 @@ on:
   pull_request:
     paths:
       - open-repositories.txt
-  push:
-    paths:
-      - open-repositories.txt
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

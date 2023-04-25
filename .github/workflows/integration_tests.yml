@@ -23,7 +23,6 @@ jobs:
 
     - name: Integration Test 1
       run: |
-        set -euo pipefail
-        bash ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+        ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

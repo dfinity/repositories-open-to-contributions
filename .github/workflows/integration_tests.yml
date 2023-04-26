@@ -7,7 +7,6 @@ on:
   pull_request:
     branches-ignore:
       - integration-test-1
-  push:
     ignore-paths:
       - open-repositories.txt
   # Allows you to run this workflow manually from the Actions tab

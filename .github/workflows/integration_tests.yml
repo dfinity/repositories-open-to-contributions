@@ -4,12 +4,11 @@
 name: Integration Tests
 
 on:
-  push:
+  pull_requests:
     branches-ignore:
       - integration-test-1
     ignore-paths:
       - open-repositories.txt
-  merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

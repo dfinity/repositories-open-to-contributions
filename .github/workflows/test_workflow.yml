@@ -1,0 +1,16 @@
+name: Test Workflow
+
+on:
+  pull_request:
+    branches-ignore:
+      - 'test-workflows'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  test-1:
+    name: Test 1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3

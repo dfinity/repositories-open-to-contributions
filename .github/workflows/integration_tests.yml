@@ -4,7 +4,7 @@
 name: Integration Tests
 
 on:
-  pull_requests:
+  push:
     branches-ignore:
       - integration-test-1
     ignore-paths:

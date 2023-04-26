@@ -4,9 +4,7 @@
 name: Integration Tests
 
 on:
-  push:
-    branches-ignore:
-      - integration-test-1
+  pull_request:
     ignore-paths:
       - open-repositories.txt
   # Allows you to run this workflow manually from the Actions tab

@@ -19,8 +19,14 @@ runs:
       - name: Get repo name
         id: get-repo-name
         run: |
-          set -euo pipefail
+          set +e # curl exists with the code 1 when nothing found. This is not an error here, it just means no new repositories added.
           NEW_REPO=$(curl --silent --retry 5 https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/open-repositories.txt | grep -vFxf- open-repositories.txt)
+          E=$?
+          if [ "$E" -gt 1 ]; then
+            echo "curl exited with the code $E" >&2
+            exit "$E"
+          fi
+          set -euo pipefail
           if [ -z "$NEW_REPO" ]; then
             echo "No repository added."
             exit 0

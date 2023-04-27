@@ -37,7 +37,7 @@ result=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bea
 if [[ $result == '"failure"' ]]
     then echo "test passed"
 else
-    echo "test failed, expected Check New Repo to result in failure but got $result"
+    echo "test failed, expected Check New Repo to result in failure but got $result" >&2
     exit 1
 fi
 

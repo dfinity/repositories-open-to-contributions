@@ -1,10 +1,9 @@
 name: Sorting
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
-    branches: [ master ]
+    paths:
+      - open-repositories.txt
   merge_group:
 
 jobs:

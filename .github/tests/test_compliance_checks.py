@@ -51,7 +51,7 @@ def test_get_code_owners_fails():
 
 
 def code_owners_test_file(n):
-    code_owners = open(f"tests/test_data/CODEOWNERS{n}", "r").read()
+    code_owners = open(f".github/tests/test_data/CODEOWNERS{n}", "r").read()
     return code_owners
 
 

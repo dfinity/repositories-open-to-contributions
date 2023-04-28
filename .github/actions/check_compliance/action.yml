@@ -26,7 +26,7 @@ runs:
       shell: bash
     - name: Check External Contribution
       id: check_compliance
-      run: python custom_python_actions/check_compliance.py
+      run: python .github/custom_python_actions/check_compliance.py
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}

@@ -30,3 +30,9 @@ jobs:
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
           github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
+
+      - name: Check Sort
+        uses: ./.github/actions/sorting
+
+      - name: Validate List
+        uses: ./.github/actions/validate-list

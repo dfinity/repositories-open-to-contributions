@@ -1,0 +1,310 @@
+[
+    {
+        "name": "ICRC",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ICRC-1",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "agent-js",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "agent-rs",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "awesome-internet-computer",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "bigmap-poc",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "cancan",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "candid",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "canister-profiling",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "cdk-rs",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "conventional-pr-title-action",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "dfx-extensions",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "examples",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "exchange-rate-canister",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "experimental-minting-tool",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "getting-started",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "hardware-wallet-cli",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ic-docutrack",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ic-hs",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ic-js",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ic-staking-documentation",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "ic-wasm",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "icx-proxy",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "idl2json",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "interface-spec",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "keysmith",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "linkedup",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "metrics-encoder",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "motoko",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "motoko-base",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "motoko-dev-server",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "motoko-playground",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "portal",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "quill",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "rules_motoko",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "sdk",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "stable-structures",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "test-state-machine-client",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "threshold",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "vessel",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "vessel-package-set",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "vscode-motoko",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "wg-governance",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    },
+    {
+        "name": "wg-identity-authentication",
+        "email": "",
+        "organization": "dfinity",
+        "critical": false,
+        "external-contributions": true
+    }
+]

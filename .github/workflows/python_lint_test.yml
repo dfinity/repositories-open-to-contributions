@@ -29,13 +29,13 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Run tests
-      run: pytest
+      run: pytest .github/
     
     - name: Run linter
       run: |
-        mypy custom_python_actions/
-        black custom_python_actions/
-        flake8 custom_python_actions/
+        mypy .github/custom_python_actions/
+        black .github/custom_python_actions/
+        flake8 .github/custom_python_actions/
 
     - name: Run all tests
-      run: pytest --runslow
+      run: pytest --runslow .github/

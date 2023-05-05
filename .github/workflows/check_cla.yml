@@ -1,0 +1,29 @@
+# Workflow to check if a user is eligible to contribute or needs to sign the CLA
+
+name: Check CLA
+
+on:
+  pull_request:
+    branches: '**'
+  merge_group:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  check-cla:
+    name: Check if repository is compliant
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # - name: Check if accepting external contributions
+      #   id: accepts_external_contrib
+      #   uses:  ./.github/actions/check_external_contrib/
+
+      - name: Check CLA
+        id:  check-cla
+#        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        uses: ./.github/actions/check_cla/
+        with:
+          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}

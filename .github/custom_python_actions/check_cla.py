@@ -65,6 +65,8 @@ def main():
 
     cla = CLAHandler(gh, "dfinity")
 
+    is_member = False
+
     if not is_member:
         print(f"{user} is an external contributor.")
         pr.issue().add_labels("external_contributor")

@@ -3,7 +3,6 @@ import os
 import github3
 
 import messages
-from utils import download_gh_file
 
 
 def is_member_of_org(gh, org, user):
@@ -54,6 +53,8 @@ def main():
     org = os.environ["GH_ORG"]
     gh_token = os.environ["GH_TOKEN"]
     user = os.environ["GH_USER"]
+    repo = os.environ["REPO"]
+    pr_id = os.environ["PR_ID"]
 
     gh = github3.login(token=gh_token)
     pr = gh.pull_request(org, repo, pr_id)
@@ -65,6 +66,7 @@ def main():
     cla = CLAHandler(gh, "dfinity")
 
     if not is_member:
+        print(f"{user} is an external contributor.")
         pr.issue().add_labels("external_contributor")
         issue = cla.get_cla_issue(user)
         if not issue:

@@ -1,5 +1,5 @@
 name: 'Check CLA'
-description: 'Check if the user if eligigiable to contribute / needs to sign the CLA agreement.'
+description: 'Check if the user has signed the CLA agreement.'
 inputs:
   org:
     description: "Organization of the repository"

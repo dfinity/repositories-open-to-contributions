@@ -1,15 +1,9 @@
 import os
+import sys
 
 import github3
 
 import messages
-
-
-def is_member_of_org(gh, org, user):
-    """
-    Return whether the user is a member of the organisation.
-    """
-    return gh.organization(org).is_member(user)
 
 
 class CLAHandler:
@@ -58,32 +52,24 @@ def main():
     pr = gh.pull_request(org, repo, pr_id)
     user = pr.user.login
 
-    #  is_member = is_member_of_org(gh, org, user)
-
-    can_contribute = False
+    cla_signed = False
 
     cla = CLAHandler(gh, "dfinity")
 
-    is_member = False
-
-    if not is_member:
-        print(f"{user} is an external contributor.")
-        #      pr.issue().add_labels("external_contributor")
-        issue = cla.get_cla_issue(user)
-        if not issue:
-            issue = cla.create_cla_issue(user)
-
-        # move back after testing!
+    issue = cla.get_cla_issue(user)
+    if not issue:
+        issue = cla.create_cla_issue(user)
         pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
         pr.create_comment(pr_comment)
 
-        if cla.cla_signed(issue, user):
-            can_contribute = True
-    else:
-        print("User is member of org and can contribute.")
-        can_contribute = True
+    if cla.cla_signed(issue, user):
+        cla_signed = True
 
-    os.system(f"""echo 'can_contribute={can_contribute}' >> $GITHUB_OUTPUT""")
+    if not cla_signed:
+        print(
+            f"The CLA has not been signed. Please sign the CLA agreement [here]({cla.cla_link})"
+        )
+        sys.exit(1)
 
 
 if __name__ == "__main__":

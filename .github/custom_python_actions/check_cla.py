@@ -72,8 +72,10 @@ def main():
         issue = cla.get_cla_issue(user)
         if not issue:
             issue = cla.create_cla_issue(user)
-            pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
-            pr.create_comment(pr_comment)
+
+        # move back after testing!
+        pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
+        pr.create_comment(pr_comment)
 
         if cla.cla_signed(issue, user):
             can_contribute = True

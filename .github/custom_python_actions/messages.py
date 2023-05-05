@@ -12,7 +12,7 @@ USER_AGREEMENT_MESSAGE = "I, {}, hereby agree to the DFINITY Foundation's CLA."
 
 CLA_MESSAGE = """Dear @{},
 
-In order to potentially merge your code in this open-source repository and therefore proceed with your contribution, we need to have your approval on DFINITY's CLA({}).
+In order to potentially merge your code in this open-source repository and therefore proceed with your contribution, we need to have your approval on DFINITY's [CLA]({}).
 
 If you decide to agree with it, please visit this [issue]({}) and read the instructions there.
 

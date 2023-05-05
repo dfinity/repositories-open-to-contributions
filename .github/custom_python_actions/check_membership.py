@@ -29,3 +29,7 @@ def main():
         print(f"{user} is an external contributor.")
 
     os.system(f"""echo 'is_member={is_member}' >> $GITHUB_OUTPUT""")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,34 @@
+name: 'Check Membership'
+description: 'Check if the user is a member of the org'
+inputs:
+  org:
+    description: "Organization of the repository"
+    default: ${{ github.repository_owner }}
+    required: false
+  github-token:
+    description: 'Github token of the repository (automatically created by Github)'
+    required: true
+  user:
+    description: "The username"
+    default: ${{ github.actor }}
+    required: false
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -q -r requirements.txt
+      shell: bash
+    - name: Check Membership
+      id: check_membership
+      run: python .github/custom_python_actions/check_membership.py
+      shell: bash
+      env:
+        GH_ORG: ${{ inputs.org }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        USER: ${{ inputs.user }}

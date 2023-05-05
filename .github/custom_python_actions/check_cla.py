@@ -30,6 +30,7 @@ class CLAHandler:
             if issue.title == f"cla: @{user}":
                 return issue
         print(f"No CLA issue for {user}")
+        return None  # to make linter happy
 
     def create_cla_issue(self, user: str) -> github3.issue:
         user_agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)

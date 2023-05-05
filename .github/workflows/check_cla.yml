@@ -28,7 +28,7 @@ jobs:
         with:
           github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
 
-      - name: add label
+      - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1
         if: steps.check-membership.outputs.is_member == 'false'
         with:

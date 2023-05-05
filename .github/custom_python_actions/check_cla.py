@@ -67,7 +67,7 @@ def main():
 
     if not cla_signed:
         print(
-            f"The CLA has not been signed. Please sign the CLA agreement [here]({cla.cla_link})"
+            f"The CLA has not been signed. Please sign the CLA agreement: {issue.html_url}"
         )
         sys.exit(1)
 

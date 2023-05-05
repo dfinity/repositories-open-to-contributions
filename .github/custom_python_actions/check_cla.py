@@ -65,6 +65,8 @@ def main():
 
     cla = CLAHandler(gh, "dfinity")
 
+    print("job started")
+
     if not is_member:
         print(f"{user} is an external contributor.")
         pr.issue().add_labels("external_contributor")
@@ -78,6 +80,8 @@ def main():
             can_contribute = True
     else:
         can_contribute = True
+
+    print("got this far")
 
     os.system(f"""echo 'can_contribute={can_contribute}' >> $GITHUB_OUTPUT""")
 

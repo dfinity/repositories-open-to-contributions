@@ -17,13 +17,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      # - name: Check if accepting external contributions
-      #   id: accepts_external_contrib
-      #   uses:  ./.github/actions/check_external_contrib/
+      - name: Check if accepting external contributions
+        id: accepts_external_contrib
+        uses:  ./.github/actions/check_external_contrib/
 
       - name: Check Membership
         id:  check-membership
-#        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         uses: ./.github/actions/check_membership/
         with:
           github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
@@ -37,6 +37,6 @@ jobs:
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla/
-        if: steps.check-membership.outputs.is_member == 'true' # testing for now
+        if: steps.check-membership.outputs.is_member == 'false'
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

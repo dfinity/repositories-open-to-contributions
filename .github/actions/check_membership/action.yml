@@ -12,6 +12,10 @@ inputs:
     description: "The username"
     default: ${{ github.actor }}
     required: false
+outputs:
+  is_member:
+    value: ${{ steps.check-membership.outputs.is_member }}
+    description: "Boolean if the user is a member of the org."
 
 
 runs:
@@ -25,7 +29,7 @@ runs:
       run: pip install -q -r requirements.txt
       shell: bash
     - name: Check Membership
-      id: check_membership
+      id: check-membership
       run: python .github/custom_python_actions/check_membership.py
       shell: bash
       env:

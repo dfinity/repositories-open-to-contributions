@@ -21,7 +21,7 @@ def main():
 
     is_member = is_member_of_org(gh, org, user)
 
-    print("is member: {is_member}")
+    print(f"is member: {is_member}")
 
     if is_member:
         print("User is member of org and can contribute.")

@@ -3,14 +3,14 @@ import os
 import github3
 
 
-def is_member_of_org(gh, org, user):
+def is_member_of_org(gh: github3.login, org: str, user: str) -> bool:
     """
     Return whether the user is a member of the organisation.
     """
     return gh.organization(org).is_member(user)
 
 
-def main():
+def main() -> None:
     org = os.environ["GH_ORG"]
     gh_token = os.environ["GH_TOKEN"]
     user = os.environ["USER"]

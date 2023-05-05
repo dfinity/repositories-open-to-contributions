@@ -26,4 +26,4 @@ jobs:
 #        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         uses: ./.github/actions/check_cla/
         with:
-          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
+          github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

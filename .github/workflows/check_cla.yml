@@ -11,7 +11,7 @@ on:
 
 jobs:
   check-cla:
-    name: Check if repository is compliant
+    name: Check CLA
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

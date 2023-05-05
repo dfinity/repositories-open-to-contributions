@@ -59,7 +59,7 @@ def main():
     pr = gh.pull_request(org, repo, pr_id)
     user = pr.user.login
 
-    is_member = is_member_of_org(gh, org, user)
+    #  is_member = is_member_of_org(gh, org, user)
 
     can_contribute = False
 

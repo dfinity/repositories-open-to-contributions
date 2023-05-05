@@ -69,7 +69,7 @@ def main():
 
     if not is_member:
         print(f"{user} is an external contributor.")
-        pr.issue().add_labels("external_contributor")
+        #      pr.issue().add_labels("external_contributor")
         issue = cla.get_cla_issue(user)
         if not issue:
             issue = cla.create_cla_issue(user)

@@ -30,13 +30,13 @@ jobs:
 
       - name: add label
         uses: actions-ecosystem/action-add-labels@v1
-        if: steps.check-membership.outputs.is_member == 'true' # testing for now
+        if: steps.check-membership.outputs.is_member == 'false'
         with:
           labels: external-contributor
 
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla/
-        if: steps.check-membership.outputs.is_member == 'false'
+        if: steps.check-membership.outputs.is_member == 'true' # testing for now
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

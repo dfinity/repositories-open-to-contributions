@@ -17,11 +17,7 @@ def main():
 
     gh = github3.login(token=gh_token)
 
-    print("debug")
-
     is_member = is_member_of_org(gh, org, user)
-
-    print(f"is member: {is_member}")
 
     if is_member:
         print("User is member of org and can contribute.")

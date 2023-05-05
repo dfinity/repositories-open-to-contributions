@@ -52,12 +52,12 @@ class CLAHandler:
 def main():
     org = os.environ["GH_ORG"]
     gh_token = os.environ["GH_TOKEN"]
-    user = os.environ["GH_USER"]
     repo = os.environ["REPO"]
     pr_id = os.environ["PR_ID"]
 
     gh = github3.login(token=gh_token)
     pr = gh.pull_request(org, repo, pr_id)
+    user = pr.user.login
 
     is_member = is_member_of_org(gh, org, user)
 

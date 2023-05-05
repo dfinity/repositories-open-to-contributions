@@ -7,12 +7,16 @@ inputs:
     required: false
   github-token:
     description: 'Github token of the repository (automatically created by Github)'
-    default: ${{ github.token }}
-    required: false
+    required: true
   repo-name:
-    description: "The name of the repository"
+    description: "The name of this repository"
     default: ${{ github.event.repository.name }}
     required: false
+  pr-id:
+    description: "The id of the current PR"
+    default: ${{ github.event.number }}
+    required: false
+
 
 runs:
   using: 'composite'
@@ -24,11 +28,12 @@ runs:
     - name: Install Dependencies
       run: pip install -q -r requirements.txt
       shell: bash
-    - name: Check External Contribution
-      id: check_compliance
-      run: python .github/custom_python_actions/check_compliance.py
+    - name: Check CLA
+      id: check_cla
+      run: python .github/custom_python_actions/check_cla.py
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}
         GH_TOKEN: ${{ inputs.github-token }}
         REPO: ${{ inputs.repo-name }}
+        PR_ID: ${{ inputs.pr-id }}

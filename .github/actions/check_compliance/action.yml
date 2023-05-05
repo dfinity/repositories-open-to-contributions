@@ -23,7 +23,7 @@ runs:
     - name: Install Dependencies
       run: pip install -q -r requirements.txt
       shell: bash
-    - name: Check External Contribution
+    - name: Check Compliance
       id: check_compliance
       run: python .github/custom_python_actions/check_compliance.py
       shell: bash

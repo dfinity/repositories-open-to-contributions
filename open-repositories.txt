@@ -25,6 +25,7 @@ idl2json
 interface-spec
 keysmith
 linkedup
+response-verification
 metrics-encoder
 motoko
 motoko-base

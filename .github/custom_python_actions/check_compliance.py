@@ -18,8 +18,6 @@ def main() -> None:
     gh_token = os.environ["GH_TOKEN"]
     repo_name = os.environ["REPO"]
 
-    print(f"GH TOKEN length: {len(gh_token)}")
-
     gh = github3.login(token=gh_token)
     try:
         repo = gh.repository(owner=org_name, repository=repo_name)

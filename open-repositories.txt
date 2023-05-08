@@ -26,6 +26,7 @@ interface-spec
 keysmith
 linkedup
 response-verification
+response-verification
 metrics-encoder
 motoko
 motoko-base

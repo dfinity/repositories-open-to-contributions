@@ -35,13 +35,10 @@ def get_team_name(code_owners: str, org_name: str) -> str:
             "No repo-level team owner found. Double check the format of your CODEOWNERS file."
         )
     team_handle = [a for a in regex_output[0] if a != ""]
-    print(team_handle)
     if len(team_handle) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
     codeowner_team = team_handle[0].lower()
-    print(codeowner_team)
     team_name = codeowner_team.replace(f"@{org_name.lower()}/", "")
-    print(team_name)
     return team_name
 
 
@@ -99,18 +96,14 @@ class RepoPermissions(ComplianceCheck):
         try:
             code_owners_path = helper.get_code_owners()
             team_name = get_team_name(code_owners_path, org.name)
-            print(team_name)
         except Exception as error:
             self.message = f"Raised error: {error}"
             return
 
         try:
             team = org.team_by_name(team_name)
-            print(team)
             permissions = team.permissions_for(f"{org.name}/{repo.name}")
-            print(permissions)
             role = permissions.role_name
-            print(role)
         except github3.exceptions.NotFoundError:
             self.message = "Repository Permissions could not be found"
             return

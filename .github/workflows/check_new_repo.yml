@@ -12,6 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       repo-name:
+        type: string
 
 jobs:
   check-repo-compliance:

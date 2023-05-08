@@ -10,6 +10,8 @@ on:
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      repo-name:
 
 jobs:
   check-repo-compliance:
@@ -25,8 +27,8 @@ jobs:
 
       - name: Check if repository is compliant
         id:  check-compliance
-        if: steps.get-repo-name.outputs.new_repo_added == 'True'
+  #      if: steps.get-repo-name.outputs.new_repo_added == 'True'
         uses: ./.github/actions/check_compliance/
         with:
-          repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
+      #    repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
           github-token: ${{ secrets.GH_TOKEN_READ_ORG }}

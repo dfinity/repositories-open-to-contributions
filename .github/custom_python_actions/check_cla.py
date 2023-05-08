@@ -6,7 +6,7 @@ import github3
 
 import messages
 
-GHIssue = github3.issues.issue.ShortIssue
+GHIssue = github3.issues.issue.Issue
 
 
 class CLAHandler:

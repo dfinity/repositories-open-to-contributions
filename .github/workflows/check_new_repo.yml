@@ -25,6 +25,7 @@ jobs:
 
       - name: Check if repository is compliant
         id:  check-compliance
+        if: steps.get-repo-name.outputs.new_repo_added == 'True'
         uses: ./.github/actions/check_compliance/
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}

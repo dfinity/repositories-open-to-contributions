@@ -35,10 +35,13 @@ def get_team_name(code_owners: str, org_name: str) -> str:
             "No repo-level team owner found. Double check the format of your CODEOWNERS file."
         )
     team_handle = [a for a in regex_output[0] if a != ""]
+    print(team_handle)
     if len(team_handle) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
     codeowner_team = team_handle[0].lower()
+    print(codeowner_team)
     team_name = codeowner_team.strip(f"@{org_name.lower()}").strip("/")
+    print(team_name)
     return team_name
 
 

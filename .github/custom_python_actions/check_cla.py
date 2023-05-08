@@ -1,12 +1,12 @@
 import os
 import sys
-from typing import Optional
+from typing import Optional, TypeAlias
 
 import github3
 
 import messages
 
-GHIssue = github3.issues.issue.Issue
+GHIssue: TypeAlias = github3.issues.issue.Issue
 
 
 class CLAHandler:

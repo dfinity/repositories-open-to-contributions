@@ -30,4 +30,4 @@ runs:
       env:
         GH_ORG: ${{ inputs.org }}
         GH_TOKEN: ${{ inputs.github-token }}
-        REPO: ${{ inputs.repo-name }}
+        REPO: ${{ github.event.inputs.repo-name }}

@@ -96,14 +96,18 @@ class RepoPermissions(ComplianceCheck):
         try:
             code_owners_path = helper.get_code_owners()
             team_name = get_team_name(code_owners_path, org.name)
+            print(team_name)
         except Exception as error:
             self.message = f"Raised error: {error}"
             return
 
         try:
             team = org.team_by_name(team_name)
+            print(team)
             permissions = team.permissions_for(f"{org.name}/{repo.name}")
+            print(permissions)
             role = permissions.role_name
+            print(role)
         except github3.exceptions.NotFoundError:
             self.message = "Repository Permissions could not be found"
             return

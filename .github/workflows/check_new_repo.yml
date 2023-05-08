@@ -10,9 +10,6 @@ on:
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs:
-      repo-name:
-        type: string
 
 jobs:
   check-repo-compliance:
@@ -32,4 +29,5 @@ jobs:
         uses: ./.github/actions/check_compliance/
         with:
       #    repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
+          repo-name: response-verification
           github-token: ${{ secrets.GH_TOKEN_READ_ORG }}

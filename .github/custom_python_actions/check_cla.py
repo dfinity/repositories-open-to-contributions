@@ -6,13 +6,15 @@ import github3
 
 import messages
 
+GHIssue = github3.issues.issue.ShortIssue
+
 
 class CLAHandler:
     def __init__(self, gh: github3.login, org: str) -> None:
         self.cla_repo = gh.repository(owner=org, repository="cla")
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
-    def cla_signed(self, issue: github3.issue, user: str) -> bool:
+    def cla_signed(self, issue: GHIssue, user: str) -> bool:
         for comment in issue.comments():
             if comment.user.login == user:
                 agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)
@@ -25,14 +27,14 @@ class CLAHandler:
         print(f"CLA is pending for {user}")
         return False
 
-    def get_cla_issue(self, user: str) -> Optional[github3.issue]:
+    def get_cla_issue(self, user: str) -> Optional[GHIssue]:
         for issue in self.cla_repo.issues():
             if issue.title == f"cla: @{user}":
                 return issue
         print(f"No CLA issue for {user}")
         return None  # to make linter happy
 
-    def create_cla_issue(self, user: str) -> github3.issue:
+    def create_cla_issue(self, user: str) -> GHIssue:
         user_agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)
         issue = self.cla_repo.create_issue(
             f"cla: @{user}",

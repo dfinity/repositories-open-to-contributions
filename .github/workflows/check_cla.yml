@@ -40,5 +40,5 @@ jobs:
         id:  check-cla
         uses: ./.github/actions/check_cla/
         if: steps.check-membership.outputs.is_member == 'false'
-        with:
-          github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+   #     with:
+   #       github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

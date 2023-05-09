@@ -50,6 +50,21 @@ class CLAHandler:
         )
         return issue
 
+    def handle_cla_signed(self, issue: GHIssue, user: str) -> None:
+        for label in issue.original_labels:
+            if label.name == APPROVED_LABEL:
+                return
+            elif label.name == PENDING_LABEL:
+                agreement_message = messages.AGREED_MESSAGE.format(user)
+                issue.create_comment(agreement_message)
+                issue.remove_label(PENDING_LABEL)
+                issue.add_labels(APPROVED_LABEL)
+                return
+        print(
+            "No cla labels found - manually check the cla issue to see what state it is in. Exiting program."
+        )
+        sys.exit(1)
+
 
 def main() -> None:
     org = os.environ["GH_ORG"]

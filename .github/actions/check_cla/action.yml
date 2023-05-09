@@ -5,13 +5,9 @@ inputs:
     description: "Organization of the repository"
     default: ${{ github.repository_owner }}
     required: false
-  # github-token:
-  #   description: 'Personal Access Token generated with necessary permissions'
-  #   required: true
   github-token:
-    description: 'Github token of the repository (automatically created by Github)'
-    default: ${{ github.token }}
-    required: false
+    description: 'Personal Access Token generated with necessary permissions'
+    required: true
   repo-name:
     description: "The name of this repository"
     default: ${{ github.event.repository.name }}

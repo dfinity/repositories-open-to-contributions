@@ -12,8 +12,8 @@ APPROVED_LABEL = "cla:agreed"
 
 
 class CLAHandler:
-    def __init__(self, gh: github3.login, org: str) -> None:
-        self.cla_repo = gh.repository(owner=org, repository="cla")
+    def __init__(self, gh: github3.login) -> None:
+        self.cla_repo = gh.repository(owner="dfinity", repository="cla")
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
     def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
@@ -79,7 +79,7 @@ def main() -> None:
     pr = gh.pull_request(org, repo, pr_id)
     user = pr.user.login
 
-    cla = CLAHandler(gh, "dfinity")
+    cla = CLAHandler(gh)
 
     issue = cla.get_cla_issue(user)
     if not issue:

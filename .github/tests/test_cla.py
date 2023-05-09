@@ -1,7 +1,14 @@
+import os
 from unittest import mock
 
-from custom_python_actions.messages import CLA_AGREEMENT_MESSAGE, USER_AGREEMENT_MESSAGE
-from custom_python_actions.check_cla import CLAHandler
+import pytest
+
+from custom_python_actions.messages import (
+    AGREED_MESSAGE,
+    CLA_AGREEMENT_MESSAGE,
+    USER_AGREEMENT_MESSAGE,
+)
+from custom_python_actions.check_cla import CLAHandler, main
 
 
 def test_init():
@@ -10,15 +17,15 @@ def test_init():
     cla_repo.html_url = "repo_url"
     gh.repository.return_value = cla_repo
 
-    cla = CLAHandler(gh, "org")
+    cla = CLAHandler(gh)
 
     assert cla.cla_repo == cla_repo
     assert cla.cla_link == "repo_url/blob/main/CLA.md"
-    gh.repository.assert_called_with(owner="org", repository="cla")
+    gh.repository.assert_called_with(owner="dfinity", repository="cla")
 
 
 def test_cla_is_signed(capfd):
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     issue = mock.Mock()
     comment = mock.Mock()
     comment.user.login = "username"
@@ -34,7 +41,7 @@ def test_cla_is_signed(capfd):
 
 
 def test_cla_is_incorrectly_signed(capfd):
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     issue = mock.Mock()
     comment = mock.Mock()
     comment.user.login = "username"
@@ -52,7 +59,7 @@ def test_cla_is_incorrectly_signed(capfd):
 
 
 def test_cla_is_not_signed(capfd):
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     issue = mock.Mock()
     comment = mock.Mock()
     comment.user.login = "bot"
@@ -66,7 +73,7 @@ def test_cla_is_not_signed(capfd):
 
 
 def test_get_cla_issue_success():
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     cla_repo = mock.Mock()
     issue = mock.Mock()
     issue.title = "cla: @username"
@@ -77,7 +84,7 @@ def test_get_cla_issue_success():
 
 
 def test_get_cla_issue_fails(capfd):
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     cla_repo = mock.Mock()
     issue = mock.Mock()
     issue.title = "cla: @another-username"
@@ -90,7 +97,7 @@ def test_get_cla_issue_fails(capfd):
 
 
 def test_create_cla_issue():
-    cla = CLAHandler(mock.Mock(), "org")
+    cla = CLAHandler(mock.Mock())
     cla_repo = mock.Mock()
     issue = mock.Mock()
     cla_repo.create_issue.return_value = issue

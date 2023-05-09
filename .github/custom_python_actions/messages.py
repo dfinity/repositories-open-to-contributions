@@ -30,3 +30,7 @@ If you decide to agree with it, please reply with the following message:
 AGREED_MESSAGE = """Dear @{},
 
 As you have agreed to the CLA, I added the `cla:agreed` label to your PR and we are now able to proceed with your contribution."""
+
+FAILED_COMMENT = """Your comment does not match the CLA agreement.
+
+Check that the sentence has been copied exactly, including punctuation."""

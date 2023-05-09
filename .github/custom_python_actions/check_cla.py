@@ -8,7 +8,7 @@ import messages
 
 GHIssue: TypeAlias = github3.issues.issue.Issue
 PENDING_LABEL = "cla:pending"
-APPROVED_LABEL = "cla:approved"
+APPROVED_LABEL = "cla:agreed"
 
 
 class CLAHandler:
@@ -17,6 +17,10 @@ class CLAHandler:
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
     def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
+        # check if bot has already left a message to avoid spam
+        for comment in issue.comments():
+            bot_comment = True if comment.user.login == "dfnitowner" else False
+
         for comment in issue.comments():
             if comment.user.login == user:
                 agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)
@@ -26,9 +30,8 @@ class CLAHandler:
                     return True
                 else:
                     print(f"Comment created by {user} does not match CLA agreement.")
-                    print(
-                        "Double check that the sentence has been copied exactly, including punctuation."  # noqa
-                    )
+                    if not bot_comment:
+                        issue.create_comment(messages.FAILED_COMMENT)
         print(f"CLA is pending for {user}")
         return False
 

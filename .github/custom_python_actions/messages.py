@@ -14,7 +14,7 @@ CLA_MESSAGE = """Dear @{},
 
 In order to potentially merge your code in this open-source repository and therefore proceed with your contribution, we need to have your approval on DFINITY's [CLA]({}).
 
-If you decide to agree with it, please visit this [issue]({}) and read the instructions there.
+If you decide to agree with it, please visit this [issue]({}) and read the instructions there. Once you have signed it, re-trigger the workflow on this PR to see if your code can be merged.
 
 — The DFINITY Foundation"""
 

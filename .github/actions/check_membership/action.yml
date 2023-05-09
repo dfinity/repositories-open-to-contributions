@@ -6,7 +6,7 @@ inputs:
     default: ${{ github.repository_owner }}
     required: false
   github-token:
-    description: 'Github token of the repository (automatically created by Github)'
+    description: 'Personal Access Token generated with necessary permissions'
     required: true
   user:
     description: "The username"

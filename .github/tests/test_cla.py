@@ -47,7 +47,7 @@ def test_cla_is_incorrectly_signed(capfd):
     assert response == False
     assert (
         out
-        == "Comment created by username does not match CLA agreement.\nDouble check that the sentence has been copied exactly, including punctuation.\nCLA is pending for username\n"
+        == "Comment created by username does not match CLA agreement.\nCLA is pending for username\n"
     )
 
 

@@ -10,4 +10,4 @@ ic
 sdk
 ```
 
-To unlock a repository, you should create a [Pull Request](https://github.com/dfinity/repositories-open-to-contributions/compare) where you add the name in alphabetical order.
+To unlock a repository, you should create a [Pull Request](https://github.com/dfinity/repositories-open-to-contributions/compare) where you add the name in alphabetical order. Be sure to create a new branch within this repository, a PR from a forked repository will not work.

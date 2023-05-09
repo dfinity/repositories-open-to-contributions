@@ -26,7 +26,7 @@ def test_cla_is_signed(capfd):
     comment.body = agreement_message
     issue.comments.return_value = [mock.Mock(), comment]
 
-    response = cla.cla_signed(issue, "username")
+    response = cla.check_if_cla_signed(issue, "username")
     out, err = capfd.readouterr()
 
     assert response == True
@@ -38,17 +38,16 @@ def test_cla_is_incorrectly_signed(capfd):
     issue = mock.Mock()
     comment = mock.Mock()
     comment.user.login = "username"
-    agreement_message = USER_AGREEMENT_MESSAGE.format("username")
     comment.body = "incorrect message"
     issue.comments.return_value = [mock.Mock(), comment]
 
-    response = cla.cla_signed(issue, "username")
+    response = cla.check_if_cla_signed(issue, "username")
     out, err = capfd.readouterr()
 
     assert response == False
     assert (
         out
-        == """Comment created by username does not match CLA agreement.\nCLA is pending for username\n"""
+        == "Comment created by username does not match CLA agreement.\nDouble check that the sentence has been copied exactly, including punctuation.\nCLA is pending for username\n"
     )
 
 
@@ -59,7 +58,7 @@ def test_cla_is_not_signed(capfd):
     comment.user.login = "bot"
     issue.comments.return_value = [mock.Mock(), comment]
 
-    response = cla.cla_signed(issue, "username")
+    response = cla.check_if_cla_signed(issue, "username")
     out, err = capfd.readouterr()
 
     assert response == False

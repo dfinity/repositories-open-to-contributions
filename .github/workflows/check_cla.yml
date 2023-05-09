@@ -20,6 +20,7 @@ jobs:
       - name: Check if accepting external contributions
         id: accepts_external_contrib
         uses:  ./.github/actions/check_external_contrib/
+        # leave comment and close
 
       - name: Check Membership
         id:  check-membership

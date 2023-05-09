@@ -7,6 +7,8 @@ import github3
 import messages
 
 GHIssue: TypeAlias = github3.issues.issue.Issue
+PENDING_LABEL = "cla:pending"
+APPROVED_LABEL = "cla:approved"
 
 
 class CLAHandler:
@@ -14,7 +16,7 @@ class CLAHandler:
         self.cla_repo = gh.repository(owner=org, repository="cla")
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
-    def cla_signed(self, issue: GHIssue, user: str) -> bool:
+    def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
         for comment in issue.comments():
             if comment.user.login == user:
                 agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)
@@ -24,6 +26,9 @@ class CLAHandler:
                     return True
                 else:
                     print(f"Comment created by {user} does not match CLA agreement.")
+                    print(
+                        "Double check that the sentence has been copied exactly, including punctuation."
+                    )
         print(f"CLA is pending for {user}")
         return False
 
@@ -41,7 +46,7 @@ class CLAHandler:
             body=messages.CLA_AGREEMENT_MESSAGE.format(
                 user, self.cla_link, user_agreement_message
             ),
-            labels=["cla:pending"],
+            labels=[PENDING_LABEL],
         )
         return issue
 
@@ -56,8 +61,6 @@ def main() -> None:
     pr = gh.pull_request(org, repo, pr_id)
     user = pr.user.login
 
-    cla_signed = False
-
     cla = CLAHandler(gh, "dfinity")
 
     issue = cla.get_cla_issue(user)
@@ -66,10 +69,11 @@ def main() -> None:
         pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
         pr.create_comment(pr_comment)
 
-    if cla.cla_signed(issue, user):
-        cla_signed = True
+    cla_signed = cla.check_if_cla_signed(issue, user)
+    if cla_signed:
+        cla.handle_cla_signed(issue, user)
 
-    if not cla_signed:
+    else:
         print(
             f"The CLA has not been signed. Please sign the CLA agreement: {issue.html_url}"
         )

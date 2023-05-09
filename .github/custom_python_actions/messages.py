@@ -30,4 +30,3 @@ If you decide to agree with it, please reply with the following message:
 AGREED_MESSAGE = """Dear @{},
 
 As you have agreed to the CLA, I added the `cla:agreed` label to your PR and we are now able to proceed with your contribution."""
-PENDING_MESSAGE = """No agreement message has been found. Please visit this [issue]({}) and sign the CLA agreement."""

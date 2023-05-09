@@ -27,7 +27,7 @@ class CLAHandler:
                 else:
                     print(f"Comment created by {user} does not match CLA agreement.")
                     print(
-                        "Double check that the sentence has been copied exactly, including punctuation."
+                        "Double check that the sentence has been copied exactly, including punctuation."  # noqa
                     )
         print(f"CLA is pending for {user}")
         return False
@@ -61,7 +61,7 @@ class CLAHandler:
                 issue.add_labels(APPROVED_LABEL)
                 return
         print(
-            "No cla labels found - manually check the cla issue to see what state it is in. Exiting program."
+            "No cla labels found - manually check the cla issue to see what state it is in. Exiting program."  # noqa
         )
         sys.exit(1)
 

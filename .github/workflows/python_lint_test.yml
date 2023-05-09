@@ -5,8 +5,8 @@ name: Python Workflow
 on:
   pull_request:
     paths:
-      - custom_python_actions/**
-      - tests/**
+      - .github/custom_python_actions/**
+      - .github/tests/**
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

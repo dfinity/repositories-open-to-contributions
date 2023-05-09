@@ -24,9 +24,6 @@ inputs:
 
 runs:
   using: 'composite'
-  permissions:
-    issues: write
-    pull-requests: write
   steps:
     - name: Install Python
       uses: actions/setup-python@v4

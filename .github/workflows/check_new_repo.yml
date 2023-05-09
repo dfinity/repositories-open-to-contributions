@@ -19,6 +19,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Check Sort
+        uses: ./.github/actions/sorting
+
       - name: Get repo name
         id: get-repo-name
         uses:  ./.github/actions/get_repo_name/

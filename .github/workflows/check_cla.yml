@@ -17,28 +17,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Check if accepting external contributions
-        id: accepts_external_contrib
-        uses:  ./.github/actions/check_external_contrib/
+      # - name: Check if accepting external contributions
+      #   id: accepts_external_contrib
+      #   uses:  ./.github/actions/check_external_contrib/
 
-      - name: Check Membership
-        id:  check-membership
-        if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
-        uses: ./.github/actions/check_membership/
-        with:
-          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
+      # - name: Check Membership
+      #   id:  check-membership
+      #   if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+      #   uses: ./.github/actions/check_membership/
+      #   with:
+      #     github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
 
-        # Todo: if repo does not accept external contributions and is not a member, close the PR with a comment
+      #   # Todo: if repo does not accept external contributions and is not a member, close the PR with a comment
 
-      - name: Add Label
-        uses: actions-ecosystem/action-add-labels@v1
-        if: steps.check-membership.outputs.is_member == 'false'
-        with:
-          labels: external-contributor
+      # - name: Add Label
+      #   uses: actions-ecosystem/action-add-labels@v1
+      #   if: steps.check-membership.outputs.is_member == 'false'
+      #   with:
+      #     labels: external-contributor
 
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla/
-        if: steps.check-membership.outputs.is_member == 'false'
+ #       if: steps.check-membership.outputs.is_member == 'false'
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

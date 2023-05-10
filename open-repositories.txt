@@ -15,6 +15,7 @@ exchange-rate-canister
 experimental-minting-tool
 getting-started
 hardware-wallet-cli
+http-gateway
 ic-docutrack
 ic-hs
 ic-js

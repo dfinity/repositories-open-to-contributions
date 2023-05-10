@@ -16,10 +16,15 @@ class CLAHandler:
         self.cla_repo = gh.repository(owner="dfinity", repository="cla")
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
+    def check_comment_already_exists(self, issue: GHIssue) -> bool:
+        for comment in issue.comments():
+            if comment.user.login == "dfnitowner":
+                return True
+        return False
+
     def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
         # check if bot has already left a message to avoid spam
-        for comment in issue.comments():
-            bot_comment = True if comment.user.login == "dfnitowner" else False
+        bot_comment = self.check_comment_already_exists(issue)
 
         for comment in issue.comments():
             if comment.user.login == user:

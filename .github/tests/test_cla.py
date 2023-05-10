@@ -24,6 +24,32 @@ def test_init():
     gh.repository.assert_called_with(owner="dfinity", repository="cla")
 
 
+def test_bot_comment_exists():
+    cla = CLAHandler(mock.Mock())
+    issue = mock.Mock()
+    comment1 = mock.Mock()
+    comment1.user.login = "username"
+    comment2 = mock.Mock()
+    comment2.user.login = "dfnitowner"
+    issue.comments.return_value = [comment1, comment2, comment1]
+
+    bot_comment = cla.check_comment_already_exists(issue)
+
+    assert bot_comment == True
+
+
+def test_no_bot_comment():
+    cla = CLAHandler(mock.Mock())
+    issue = mock.Mock()
+    comment1 = mock.Mock()
+    comment1.user.login = "username"
+    issue.comments.return_value = [comment1, comment1]
+
+    bot_comment = cla.check_comment_already_exists(issue)
+
+    assert bot_comment == False
+
+
 def test_cla_is_signed(capfd):
     cla = CLAHandler(mock.Mock())
     issue = mock.Mock()

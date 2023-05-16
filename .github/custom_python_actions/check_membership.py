@@ -20,7 +20,7 @@ def main() -> None:
     is_member = is_member_of_org(gh, org, user)
 
     if is_member:
-        print("User is member of org and can contribute.")
+        print(f"{user} is member of {org} and can contribute.")
     else:
         print(f"{user} is an external contributor.")
 

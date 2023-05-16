@@ -33,4 +33,4 @@ As you have agreed to the CLA, I added the `cla:agreed` label to your PR and we 
 
 FAILED_COMMENT = """Your comment does not match the CLA agreement.
 
-Check that the sentence has been copied exactly, including punctuation."""
+Check that the sentence has been copied exactly, including punctuation and does not contain any other text."""

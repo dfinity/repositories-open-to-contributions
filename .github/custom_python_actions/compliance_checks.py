@@ -38,7 +38,7 @@ def get_team_name(code_owners: str, org_name: str) -> str:
     if len(team_handle) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
     codeowner_team = team_handle[0].lower()
-    team_name = codeowner_team.strip(f"@{org_name.lower()}").strip("/")
+    team_name = codeowner_team.replace(f"@{org_name.lower()}/", "")
     return team_name
 
 

@@ -1,18 +1,10 @@
 name: 'Check CLA'
-description: 'Check if the user has signed the CLA agreement.'
+description: 'Check if the user has signed the CLA agreement from the cla repo.'
 inputs:
-  org:
-    description: "Organization of the repository"
-    default: ${{ github.repository_owner }}
-    required: false
   github-token:
     description: 'Personal Access Token generated with necessary permissions'
     required: true
-  repo-name:
-    description: "The name of this repository"
-    default: ${{ github.event.repository.name }}
-    required: false
-  pr-id:
+  issue-id:
     description: "The id of the current PR"
     default: ${{ github.event.number }}
     required: false
@@ -30,10 +22,8 @@ runs:
       shell: bash
     - name: Check CLA
       id: check_cla
-      run: python .github/custom_python_actions/check_cla.py
+      run: python .github/custom_python_actions/check_cla_issue.py
       shell: bash
       env:
-        GH_ORG: ${{ inputs.org }}
         GH_TOKEN: ${{ inputs.github-token }}
-        REPO: ${{ inputs.repo-name }}
-        PR_ID: ${{ inputs.pr-id }}
+        ISSUE_ID: ${{ inputs.issue-id }}

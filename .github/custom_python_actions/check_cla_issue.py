@@ -16,7 +16,6 @@ def main() -> None:
     cla = CLAHandler(gh)
 
     cla_signed = cla.check_if_cla_signed(issue, user)
-    print(f"result: {cla_signed}")
     if not cla_signed:
         cla.comment_on_issue(issue)
     else:

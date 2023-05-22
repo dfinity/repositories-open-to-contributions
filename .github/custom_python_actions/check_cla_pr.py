@@ -94,13 +94,13 @@ def main() -> None:
         pr.create_comment(pr_comment)
 
     cla_signed = cla.check_if_cla_signed(issue, user)
-    if not cla_signed:
+    if cla_signed:
+        print("CLA has been signed.")
+    else:
         print(
             f"The CLA has not been signed. Please sign the CLA agreement: {issue.html_url}"
         )
         sys.exit(1)
-    else:
-        print("CLA has been signed.")
 
 
 if __name__ == "__main__":

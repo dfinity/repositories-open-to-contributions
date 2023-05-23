@@ -1,5 +1,5 @@
 name: 'Check CLA'
-description: 'Check if the user has signed the CLA agreement from the cla repo.'
+description: 'From within the CLA repo, check if the specific CLA issue has been correctly signed.'
 inputs:
   github-token:
     description: 'Personal Access Token generated with necessary permissions'

@@ -16,6 +16,7 @@ experimental-minting-tool
 feedback
 getting-started
 hardware-wallet-cli
+http-gateway
 ic-docutrack
 ic-hs
 ic-js

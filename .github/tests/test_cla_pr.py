@@ -8,7 +8,7 @@ from custom_python_actions.messages import (
     CLA_AGREEMENT_MESSAGE,
     USER_AGREEMENT_MESSAGE,
 )
-from custom_python_actions.check_cla import CLAHandler, main
+from custom_python_actions.check_cla_pr import CLAHandler, main
 
 
 def test_init():
@@ -189,7 +189,7 @@ def test_handle_cla_signed_with_no_label(capfd):
     {"GH_ORG": "my_org", "GH_TOKEN": "secret", "REPO": "repo-name", "PR_ID": "1"},
 )
 @mock.patch("github3.login")
-@mock.patch("custom_python_actions.check_cla.CLAHandler")
+@mock.patch("custom_python_actions.check_cla_pr.CLAHandler")
 def test_end_to_end_env_vars_set(cla_mock, gh_login_mock):
     gh = mock.Mock()
     gh_login_mock.return_value = gh
@@ -212,7 +212,7 @@ def test_end_to_end_env_vars_set(cla_mock, gh_login_mock):
     {"GH_ORG": "my_org", "GH_TOKEN": "secret", "REPO": "repo-name", "PR_ID": "1"},
 )
 @mock.patch("github3.login")
-@mock.patch("custom_python_actions.check_cla.CLAHandler")
+@mock.patch("custom_python_actions.check_cla_pr.CLAHandler")
 def test_end_to_end_no_issue(cla_mock, gh_login_mock):
     gh = mock.Mock()
     gh_login_mock.return_value = gh
@@ -233,7 +233,7 @@ def test_end_to_end_no_issue(cla_mock, gh_login_mock):
     {"GH_ORG": "my_org", "GH_TOKEN": "secret", "REPO": "repo-name", "PR_ID": "1"},
 )
 @mock.patch("github3.login")
-@mock.patch("custom_python_actions.check_cla.CLAHandler")
+@mock.patch("custom_python_actions.check_cla_pr.CLAHandler")
 def test_end_to_end_cla_not_signed(cla_mock, gh_login_mock, capfd):
     gh = mock.Mock()
     gh_login_mock.return_value = gh
@@ -253,7 +253,6 @@ def test_end_to_end_cla_not_signed(cla_mock, gh_login_mock, capfd):
         cla.create_cla_issue.assert_not_called()
         pr.create_comment.assert_not_called()
         cla.check_if_cla_signed.assert_called_with(issue, mock.Mock())
-        cla.handle_cla_signed.assert_not_called()
         assert out == "The CLA has not been signed. Please sign the CLA agreement: url"
 
 
@@ -262,8 +261,8 @@ def test_end_to_end_cla_not_signed(cla_mock, gh_login_mock, capfd):
     {"GH_ORG": "my_org", "GH_TOKEN": "secret", "REPO": "repo-name", "PR_ID": "1"},
 )
 @mock.patch("github3.login")
-@mock.patch("custom_python_actions.check_cla.CLAHandler")
-def test_end_to_end_cla_signed(cla_mock, gh_login_mock):
+@mock.patch("custom_python_actions.check_cla_pr.CLAHandler")
+def test_end_to_end_cla_signed(cla_mock, gh_login_mock, capfd):
     gh = mock.Mock()
     gh_login_mock.return_value = gh
     pr = mock.Mock()
@@ -276,5 +275,7 @@ def test_end_to_end_cla_signed(cla_mock, gh_login_mock):
     cla_mock.return_value = cla
 
     main()
+    out, err = capfd.readouterr()
 
-    cla.handle_cla_signed.assert_called_with(issue, "username")
+    assert out == "CLA has been signed.\n"
+    cla.check_if_cla_signed.assert_called_with(issue, "username")

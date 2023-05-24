@@ -38,7 +38,7 @@ jobs:
 
       - name: Check CLA
         id:  check-cla
-        uses: ./.github/actions/check_cla/
+        uses: ./.github/actions/check_cla_pr/
         if: steps.check-membership.outputs.is_member != 'true'
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

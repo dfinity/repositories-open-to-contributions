@@ -61,6 +61,7 @@ def code_owners_test_file(n):
         (code_owners_test_file(1), "dfinity", "idx"),
         (code_owners_test_file(2), "another-org", "another-team"),
         (code_owners_test_file(3), "dfinity-lab", "some-team"),
+        (code_owners_test_file(8), "dfinity", "trust"),
     ],
 )
 def test_get_team_name_succeeds(test_input, org_name, expected):

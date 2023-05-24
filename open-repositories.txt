@@ -19,6 +19,7 @@ http-gateway
 ic-docutrack
 ic-hs
 ic-js
+ic-repl
 ic-staking-documentation
 ic-wasm
 icx-proxy
@@ -33,6 +34,7 @@ motoko-dev-server
 motoko-playground
 portal
 quill
+response-verification
 rules_motoko
 sdk
 stable-structures

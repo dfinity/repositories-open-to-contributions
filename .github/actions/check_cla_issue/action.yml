@@ -2,8 +2,9 @@ name: 'Check CLA'
 description: 'From within the CLA repo, check if the specific CLA issue has been correctly signed.'
 inputs:
   github-token:
-    description: 'Personal Access Token generated with necessary permissions'
-    required: true
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
   issue-id:
     description: "The id of the current PR"
     default: ${{ github.event.number }}

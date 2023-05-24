@@ -18,6 +18,7 @@ hardware-wallet-cli
 ic-docutrack
 ic-hs
 ic-js
+ic-repl
 ic-staking-documentation
 ic-wasm
 icx-proxy

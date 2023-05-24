@@ -22,10 +22,13 @@ class CLAHandler:
                 return True
         return False
 
-    def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
+    def comment_on_issue(self, issue: GHIssue):
         # check if bot has already left a message to avoid spam
         bot_comment = self.check_comment_already_exists(issue)
+        if not bot_comment:
+            issue.create_comment(messages.FAILED_COMMENT)
 
+    def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
         for comment in issue.comments():
             if comment.user.login == user:
                 agreement_message = messages.USER_AGREEMENT_MESSAGE.format(user)
@@ -35,8 +38,6 @@ class CLAHandler:
                     return True
                 else:
                     print(f"Comment created by {user} does not match CLA agreement.")
-                    if not bot_comment:
-                        issue.create_comment(messages.FAILED_COMMENT)
         print(f"CLA is pending for {user}")
         return False
 
@@ -94,8 +95,7 @@ def main() -> None:
 
     cla_signed = cla.check_if_cla_signed(issue, user)
     if cla_signed:
-        cla.handle_cla_signed(issue, user)
-
+        print("CLA has been signed.")
     else:
         print(
             f"The CLA has not been signed. Please sign the CLA agreement: {issue.html_url}"

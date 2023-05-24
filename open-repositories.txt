@@ -13,6 +13,7 @@ dfx-extensions
 examples
 exchange-rate-canister
 experimental-minting-tool
+feedback
 getting-started
 hardware-wallet-cli
 ic-docutrack

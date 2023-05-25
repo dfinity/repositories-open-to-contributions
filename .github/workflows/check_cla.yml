@@ -30,20 +30,20 @@ jobs:
 
       - name: Close Pull Request
         id: close_pr
-        if: steps.accepts_external_contrib.accepts_contrib != 'true'
+        if: steps.accepts_external_contrib.accepts_contrib == 'false'
         run: |
           export message="This repository does not accept external contributions yet. \n\nWe are therefore closing this Pull Request, thank you for your understanding.\n\n— The DFINITY Foundation"
-          gh pr close --comment $message
+          gh pr close ${{ github.event.number }} --comment $message
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1
-        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.accepts_contrib != 'false'
+        if: steps.check-membership.outputs.is_member == 'false' && steps.accepts_external_contrib.accepts_contrib == 'true'
         with:
           labels: external-contributor
 
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla_pr/
-        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.accepts_contrib != 'false'
+        if: steps.check-membership.outputs.is_member == 'false' && steps.accepts_external_contrib.accepts_contrib == 'true'
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

@@ -32,11 +32,12 @@ jobs:
         id: close_pr
         if: steps.accepts_external_contrib.accepts_contrib != 'true'
         with:
-          comment: """This repository does not accept external contributions yet.
+          comment: |
+This repository does not accept external contributions yet.
 
 We are therefore closing this Pull Request, thank you for your understanding.
 
-— The DFINITY Foundation"""
+— The DFINITY Foundation
 
 
       - name: Add Label

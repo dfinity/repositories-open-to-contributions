@@ -33,12 +33,11 @@ jobs:
         if: steps.accepts_external_contrib.accepts_contrib != 'true'
         with:
           comment: |
-This repository does not accept external contributions yet.
+            This repository does not accept external contributions yet.
 
-We are therefore closing this Pull Request, thank you for your understanding.
+            We are therefore closing this Pull Request, thank you for your understanding.
 
-— The DFINITY Foundation
-
+            — The DFINITY Foundation
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1

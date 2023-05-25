@@ -28,16 +28,14 @@ jobs:
         if: steps.check-membership.outputs.is_member != 'true'
         uses:  ./.github/actions/check_external_contrib/
 
-      - uses: superbrothers/close-pull-request@v3
+      - name: Close Pull Request
         id: close_pr
         if: steps.accepts_external_contrib.accepts_contrib != 'true'
-        with:
-          comment: |
-            This repository does not accept external contributions yet.
-
+        run: |
+            message = ("This repository does not accept external contributions yet.
             We are therefore closing this Pull Request, thank you for your understanding.
-
-            — The DFINITY Foundation
+            — The DFINITY Foundation")
+        gh pr close --comment $message
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1

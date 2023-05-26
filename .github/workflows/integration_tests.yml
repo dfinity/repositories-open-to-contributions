@@ -1,27 +1,27 @@
 # Workflow to run integration tests
 # Checks that check_new_repo workflow works as expected
 
-# name: Integration Tests
+name: Integration Tests
 
-# on:
-#   push:
-#     branches-ignore:
-#       - integration-test-1
-#     paths:
-#       - .github/**
-#   # Allows you to run this workflow manually from the Actions tab
-#   workflow_dispatch:
+on:
+  push:
+    branches-ignore:
+      - integration-test-1
+    paths:
+      - .github/**
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
-# jobs:
-#   integration-test-1:
-#     name: Integration Test 1
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@v3
+jobs:
+  integration-test-1:
+    name: Integration Test 1
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-#     - name: Integration Test 1
-#       run: |
-#         ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
-#       env:
-#         GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+    - name: Integration Test 1
+      run: |
+        ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

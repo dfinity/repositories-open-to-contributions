@@ -9,7 +9,7 @@ import messages
 GHIssue: TypeAlias = github3.issues.issue.Issue
 PENDING_LABEL = "cla:pending"
 APPROVED_LABEL = "cla:agreed"
-NEW_BOT_LABEL = "cla:new-bot-pending"
+GH_WORKFLOW_LABEL = "cla:gh-wf-pending"
 
 
 class CLAHandler:
@@ -57,7 +57,7 @@ class CLAHandler:
                 user, self.cla_link, user_agreement_message
             ),
             # replace with PENDING, once new bot has been released
-            labels=[NEW_BOT_LABEL],
+            labels=[GH_WORKFLOW_LABEL],
         )
         return issue
 
@@ -65,10 +65,10 @@ class CLAHandler:
         for label in issue.original_labels:
             if label.name == APPROVED_LABEL:
                 return
-            elif label.name == NEW_BOT_LABEL:
+            elif label.name == GH_WORKFLOW_LABEL:
                 agreement_message = messages.AGREED_MESSAGE.format(user)
                 issue.create_comment(agreement_message)
-                issue.remove_label(NEW_BOT_LABEL)
+                issue.remove_label(GH_WORKFLOW_LABEL)
                 issue.add_labels(APPROVED_LABEL)
                 return
         print(

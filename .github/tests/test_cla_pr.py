@@ -140,7 +140,7 @@ def test_create_cla_issue():
     cla_repo.create_issue.assert_called_with(
         "cla: @username",
         body=cla_agreement_message,
-        labels=["cla:new-bot-pending"],
+        labels=["cla:gh-wf-pending"],
     )
 
 
@@ -160,7 +160,7 @@ def test_handle_cla_signed_with_agreed_label():
 def test_handle_cla_signed_with_pending_label():
     issue = mock.Mock()
     label = mock.Mock()
-    label.name = "cla:new-bot-pending"
+    label.name = "cla:gh-wf-pending"
     issue.original_labels = [label]
     agreement_message = AGREED_MESSAGE.format("username")
 

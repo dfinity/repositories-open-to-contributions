@@ -9,6 +9,7 @@ import messages
 GHIssue: TypeAlias = github3.issues.issue.Issue
 PENDING_LABEL = "cla:pending"
 APPROVED_LABEL = "cla:agreed"
+NEW_BOT_LABEL = "cla:new-bot-pending"
 
 
 class CLAHandler:
@@ -55,7 +56,8 @@ class CLAHandler:
             body=messages.CLA_AGREEMENT_MESSAGE.format(
                 user, self.cla_link, user_agreement_message
             ),
-            labels=[PENDING_LABEL],
+            # replace with PENDING, once new bot has been released
+            labels=[NEW_BOT_LABEL],
         )
         return issue
 
@@ -63,10 +65,10 @@ class CLAHandler:
         for label in issue.original_labels:
             if label.name == APPROVED_LABEL:
                 return
-            elif label.name == PENDING_LABEL:
+            elif label.name == NEW_BOT_LABEL:
                 agreement_message = messages.AGREED_MESSAGE.format(user)
                 issue.create_comment(agreement_message)
-                issue.remove_label(PENDING_LABEL)
+                issue.remove_label(NEW_BOT_LABEL)
                 issue.add_labels(APPROVED_LABEL)
                 return
         print(

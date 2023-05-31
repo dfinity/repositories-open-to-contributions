@@ -1,0 +1,30 @@
+name: 'Check CLA'
+description: 'From within the CLA repo, check if the specific CLA issue has been correctly signed.'
+inputs:
+  github-token:
+    description: 'Github token of the repository (automatically created by Github)'
+    default: ${{ github.token }}
+    required: false
+  issue-id:
+    description: "The id of the current PR"
+    default: ${{ github.event.number }}
+    required: false
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Install Dependencies
+      run: pip install -q -r requirements.txt
+      shell: bash
+    - name: Check CLA
+      id: check_cla
+      run: python .github/custom_python_actions/check_cla_issue.py
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        ISSUE_ID: ${{ inputs.issue-id }}

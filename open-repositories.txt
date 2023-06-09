@@ -44,5 +44,6 @@ threshold
 vessel
 vessel-package-set
 vscode-motoko
+wasmtime-hs
 wg-governance
 wg-identity-authentication

@@ -23,6 +23,7 @@ ic-js
 ic-repl
 ic-staking-documentation
 ic-wasm
+ic-websocket-poc
 icx-proxy
 idl2json
 interface-spec

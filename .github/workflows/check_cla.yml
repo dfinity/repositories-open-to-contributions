@@ -26,7 +26,7 @@ jobs:
 
       - name: Close Pull Request
         id: close_pr
-        if: steps.accepts_external_contrib.accepts_contrib == 'false'
+        if: steps.accepts_external_contrib.accepts_contrib != 'true'
         run: |
           message="This repository does not accept external contributions yet.
 

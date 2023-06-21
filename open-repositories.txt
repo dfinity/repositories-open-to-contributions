@@ -9,6 +9,7 @@ candid
 canister-profiling
 cdk-rs
 conventional-pr-title-action
+dfn-components
 dfx-extensions
 examples
 exchange-rate-canister

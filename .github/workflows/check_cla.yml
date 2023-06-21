@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: 'repositories-open-to-contributions'
+          repository: 'dfinity/repositories-open-to-contributions'
 
       - name: Check Membership
         id:  check-membership

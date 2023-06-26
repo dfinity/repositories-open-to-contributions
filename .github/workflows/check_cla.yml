@@ -34,12 +34,13 @@ jobs:
         id: close_pr
         if: steps.accepts_external_contrib.accepts_contrib != 'true' && steps.check-membership.outputs.is_member != 'true'
         run: |
-          message="This repository does not accept external contributions yet.
+          echo ${{ steps.accepts_external_contrib.accepts_contrib }} 
+  /*        message="This repository does not accept external contributions yet.
 
           We are therefore closing this Pull Request, thank you for your understanding.
 
           — The DFINITY Foundation"
-          gh pr close ${{ github.event.number }} --comment "$message"
+          gh pr close ${{ github.event.number }} --comment "$message" */
         env:
           GH_TOKEN: ${{ github.token }}
 

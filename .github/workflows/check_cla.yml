@@ -32,7 +32,7 @@ jobs:
 
       - name: Close Pull Request
         id: close_pr
-        if: steps.accepts_external_contrib.outputs.accepts_contrib != 'true' && steps.check-membership.outputs.is_member != 'true'
+        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
         run: |
           message="This repository does not accept external contributions yet.
 
@@ -45,13 +45,13 @@ jobs:
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1
-        if: steps.check-membership.outputs.is_member == 'false' && steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
         with:
           labels: external-contributor
 
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla_pr/
-        if: steps.check-membership.outputs.is_member == 'false' && steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
+        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
         with:
           github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

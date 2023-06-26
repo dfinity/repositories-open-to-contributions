@@ -28,8 +28,7 @@ def main() -> None:
     gh = github3.login(token=gh_token)
 
     repo_list = get_repos_open_to_contributions(gh)
-    # accepts_contrib = repo in repo_list
-    accepts_contrib = True
+    accepts_contrib = repo in repo_list
 
     os.system(f"""echo 'accepts_contrib={accepts_contrib}' >> $GITHUB_OUTPUT""")
 

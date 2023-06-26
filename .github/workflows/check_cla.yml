@@ -54,4 +54,4 @@ jobs:
         uses: ./.github/actions/check_cla_pr/
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
         with:
-          github-token: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+          github-token: ${{ secrets.GH_TOKEN_COMMENT_ON_PRS }}

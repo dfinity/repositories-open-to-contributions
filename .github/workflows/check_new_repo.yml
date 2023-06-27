@@ -32,4 +32,4 @@ jobs:
         uses: ./.github/actions/check_compliance/
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
-          github-token: ${{ secrets.GH_TOKEN_READ_ORG }}
+          github-token: ${{ secrets.COMPLIANCE_READ_ORG_MEMBERSHIP }}

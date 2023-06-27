@@ -27,4 +27,4 @@ jobs:
         if: steps.accepts_external_contrib.outputs.accepts_contrib == 'true'
         uses: ./.github/actions/check_compliance/
         with:
-          github-token: ${{ secrets.GH_TOKEN_READ_REPO_PERMISSIONS }}
+          github-token: ${{ secrets.COMPLIANCE_READ_REPO_PERMISSIONS }}

@@ -12,6 +12,8 @@ on:
       - .github/custom_python_actions/check_external_contrib.py
       - .github/tests/test_compliance_checks.py
       - .github/tests/test_check_external_contrib.py
+      - .github/workflows/check_existing_repo.yml
+      - .github/workflows/check_new_repo.yml
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

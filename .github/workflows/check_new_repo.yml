@@ -33,5 +33,3 @@ jobs:
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
           github-token: ${{ secrets.COMPLIANCE_READ_ORG_MEMBERSHIP }}
-
-#test

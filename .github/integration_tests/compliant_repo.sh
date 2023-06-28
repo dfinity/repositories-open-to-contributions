@@ -13,8 +13,9 @@ git config user.email dfinity@dfinity.org
 # create new branch
 git checkout -b integration-test-2
 
-# add a fake repository
-echo "test-state-machine-client" >> open-repositories.txt
+# add compliant repository to for testing
+echo "test-compliant-repository" >> open-repositories.txt
+sort open-repositories.txt -o open-repositories.txt
 git add open-repositories.txt
 git commit -m 'add compliant repository'
 

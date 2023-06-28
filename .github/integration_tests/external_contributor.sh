@@ -9,6 +9,8 @@ git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
 # create new branch
+git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git
+cd repositories-open-to-contributions
 git checkout -b integration-test-3
 
 # add a fake repository

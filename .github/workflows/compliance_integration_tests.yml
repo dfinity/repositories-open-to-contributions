@@ -31,10 +31,10 @@ jobs:
     #   run: |
     #     ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
     #   env:
-    #     GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+    #     GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
 
-    - name: Integration Test Compliant repo
+    - name: Integration Test Compliant Repo
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/compliant_repo.sh
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+        GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}

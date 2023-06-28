@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Hello"
+
 set -euo pipefail
 
 # Integration test to ensure CI fails when a non-existent repository is added

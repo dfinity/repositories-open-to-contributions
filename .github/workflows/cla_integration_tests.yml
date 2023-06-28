@@ -14,6 +14,7 @@ on:
       - .github/tests/test_cla_pr.py
       - .github/workflows/check_cla.yml
       - .github/workflows/cla_integration_tests.yml
+      - .github/integration_tests/external_contributor.sh
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

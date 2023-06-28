@@ -4,15 +4,11 @@ set -euo pipefail
 
 # Integration test to ensure CLA closes PR for an external contributor
 
-echo "hello"
-
 # set git credentials
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
 # create new branch
-cd ~
-ls
 git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git
 cd repositories-open-to-contributions
 git checkout -b integration-test-3

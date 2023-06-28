@@ -39,6 +39,7 @@ if [[ $result == '"failure"' ]]
     then echo "test passed"
 else
     echo "test failed, expected Check New Repo to result in failure but got $result" >&2
+    git push origin -d integration-test-1
     exit 1
 fi
 

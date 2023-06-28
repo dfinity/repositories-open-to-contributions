@@ -1,12 +1,13 @@
 # Workflow to run integration tests
 # Checks that check_new_repo workflow works as expected
 
-name: Integration Tests
+name: Compliance Integration Tests
 
 on:
   push:
     branches-ignore:
       - integration-test-1
+      - integration-test-2
     paths:
       - .github/custom_python_actions/check_compliance.py
       - .github/custom_python_actions/check_external_contrib.py
@@ -18,15 +19,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  integration-test-1:
+  compliance-integration-tests:
     name: Integration Test 1
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Integration Test 1
+    - name: Integration Test Nonexistant repo
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+
+    - name: Integration Test Compliant repo
+      run: |
+        ${GITHUB_WORKSPACE}/.github/integration_tests/compliant_repo.sh
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}

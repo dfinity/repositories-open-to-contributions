@@ -13,7 +13,7 @@ on:
       - .github/tests/test_cla_issue.py
       - .github/tests/test_cla_pr.py
       - .github/workflows/check_cla.yml
-      - .github/workflows/cla_integration-tests.yml
+      - .github/workflows/cla_integration_tests.yml
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

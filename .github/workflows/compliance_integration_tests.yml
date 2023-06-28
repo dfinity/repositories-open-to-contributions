@@ -4,7 +4,7 @@
 name: Compliance Integration Tests
 
 on:
-  push:
+  pull_request:
     branches-ignore:
       - integration-test-1
       - integration-test-2

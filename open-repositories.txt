@@ -41,6 +41,7 @@ response-verification
 rules_motoko
 sdk
 stable-structures
+test-compliant-repository
 test-state-machine-client
 threshold
 vessel

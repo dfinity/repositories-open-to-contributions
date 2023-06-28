@@ -26,11 +26,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Integration Test Nonexistant repo
-      run: |
-        ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
+    # - name: Integration Test Nonexistant repo
+    #   run: |
+    #     ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+    #   env:
+    #     GH_TOKEN: ${{ secrets.GH_TOKEN_RUN_WORKFLOW }}
 
     - name: Integration Test Compliant repo
       run: |

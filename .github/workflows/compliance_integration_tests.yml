@@ -21,7 +21,7 @@ on:
 
 jobs:
   compliance-integration-tests:
-    name: Integration Test 1
+    name: Compliance Integration Tests
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

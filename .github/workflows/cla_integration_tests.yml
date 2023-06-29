@@ -23,13 +23,6 @@ jobs:
     name: CLA Integration Test
     runs-on: ubuntu-latest
     steps:
-    - name: Secret exists
-      run: | 
-        gh auth login --with-token <<< $ACCESS_TOKEN
-        gh auth token
-      env:
-        ACCESS_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
-
     - name: Checkout
       uses: actions/checkout@v3
       with:

@@ -42,3 +42,4 @@ jobs:
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
         GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+        TEST: "test_var"

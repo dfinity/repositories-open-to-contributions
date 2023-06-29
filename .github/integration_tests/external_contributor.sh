@@ -16,6 +16,9 @@ else
   echo "does not exist"
 fi
 
+echo "test"
+echo $TEST
+
 # create new branch
 #git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git
 #cd repositories-open-to-contributions

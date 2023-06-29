@@ -8,6 +8,8 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
+gh auth login --with-token <<< $ACCESS_TOKEN
+
 # create new branch
 #git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git
 #cd repositories-open-to-contributions

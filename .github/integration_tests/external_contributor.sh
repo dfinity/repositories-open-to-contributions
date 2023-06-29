@@ -8,8 +8,7 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
-gh auth login 
-#--with-token <<< $ACCESS_TOKEN
+gh auth login --with-token <<< $ACCESS_TOKEN
 gh auth status --show-token
 
 # create new branch

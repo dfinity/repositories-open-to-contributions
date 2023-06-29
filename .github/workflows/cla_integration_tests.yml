@@ -29,7 +29,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: 'dfinity-sandbox/repositories-open-to-contributions'
-        token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+        token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
 
     - name: Get current branch
       shell: bash
@@ -44,4 +44,4 @@ jobs:
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
-        ACCESS_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ github.token }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job

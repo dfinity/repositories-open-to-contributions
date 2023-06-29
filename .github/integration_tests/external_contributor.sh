@@ -8,7 +8,13 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
-echo <<< "${GITHUB_TOKEN: -1}"
+
+if [[ -z "${GH_TOKEN}" ]]; then
+  echo "it exists"
+  echo <<< "${GH_TOKEN: -1}"
+else
+  echo "does not exist"
+fi
 
 # create new branch
 #git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git

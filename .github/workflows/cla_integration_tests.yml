@@ -28,7 +28,7 @@ jobs:
         gh auth login --with-token <<< $ACCESS_TOKEN
         gh auth token
       env:
-        ACCESS_TOKEN: "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+        ACCESS_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
 
     - name: Checkout
       uses: actions/checkout@v3

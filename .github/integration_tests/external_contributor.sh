@@ -4,6 +4,10 @@ set -euo pipefail
 
 # Integration test to ensure CLA closes PR for an external contributor
 
+# set git credentials
+git config user.name dfinity
+git config user.email dfinity@dfinity.org
+
 # get updates for forked repo
 git fetch upstream
 git checkout -b integration-test-3

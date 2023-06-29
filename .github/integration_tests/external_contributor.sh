@@ -22,7 +22,8 @@ touch test.txt
 git add test.txt
 git commit -m 'add empty file'
 
-git remote add origin https://github.com/dfinity-sandbox/repositories-open-to-contributions.git
+#git remote add origin https://github.com/dfinity-sandbox/repositories-open-to-contributions.git
+git remote -v
 git push --set-upstream origin integration-test-3
 
 # get updates for forked repo

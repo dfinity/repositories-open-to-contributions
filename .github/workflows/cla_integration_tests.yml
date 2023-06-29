@@ -24,12 +24,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Secret exists
-      run: |
-        if [[ -z "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}" ]]; then
-          echo "it exists"
-        else
-          echo "does not exist"
-        fi
+      run: | 
+        gh auth login --with-token <<< $ACCESS_TOKEN
+        gh auth token
+      env:
+        ACCESS_TOKEN: "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
 
     - name: Checkout
       uses: actions/checkout@v3

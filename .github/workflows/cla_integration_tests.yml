@@ -40,7 +40,7 @@ jobs:
         git fetch upstream
         git merge upstream/master master
         git checkout $current_branch
-        echo "$current_branch" >> $GITHUB_OUTPUT
+        echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
 
     - name: Integration Test External Contributor
       run: |

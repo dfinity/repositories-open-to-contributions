@@ -8,14 +8,6 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
-
-if [[ -z "${GH_TOKEN}" ]]; then
-  echo "it exists"
-  echo <<< "${GH_TOKEN: -1}"
-else
-  echo "does not exist"
-fi
-
 echo "test"
 echo $TEST
 

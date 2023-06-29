@@ -37,9 +37,16 @@ jobs:
         git merge upstream/master master
         git checkout $current_branch
 
+    - name: Secret exists
+      run: |
+        if [[ -z "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}" ]]; then
+          echo "it exists"
+        else
+          echo "does not exist"
+        fi
+
     - name: Integration Test External Contributor
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
         GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
-        TEST: "test_var"

@@ -8,6 +8,8 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
+gh auth token
+
 # create new branch
 git checkout -b integration-test-1
 

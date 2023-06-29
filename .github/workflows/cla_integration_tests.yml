@@ -44,4 +44,4 @@ jobs:
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
-        AUTH_TOKEN: ${{ github.token }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
+        AUTH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR  }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job

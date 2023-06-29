@@ -23,11 +23,6 @@ jobs:
     name: CLA Integration Test
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        repository: 'dfinity-sandbox/repositories-open-to-contributions'
-
     - name: Secret exists
       run: |
         if [[ -z "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}" ]]; then
@@ -35,6 +30,11 @@ jobs:
         else
           echo "does not exist"
         fi
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        repository: 'dfinity-sandbox/repositories-open-to-contributions'
 
     - name: Get current branch
       shell: bash

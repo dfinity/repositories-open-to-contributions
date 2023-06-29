@@ -28,6 +28,14 @@ jobs:
       with:
         repository: 'dfinity-sandbox/repositories-open-to-contributions'
 
+    - name: Secret exists
+      run: |
+        if [[ -z "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}" ]]; then
+          echo "it exists"
+        else
+          echo "does not exist"
+        fi
+
     - name: Get current branch
       shell: bash
       run: |
@@ -36,14 +44,6 @@ jobs:
         git fetch upstream
         git merge upstream/master master
         git checkout $current_branch
-
-    - name: Secret exists
-      run: |
-        if [[ -z "${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}" ]]; then
-          echo "it exists"
-        else
-          echo "does not exist"
-        fi
 
     - name: Integration Test External Contributor
       run: |

@@ -11,7 +11,7 @@ git config user.email dfinity@dfinity.org
 # get updates for forked repo
 git fetch upstream
 git checkout -b integration-test-3
-git merge upstream/master master
+git merge upstream/master integration-test-3
 
 # create new branch with commit
 touch test.txt

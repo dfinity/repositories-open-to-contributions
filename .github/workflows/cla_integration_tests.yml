@@ -23,15 +23,19 @@ jobs:
     name: CLA Integration Test
     runs-on: ubuntu-latest
     steps:
-    - name: Extract branch name
-      shell: bash
-      run: echo "current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-      id: extract_branch
     - name: Checkout
       uses: actions/checkout@v3
       with:
         repository: 'dfinity-sandbox/repositories-open-to-contributions'
-        ref: ${{ steps.extract_branch.outputs.current_branch }}
+
+    - name: Get current branch
+      shell: bash
+      run: |
+        current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
+        git fetch upstream
+        git merge upstream/master master
+        git checkout $current_branch
 
     - name: Integration Test External Contributor
       run: |

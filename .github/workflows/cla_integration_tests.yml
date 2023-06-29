@@ -44,4 +44,4 @@ jobs:
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
-        ACCESS_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+        ACCESS_TOKEN: ${{ github.token }}

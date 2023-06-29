@@ -41,5 +41,5 @@ jobs:
     - name: Integration Test External Contributor
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
-      env:
-        ACCESS_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+#      env:
+#        GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}

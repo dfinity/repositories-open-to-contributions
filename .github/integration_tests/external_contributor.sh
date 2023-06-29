@@ -8,7 +8,7 @@ set -euo pipefail
 git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
-gh auth login --with-token <<< $ACCESS_TOKEN
+gh auth status --show-token
 
 # create new branch
 #git clone git@github.com:dfinity-sandbox/repositories-open-to-contributions.git
@@ -22,7 +22,6 @@ touch test.txt
 git add test.txt
 git commit -m 'add empty file'
 
-#git remote add origin https://github.com/dfinity-sandbox/repositories-open-to-contributions.git
 git remote -v
 git push --set-upstream origin integration-test-3
 

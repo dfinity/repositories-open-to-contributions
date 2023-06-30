@@ -63,7 +63,8 @@ def test_end_to_end_api_fails(os_system, github_login_mock, capfd):
     gh_org.is_member.side_effect = NotFoundError(mock.Mock())
     github_login_mock.return_value = gh
 
-    with pytest.raises(NotFoundError):
-        main()
-        out, err = capfd.readouterr()
-        os_system.assert_called_once_with("echo 'is_member=False' >> $GITHUB_OUTPUT")
+    main()
+    out, err = capfd.readouterr()
+
+    assert out == "username is an external contributor.\n"
+    os_system.assert_called_once_with("echo 'is_member=False' >> $GITHUB_OUTPUT")

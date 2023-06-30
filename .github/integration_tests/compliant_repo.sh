@@ -9,7 +9,7 @@ git config user.name dfinity
 git config user.email dfinity@dfinity.org
 
 # create new branch
-git checkout -b integration-test-2
+git checkout -b integration-test-$RUN_NUMBER
 
 # add compliant repository to for testing
 echo "test-compliant-repository" >> open-repositories.txt

@@ -28,13 +28,13 @@ jobs:
 
     - name: Trigger CLA workflow
       run: |
-        current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        CURRENT_BRANCH=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
         curl \
         -X POST \
         -H "Accept: application/vnd.github.v3+json" \
         -H "Authorization: token $AUTH_TOKEN" \
         https://api.github.com/repos/dfinity/repositories-open-to-contributions/actions/workflows/check_cla.yml/dispatches \
-        -d '{"ref":"$current_branch", "inputs":{"user":"dfinity"}}'
+        -d '{"ref":"'"$CURRENT_BRANCH"'", "inputs":{"user":"dfinity"}}'
       env:
         AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
 

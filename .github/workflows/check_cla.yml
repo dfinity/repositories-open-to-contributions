@@ -11,6 +11,7 @@ on:
     inputs: 
       user:
         required: false
+        type: string
 
 jobs:
   check-cla:

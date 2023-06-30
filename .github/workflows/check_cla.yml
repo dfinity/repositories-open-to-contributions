@@ -33,7 +33,7 @@ jobs:
       - name: Close Pull Request
         id: close_pr
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
-        uses: superbrothers/close-pull-request@v3
+        uses: superbrothers/close-pull-request@v2
         with:
           comment: |
             This repository does not accept external contributions yet. 
@@ -41,6 +41,8 @@ jobs:
             We are therefore closing this Pull Request, thank you for your understanding.
 
             — The DFINITY Foundation 
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         # run: |
         #   message="This repository does not accept external contributions yet.
 

@@ -3,8 +3,8 @@
 name: Check CLA
 
 on:
-  pull_request:
-    branches: '**'
+  pull_request_target:
+    types: [opened, edited]
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -39,10 +39,10 @@ jobs:
           We are therefore closing this Pull Request, thank you for your understanding.
 
           — The DFINITY Foundation"
-          gh auth login --with-token <<< $AUTH_TOKEN
           gh pr close ${{ github.event.number }} --comment "$message"
         env:
-          AUTH_TOKEN: ${{ secrets.CLA_COMMENT_ON_PRS }}
+          GH_TOKEN: ${{ github.token }}
+   #       AUTH_TOKEN: ${{ secrets.CLA_COMMENT_ON_PRS }}
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1

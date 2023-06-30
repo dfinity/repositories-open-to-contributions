@@ -8,7 +8,7 @@ on:
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs: 
+    inputs:
       user:
         required: false
         type: string
@@ -40,7 +40,7 @@ jobs:
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
         run: |
           message="This repository does not accept external contributions yet.
-. 
+ 
           We are therefore closing this Pull Request, thank you for your understanding.
 
           — The DFINITY Foundation"

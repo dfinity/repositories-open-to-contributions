@@ -50,4 +50,4 @@ jobs:
         AUTH_TOKEN: ${{ github.token }}
    #     GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
         RUN_NUMBER: ${{ github.run_number }}
- #       CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}
+        CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}

@@ -3,7 +3,7 @@
 name: Check CLA
 
 on:
-  pull_request_target:
+  pull_request:
     branches: '**'
   merge_group:
   # Allows you to run this workflow manually from the Actions tab

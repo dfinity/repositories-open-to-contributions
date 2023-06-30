@@ -3,6 +3,8 @@
 name: Check CLA
 
 on:
+  pull_request:
+    branches: '**'
   pull_request_target:
     branches: '**'
   merge_group:
@@ -38,17 +40,15 @@ jobs:
       - name: Close Pull Request
         id: close_pr
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
-        run: |
-          message="This repository does not accept external contributions yet.
+        uses: superbrothers/close-pull-request@v3
+        with:
+          comment: |
+          This repository does not accept external contributions yet.
  
           We are therefore closing this Pull Request, thank you for your understanding.
 
           — The DFINITY Foundation"
-          gh pr close $PR_NUMBER --comment "$message"
-        env:
-          GH_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ github.event.number }}
-
+          
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'

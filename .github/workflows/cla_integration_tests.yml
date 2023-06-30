@@ -47,7 +47,7 @@ jobs:
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
    #     GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
-        AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
+ #       AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
    #     GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
         RUN_NUMBER: ${{ github.run_number }}
         CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}

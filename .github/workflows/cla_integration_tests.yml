@@ -33,7 +33,7 @@ jobs:
         -H "Accept: application/vnd.github.v3+json" \
         -H "Authorization: token $AUTH_TOKEN" \
         https://api.github.com/repos/dfinity/repositories-open-to-contributions/actions/workflows/check_cla.yml/dispatches \
-        -d '{"ref":"master", "user":"dfinity"}'
+        -d '{"ref":"master", "inputs":{"name":"user":"dfinity"}}'
       env:
         AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
 

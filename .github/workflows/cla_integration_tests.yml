@@ -22,32 +22,52 @@ jobs:
   integration-test:
     name: CLA Integration Test
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
-        repository: 'dfinity-sandbox/repositories-open-to-contributions'
-        
-    - name: Get current branch
-      id: extract_branch
-      shell: bash
-      run: |
-        current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
-        git fetch upstream
-        git merge upstream/master master
-        git checkout $current_branch
-        echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
+      uses: actions/checkout@v3 
 
-    - name: Integration Test External Contributor
+    - name: Trigger CLA workflow
       run: |
-        ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
+        curl \
+        -X POST \
+        -H "Accept: application/vnd.github.v3+json" \
+        -H "Authorization: token $AUTH_TOKEN" \
+        https://api.github.com/repos/dfinity/repositories-open-to-contributions/actions/workflows/check_cla/dispatches \
+        -d '{"ref":"master", "user":"dfinity"}'
       env:
-   #     GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
- #       AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
-   #     GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
-        RUN_NUMBER: ${{ github.run_number }}
-        CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}
+        AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
+
+
+# jobs:
+#   integration-test:
+#     name: CLA Integration Test
+#     runs-on: ubuntu-latest
+#     permissions:
+#       pull-requests: write
+#     steps:
+#     - name: Checkout
+#       uses: actions/checkout@v3
+#       with:
+#         token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
+#         repository: 'dfinity-sandbox/repositories-open-to-contributions'
+        
+#     - name: Get current branch
+#       id: extract_branch
+#       shell: bash
+#       run: |
+#         current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+#         git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
+#         git fetch upstream
+#         git merge upstream/master master
+#         git checkout $current_branch
+#         echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
+
+#     - name: Integration Test External Contributor
+#       run: |
+#         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
+#       env:
+#    #     GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
+#  #       AUTH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
+#    #     GH_TOKEN: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }}
+#         RUN_NUMBER: ${{ github.run_number }}
+#         CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}

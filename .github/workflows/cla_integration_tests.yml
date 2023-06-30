@@ -29,18 +29,18 @@ jobs:
       uses: actions/checkout@v3
       with:
         token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
-#        repository: 'dfinity-sandbox/repositories-open-to-contributions'
+        repository: 'dfinity-sandbox/repositories-open-to-contributions'
         
-    # - name: Get current branch
-    #   id: extract_branch
-    #   shell: bash
-    #   run: |
-    #     current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-    #     git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
-    #     git fetch upstream
-    #     git merge upstream/master master
-    #     git checkout $current_branch
-    #     echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
+    - name: Get current branch
+      id: extract_branch
+      shell: bash
+      run: |
+        current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+        git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
+        git fetch upstream
+        git merge upstream/master master
+        git checkout $current_branch
+        echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
 
     - name: Integration Test External Contributor
       run: |

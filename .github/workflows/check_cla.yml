@@ -8,7 +8,7 @@ on:
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    inputs: 
+    inputs:
       user:
         required: false
 
@@ -37,14 +37,15 @@ jobs:
       - name: Close Pull Request
         id: close_pr
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
-        uses: superbrothers/close-pull-request@v3
-        with:
-          comment: |
-            This repository does not accept external contributions yet. 
+        run: |
+          message="This repository does not accept external contributions yet.
+. 
+          We are therefore closing this Pull Request, thank you for your understanding.
 
-            We are therefore closing this Pull Request, thank you for your understanding.
-
-            — The DFINITY Foundation 
+          — The DFINITY Foundation"
+          gh pr close ${{ github.event.number }} --comment "$message"
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1

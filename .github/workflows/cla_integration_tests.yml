@@ -27,24 +27,24 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-        repository: 'dfinity-sandbox/repositories-open-to-contributions'
-        token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
+#      with:
+#        repository: 'dfinity-sandbox/repositories-open-to-contributions'
+#        token: ${{ secrets.INTEGRATION_TEST_EXTERNAL_CONTRIBUTOR }} # this token gives access to the dfinity-sandbox org
 
-    - name: Get current branch
-      id: extract_branch
-      shell: bash
-      run: |
-        current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
-        git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
-        git fetch upstream
-        git merge upstream/master master
-        git checkout $current_branch
-        echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
+    # - name: Get current branch
+    #   id: extract_branch
+    #   shell: bash
+    #   run: |
+    #     current_branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+    #     git remote add upstream https://github.com/dfinity/repositories-open-to-contributions.git
+    #     git fetch upstream
+    #     git merge upstream/master master
+    #     git checkout $current_branch
+    #     echo "current_branch=$current_branch" >> $GITHUB_OUTPUT
 
     - name: Integration Test External Contributor
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
-        AUTH_TOKEN: ${{ github.token  }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
-        CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}
+        GH_TOKEN: ${{ github.token  }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
+ #       CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}

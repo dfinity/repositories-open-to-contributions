@@ -44,9 +44,10 @@ jobs:
           We are therefore closing this Pull Request, thank you for your understanding.
 
           — The DFINITY Foundation"
-          gh pr close ${{ github.event.number }} --comment "$message"
+          gh pr close $PR_NUMBER --comment "$message"
         env:
           GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.number }}
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1

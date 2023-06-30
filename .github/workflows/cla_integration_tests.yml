@@ -6,7 +6,7 @@ name: CLA Integration Tests
 on:
   push:
     branches-ignore:
-      - integration-test-3
+      - integration-test-**
     paths:
       - .github/custom_python_actions/check_cla_issue.py
       - .github/custom_python_actions/check_cla_pr.py

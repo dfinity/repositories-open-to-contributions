@@ -66,5 +66,4 @@ def test_end_to_end_api_fails(os_system, github_login_mock, capfd):
     with pytest.raises(NotFoundError):
         main()
         out, err = capfd.readouterr()
-        os_system.assert_not_called()
-        assert out == ""
+        os_system.assert_called_once_with("echo 'is_member=False' >> $GITHUB_OUTPUT")

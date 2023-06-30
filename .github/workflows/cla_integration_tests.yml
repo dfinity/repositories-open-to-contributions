@@ -22,8 +22,9 @@ jobs:
   integration-test:
     name: CLA Integration Test
     runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
+    # permissions:
+    #   contents: read
+    #   pull-requests: write
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -46,5 +47,5 @@ jobs:
       run: |
         ${GITHUB_WORKSPACE}/.github/integration_tests/external_contributor.sh
       env:
-        GH_TOKEN: ${{ github.token  }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
+        GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }} # this token gives access to the current repo in the dfinity org, specified in `permissions` for this job
  #       CURRENT_BRANCH: ${{ steps.extract_branch.outputs.current_branch }}

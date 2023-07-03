@@ -35,7 +35,7 @@ do
     fi
 done
 result=$(curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $GH_TOKEN" -H "X-GitHub-Api-Version: 2022-11-28"   https://api.github.com/repos/dfinity/repositories-open-to-contributions/actions/runs?branch=integration-test-nonexistent-repo-$RUN_NUMBER | jq '[.workflow_runs[] | select(.name=="Check New Repo")] | map(select(.head_sha=='\"$commit_sha\"')) | max_by(.run_number) | .conclusion')
-if [[ $result == '"failure"' ]]
+if [[ "$result" == '"failure"' ]]
     then echo "test passed"
 else
     echo "test failed, expected Check New Repo to result in failure but got $result" >&2

@@ -21,8 +21,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  compliance-integration-test-nonexistant-repo:
-    name: Integration Test Nonexistant repo
+  compliance-integration-test-nonexistent-repo:
+    name: Integration Test Nonexistent repo
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

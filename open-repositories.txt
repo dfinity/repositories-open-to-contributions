@@ -14,6 +14,7 @@ dfx-extensions
 examples
 exchange-rate-canister
 experimental-minting-tool
+fake-repository
 feedback
 getting-started
 hardware-wallet-cli

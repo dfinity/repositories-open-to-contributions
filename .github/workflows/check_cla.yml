@@ -24,9 +24,6 @@ jobs:
         with:
           repository: 'dfinity/repositories-open-to-contributions'
 
-      - name: Test
-        run: echo "hello"
-
       - name: Check Membership
         id:  check-membership
         uses: ./.github/actions/check_membership/

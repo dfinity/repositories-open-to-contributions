@@ -7,7 +7,11 @@ def is_member_of_org(gh: github3.login, org: str, user: str) -> bool:
     """
     Return whether the user is a member of the organisation.
     """
-    return gh.organization(org).is_member(user)
+    try:
+        return gh.organization(org).is_member(user)
+    except Exception as error:
+        print(f"Failed with error: {error}")
+        return False
 
 
 def main() -> None:

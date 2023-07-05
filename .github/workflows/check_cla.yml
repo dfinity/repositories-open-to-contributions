@@ -18,7 +18,7 @@ jobs:
     name: Check CLA
     runs-on: ubuntu-latest
     # only run on pull_request trigger if the branch is in the repo (i.e. not from a fork)
-    if: github.event.pull_request.head.repo.full_name == github.repository
+    if: github.event.pull_request_target.head.repo.full_name == github.repository || github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Checkout
         uses: actions/checkout@v3

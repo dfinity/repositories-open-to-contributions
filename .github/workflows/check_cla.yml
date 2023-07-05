@@ -3,7 +3,9 @@
 name: Check CLA
 
 on:
-  pull_request:
+  # because the cla workflow will run on worflows generated from forks, they do not have access to secrets
+  # pull_request_target only runs the workflow on the master branch but allows access to secrets
+  pull_request_target:
     branches: '**'
   merge_group:
   # Allows you to run this workflow manually from the Actions tab

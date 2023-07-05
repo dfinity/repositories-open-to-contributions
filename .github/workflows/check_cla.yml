@@ -9,7 +9,7 @@ on:
     branches: [ master ]
     types: [opened, synchronize, reopened]
   pull_request:
-    branches: **
+    branches: '**'
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

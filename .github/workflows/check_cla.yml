@@ -5,10 +5,11 @@ name: Check CLA
 on:
   # because the cla workflow will run on worflows generated from forks, they do not have access to secrets
   # pull_request_target only runs the workflow on the master branch but allows access to secrets
+
+  # the one downside of this approach is that making changes to the cla workflow itself is more tedious. For development purposes
+  # the cla workflow will need to be manually tested using workflow_dispatch in the actions tab.
   pull_request_target:
     branches: [ master ]
-  pull_request:
-    branches: '**'
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,8 +18,6 @@ jobs:
   check-cla:
     name: Check CLA
     runs-on: ubuntu-latest
-    # only run on pull_request trigger if the branch is in the repo (i.e. not from a fork)
-    if: github.event.pull_request_target.head.repo.full_name == github.repository || github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - name: Checkout
         uses: actions/checkout@v3

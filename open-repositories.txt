@@ -16,6 +16,7 @@ exchange-rate-canister
 experimental-minting-tool
 feedback
 getting-started
+grant-rfps
 hardware-wallet-cli
 http-gateway
 ic-docutrack

@@ -21,19 +21,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  # compliance-integration-test-nonexistent-repo:
-  #   name: Integration Test Nonexistent repo
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v3
+  compliance-integration-test-nonexistent-repo:
+    name: Integration Test Nonexistent repo
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-  #   - name: Integration Test
-  #     run: |
-  #       ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
-  #     env:
-  #       GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
-  #       RUN_NUMBER: ${{ github.run_number }}
+    - name: Integration Test
+      run: |
+        ${GITHUB_WORKSPACE}/.github/integration_tests/nonexistent_repo.sh
+      env:
+        GH_TOKEN: ${{ secrets.INTEGRATION_TESTS_RUN_WORKFLOW }}
+        RUN_NUMBER: ${{ github.run_number }}
 
   compliance-integration-test-compliant-repo:
     name: Integration Test Compliant Repo

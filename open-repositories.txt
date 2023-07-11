@@ -40,6 +40,7 @@ portal
 quill
 response-verification
 rules_motoko
+sdk
 stable-structures
 test-state-machine-client
 threshold

@@ -36,6 +36,7 @@ motoko
 motoko-base
 motoko-dev-server
 motoko-playground
+nodeprovider-scripts
 portal
 quill
 response-verification

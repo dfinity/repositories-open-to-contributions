@@ -10,6 +10,8 @@ on:
   # the cla workflow will need to be manually tested using workflow_dispatch in the actions tab.
   pull_request_target:
     branches: [ master ]
+  pull_request:
+    branches: '**'
   merge_group:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

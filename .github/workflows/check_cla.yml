@@ -33,7 +33,7 @@ jobs:
       - name: Check if accepting external contributions
         id: accepts_external_contrib
         if: steps.check-membership.outputs.is_member != 'true'
-        uses:  dfinity/repositories-open-to-contributions//.github/actions/check_external_contrib/
+        uses:  dfinity/repositories-open-to-contributions/.github/actions/check_external_contrib/
 
       - name: Close Pull Request
         id: close_pr

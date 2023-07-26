@@ -10,6 +10,9 @@ def main() -> None:
     issue_id = os.environ["ISSUE_ID"]
 
     gh = github3.login(token=gh_token)
+    if not gh:
+        raise Exception("GH_TOKEN not correctly set")
+
     issue = gh.issue("dfinity", "cla", issue_id)
     user = issue.title.replace("cla: @", "")
 

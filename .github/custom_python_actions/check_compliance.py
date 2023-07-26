@@ -19,6 +19,9 @@ def main() -> None:
     repo_name = os.environ["REPO"]
 
     gh = github3.login(token=gh_token)
+    if not gh:
+        raise Exception("GH_TOKEN not correctly set")
+
     try:
         repo = gh.repository(owner=org_name, repository=repo_name)
         org = gh.organization(username=org_name)

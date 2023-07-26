@@ -2,11 +2,16 @@ import os
 
 import github3
 
+PREDEFINED_MEMBERS_OF_ORG = ["dependabot[bot]", "github-actions[bot]"]
+
 
 def is_member_of_org(gh: github3.login, org: str, user: str) -> bool:
     """
     Return whether the user is a member of the organisation.
     """
+    if user in PREDEFINED_MEMBERS_OF_ORG:
+        return True
+
     return gh.organization(org).is_member(user)
 
 

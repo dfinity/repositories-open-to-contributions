@@ -20,6 +20,7 @@ jobs:
   check-cla:
     name: Check CLA
     runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }} && ${{ github.actor != 'github-actions[bot]' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3

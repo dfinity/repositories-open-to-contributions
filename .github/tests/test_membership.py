@@ -4,7 +4,27 @@ from unittest import mock
 from github3.exceptions import NotFoundError
 import pytest
 
-from custom_python_actions.check_membership import main
+from custom_python_actions.check_membership import is_member_of_org, main
+
+
+def test_predefined_membership():
+    gh = mock.Mock()
+    user = "dependabot[bot]"
+
+    is_member = is_member_of_org(gh, "org", user)
+
+    assert is_member == True
+
+
+def test_not_member():
+    gh = mock.Mock()
+    org = mock.Mock()
+    org.is_member.return_value = False
+    gh.organization.return_value = org
+
+    is_member = is_member_of_org(gh, "org", "external users")
+
+    assert is_member == False
 
 
 @mock.patch.dict(

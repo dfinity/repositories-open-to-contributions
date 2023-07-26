@@ -1,6 +1,8 @@
 import os
 from unittest import mock
 
+import pytest
+
 from custom_python_actions.check_cla_issue import main
 from custom_python_actions.messages import USER_AGREEMENT_MESSAGE
 
@@ -56,3 +58,14 @@ def test_end_to_end_cla_not_signed(cla_mock, gh_login_mock):
     cla.check_if_cla_signed.assert_called_with(issue, "username")
     cla.comment_on_issue.assert_called_once()
     cla.handle_cla_signed.assert_not_called()
+
+
+@mock.patch.dict(os.environ, {"ISSUE_ID": "1", "GH_TOKEN": ""})
+@mock.patch("github3.login")
+def test_github_token_not_passed_in(github_login_mock):
+    github_login_mock.return_value = None
+
+    with pytest.raises(Exception) as exc:
+        main()
+
+    assert str(exc.value) == "GH_TOKEN not correctly set"

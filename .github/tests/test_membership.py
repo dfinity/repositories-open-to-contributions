@@ -7,11 +7,13 @@ import pytest
 from custom_python_actions.check_membership import is_member_of_org, main
 
 
-def test_predefined_membership():
+def test_is_member():
     gh = mock.Mock()
-    user = "dependabot[bot]"
+    org = mock.Mock()
+    org.is_member.return_value = True
+    gh.organization.return_value = org
 
-    is_member = is_member_of_org(gh, "org", user)
+    is_member = is_member_of_org(gh, "org", "external users")
 
     assert is_member == True
 

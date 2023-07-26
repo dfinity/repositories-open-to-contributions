@@ -294,4 +294,6 @@ def test_github_token_not_passed_in(github_login_mock):
     with pytest.raises(Exception) as exc:
         main()
 
-    assert str(exc.value) == "GH_TOKEN not correctly set"
+    assert (
+        str(exc.value) == "github login failed - maybe GH_TOKEN was not correctly set"
+    )

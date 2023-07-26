@@ -85,7 +85,7 @@ def main() -> None:
 
     gh = github3.login(token=gh_token)
     if not gh:
-        raise Exception("GH_TOKEN not correctly set")
+        raise Exception("github login failed - maybe GH_TOKEN was not correctly set")
 
     pr = gh.pull_request(org, repo, pr_id)
     user = pr.user.login

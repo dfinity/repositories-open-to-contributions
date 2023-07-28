@@ -30,7 +30,9 @@ runs:
       shell: bash
     - name: Check Membership
       id: check-membership
-      run: python https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/.github/custom_python_actions/check_membership.py
+      run: |
+        python_file=$(curl https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/.github/custom_python_actions/check_membership.py)
+        python $python_file
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}

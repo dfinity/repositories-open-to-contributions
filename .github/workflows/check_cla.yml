@@ -38,8 +38,8 @@ jobs:
         if: steps.check-membership.outputs.is_member != 'true'
         uses:  .github/actions/check_external_contrib/
 
-      - name: Checkout
-        uses: actions/checkout@v3
+      # - name: Checkout
+      #   uses: actions/checkout@v3
 
       - name: Close Pull Request
         id: close_pr
@@ -60,10 +60,10 @@ jobs:
         with:
           labels: external-contributor
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          repository: 'dfinity/repositories-open-to-contributions'
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: 'dfinity/repositories-open-to-contributions'
 
       - name: Check CLA
         id:  check-cla

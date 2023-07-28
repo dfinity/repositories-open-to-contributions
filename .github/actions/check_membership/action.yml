@@ -31,9 +31,8 @@ runs:
     - name: Check Membership
       id: check-membership
       run: |
-        python_file=$(curl https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/.github/custom_python_actions/check_membership.py)
-        cat $python_file
-        python $python_file
+        curl -o check_membership.py https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/.github/custom_python_actions/check_membership.py
+        python check_membership.py
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}

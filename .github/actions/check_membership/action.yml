@@ -26,11 +26,11 @@ runs:
       with:
         python-version: '3.10'
     - name: Install Dependencies
-      run: pip install -q -r requirements.txt
+      run: pip install -q -r https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/requirements.txt
       shell: bash
     - name: Check Membership
       id: check-membership
-      run: python .github/custom_python_actions/check_membership.py
+      run: python https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/.github/custom_python_actions/check_membership.py
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}

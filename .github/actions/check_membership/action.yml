@@ -30,8 +30,7 @@ runs:
       shell: bash
     - name: Check Membership
       id: check-membership
-      run: |
-        python .github/custom_python_actions/check_membership.py
+      run: python .github/custom_python_actions/check_membership.py
       shell: bash
       env:
         GH_ORG: ${{ inputs.org }}

@@ -24,17 +24,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          repository: 'repositories-open-to-contributions'
 
       - name: Check Membership
         id:  check-membership
-        uses: dfinity/repositories-open-to-contributions/.github/actions/check_membership@point-to-files-in-external-repo
+        uses: .github/actions/check_membership/
         with:
           github-token: ${{ secrets.CLA_READ_ORG_MEMBERSHIP }}
 
       - name: Check if accepting external contributions
         id: accepts_external_contrib
         if: steps.check-membership.outputs.is_member != 'true'
-        uses:  dfinity/repositories-open-to-contributions/.github/actions/check_external_contrib@master
+        uses:  .github/actions/check_external_contrib/
+
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Close Pull Request
         id: close_pr
@@ -55,9 +60,14 @@ jobs:
         with:
           labels: external-contributor
 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 'repositories-open-to-contributions'
+
       - name: Check CLA
         id:  check-cla
-        uses: dfinity/repositories-open-to-contributions/.github/actions/check_cla_pr@master
+        uses: .github/actions/check_cla_pr/
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
         with:
           github-token: ${{ secrets.CLA_COMMENT_ON_PRS }}

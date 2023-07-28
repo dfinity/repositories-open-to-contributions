@@ -27,7 +27,7 @@ jobs:
 
       - name: Check Membership
         id:  check-membership
-        uses: dfinity/repositories-open-to-contributions/.github/actions/check_membership@master
+        uses: dfinity/repositories-open-to-contributions/.github/actions/check_membership@point-to-files-in-external-repo
         with:
           github-token: ${{ secrets.CLA_READ_ORG_MEMBERSHIP }}
 

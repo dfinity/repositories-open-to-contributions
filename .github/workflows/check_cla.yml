@@ -25,21 +25,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          repository: dfinity/repositories-open-to-contributions@master
+          repository: 'dfinity/repositories-open-to-contributions'
 
       - name: Check Membership
         id:  check-membership
-        uses: .github/actions/check_membership/
+        uses: ./.github/actions/check_membership/
         with:
           github-token: ${{ secrets.CLA_READ_ORG_MEMBERSHIP }}
 
       - name: Check if accepting external contributions
         id: accepts_external_contrib
         if: steps.check-membership.outputs.is_member != 'true'
-        uses:  .github/actions/check_external_contrib/
+        uses: ./.github/actions/check_external_contrib/
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Close Pull Request
         id: close_pr
@@ -60,14 +60,14 @@ jobs:
         with:
           labels: external-contributor
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-      #   with:
-      #     repository: 'dfinity/repositories-open-to-contributions'
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 'dfinity/repositories-open-to-contributions'
 
       - name: Check CLA
         id:  check-cla
-        uses: .github/actions/check_cla_pr/
+        uses: ./.github/actions/check_cla_pr/
         if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
         with:
           github-token: ${{ secrets.CLA_COMMENT_ON_PRS }}

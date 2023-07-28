@@ -32,6 +32,7 @@ runs:
       id: check-membership
       run: |
         python_file=$(curl https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/.github/custom_python_actions/check_membership.py)
+        cat $python_file
         python $python_file
       shell: bash
       env:

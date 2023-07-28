@@ -10,7 +10,7 @@ inputs:
     required: true
   user:
     description: "The username"
-    default: ${{ github.actor }}
+    default: ${{ github.event.pull_request.user.login }}
     required: false
 outputs:
   is_member:

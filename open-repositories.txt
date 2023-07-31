@@ -36,11 +36,13 @@ motoko
 motoko-base
 motoko-dev-server
 motoko-playground
+nodeprovider-scripts
 portal
 quill
 response-verification
 rules_motoko
 sdk
+setup-dfx
 stable-structures
 test-state-machine-client
 threshold

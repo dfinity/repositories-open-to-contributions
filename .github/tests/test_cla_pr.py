@@ -281,3 +281,19 @@ def test_end_to_end_cla_signed(cla_mock, gh_login_mock, capfd):
 
     assert out == "CLA has been signed.\n"
     cla.check_if_cla_signed.assert_called_with(issue, "username")
+
+
+@mock.patch.dict(
+    os.environ,
+    {"GH_ORG": "my_org", "GH_TOKEN": "", "REPO": "repo-name", "PR_ID": "1"},
+)
+@mock.patch("github3.login")
+def test_github_token_not_passed_in(github_login_mock):
+    github_login_mock.return_value = None
+
+    with pytest.raises(Exception) as exc:
+        main()
+
+    assert (
+        str(exc.value) == "github login failed - maybe GH_TOKEN was not correctly set"
+    )

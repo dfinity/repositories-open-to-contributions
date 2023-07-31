@@ -39,10 +39,8 @@ jobs:
     name: Check External Contributions
     runs-on: ubuntu-latest
     needs: check-membership
-    if: ${{ needs.check-membership.outputs.is_member != 'false' }}
+    if: ${{ needs.check-membership.outputs.is_member != 'false' && needs.check-membership.result == "success" }}
     steps:
-      - name: Debug
-        run: echo ${{ needs.check-membership.result }}
       - name: Checkout
         uses: actions/checkout@v3
         with:

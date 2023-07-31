@@ -9,7 +9,9 @@ on:
   # the one downside of this approach is that making changes to the cla workflow itself is more tedious. For development purposes
   # the cla workflow will need to be manually tested using workflow_dispatch in the actions tab.
   pull_request_target:
-    branches: [ master ]
+    branches:
+      - 'master'
+      - 'main'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

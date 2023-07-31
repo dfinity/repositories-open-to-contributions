@@ -39,8 +39,10 @@ jobs:
     name: Check External Contributions
     runs-on: ubuntu-latest
     needs: check-membership
-    if: ${{ needs.check-membership.outputs.is_member != 'false' && needs.check-membership.conclusion == 'success' }}
+    if: ${{ needs.check-membership.outputs.is_member != 'false' }}
     steps:
+      - name: Debug
+        run: echo ${{ needs.check-membership.conclusion }}
       - name: Check if accepting external contributions
         id: accepts_external_contrib
         uses: ./.github/actions/check_external_contrib/

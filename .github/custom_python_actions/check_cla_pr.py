@@ -7,9 +7,12 @@ import github3
 import messages
 
 GHIssue: TypeAlias = github3.issues.issue.Issue
+GHPullRequest: TypeAlias = github3.github.pulls.PullRequest
 PENDING_LABEL = "cla:pending"
 APPROVED_LABEL = "cla:agreed"
 GH_WORKFLOW_LABEL = "cla:gh-wf-pending"
+
+DFINITY_BOT_NAME = "sa-github-api"
 
 
 class CLAHandler:
@@ -17,17 +20,25 @@ class CLAHandler:
         self.cla_repo = gh.repository(owner="dfinity", repository="cla")
         self.cla_link = f"{self.cla_repo.html_url}/blob/main/CLA.md"
 
-    def check_comment_already_exists(self, issue: GHIssue) -> bool:
-        for comment in issue.comments():
-            if comment.user.login == "dfnitowner":
+    def check_comment_already_exists(
+        self, comments: github3.structs.GitHubIterator
+    ) -> bool:
+        for comment in comments:
+            if comment.user.login == DFINITY_BOT_NAME:
                 return True
         return False
 
     def comment_on_issue(self, issue: GHIssue):
         # check if bot has already left a message to avoid spam
-        bot_comment = self.check_comment_already_exists(issue)
+        issue_comments = issue.comments()
+        bot_comment = self.check_comment_already_exists(issue_comments)
         if not bot_comment:
             issue.create_comment(messages.FAILED_COMMENT)
+
+    def comment_on_pr(self, pr: GHPullRequest, pr_comment):
+        bot_comment = self.check_comment_already_exists(pr.issue_comments())
+        if not bot_comment:
+            pr.create_comment(pr_comment)
 
     def check_if_cla_signed(self, issue: GHIssue, user: str) -> bool:
         for comment in issue.comments():
@@ -95,13 +106,13 @@ def main() -> None:
     issue = cla.get_cla_issue(user)
     if not issue:
         issue = cla.create_cla_issue(user)
-        pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
-        pr.create_comment(pr_comment)
 
     cla_signed = cla.check_if_cla_signed(issue, user)
     if cla_signed:
         print("CLA has been signed.")
     else:
+        pr_comment = messages.CLA_MESSAGE.format(user, cla.cla_link, issue.html_url)
+        cla.comment_on_pr(pr, pr_comment)
         print(
             f"The CLA has not been signed. Please sign the CLA agreement: {issue.html_url}"
         )

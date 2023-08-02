@@ -1,18 +1,27 @@
 # Workflow to check if a user is eligible to contribute or needs to sign the CLA
 
-name: Check CLA
+name: CLA Check
 
 on:
-  pull_request:
-    branches: '**'
-  merge_group:
+  # because the cla workflow will run on worflows generated from forks, they do not have access to secrets
+  # pull_request_target only runs the workflow on the master branch but allows access to secrets
+
+  # the one downside of this approach is that making changes to the cla workflow itself is more tedious. For development purposes
+  # the cla workflow will need to be manually tested using workflow_dispatch in the actions tab.
+  pull_request_target:
+    branches:
+      - 'master'
+      - 'main'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  check-cla:
-    name: Check CLA
+  check-membership:
+    name: Check Membership
     runs-on: ubuntu-latest
+    if: ${{ github.event.pull_request.user.login != 'dependabot[bot]' && github.event.pull_request.user.login != 'github-actions[bot]' }}
+    outputs:
+      is_member: ${{ steps.check-membership.outputs.is_member}}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,14 +34,26 @@ jobs:
         with:
           github-token: ${{ secrets.CLA_READ_ORG_MEMBERSHIP }}
 
+  check-external-contributions:
+    name: Check External Contributions
+    runs-on: ubuntu-latest
+    needs: check-membership
+    if: ${{ needs.check-membership.outputs.is_member != 'true' && needs.check-membership.result == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 'dfinity/repositories-open-to-contributions'
       - name: Check if accepting external contributions
         id: accepts_external_contrib
-        if: steps.check-membership.outputs.is_member != 'true'
-        uses:  ./.github/actions/check_external_contrib/
+        uses: ./.github/actions/check_external_contrib/
+
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Close Pull Request
         id: close_pr
-        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'true'
+        if: ${{ steps.accepts_external_contrib.outputs.accepts_contrib != 'true' }}
         run: |
           message="This repository does not accept external contributions yet.
 
@@ -45,13 +66,19 @@ jobs:
 
       - name: Add Label
         uses: actions-ecosystem/action-add-labels@v1
-        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
+        if: ${{ steps.accepts_external_contrib.outputs.accepts_contrib != 'false' }}
         with:
           labels: external-contributor
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        if: ${{ steps.accepts_external_contrib.outputs.accepts_contrib != 'false' }}
+        with:
+          repository: 'dfinity/repositories-open-to-contributions'
 
       - name: Check CLA
         id:  check-cla
         uses: ./.github/actions/check_cla_pr/
-        if: steps.check-membership.outputs.is_member != 'true' && steps.accepts_external_contrib.outputs.accepts_contrib != 'false'
+        if: ${{ steps.accepts_external_contrib.outputs.accepts_contrib != 'false' }}
         with:
           github-token: ${{ secrets.CLA_COMMENT_ON_PRS }}

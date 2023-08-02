@@ -143,7 +143,6 @@ def test_create_cla_issue():
     cla_repo.create_issue.assert_called_with(
         "cla: @username",
         body=cla_agreement_message,
-        labels=["cla:gh-wf-pending"],
     )
 
 

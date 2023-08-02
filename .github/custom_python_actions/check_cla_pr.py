@@ -67,9 +67,9 @@ class CLAHandler:
             body=messages.CLA_AGREEMENT_MESSAGE.format(
                 user, self.cla_link, user_agreement_message
             ),
-            # replace with PENDING, once new bot has been released
-            labels=[GH_WORKFLOW_LABEL],
         )
+        # replace with PENDING, once new bot has been released
+        issue.add_labels(GH_WORKFLOW_LABEL)
         return issue
 
     def handle_cla_signed(self, issue: GHIssue, user: str) -> None:

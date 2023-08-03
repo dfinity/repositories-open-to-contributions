@@ -106,6 +106,7 @@ def test_get_cla_issue_success():
     cla_repo = mock.Mock()
     issue = mock.Mock()
     issue.title = "cla: @username"
+    issue.user.login = "sa-github-api"
     cla_repo.issues.return_value = [mock.Mock(), issue]
     cla.cla_repo = cla_repo
 

@@ -8,6 +8,7 @@ cancan
 candid
 canister-profiling
 cdk-rs
+cns
 conventional-pr-title-action
 dfn-components
 dfx-extensions

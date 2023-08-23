@@ -15,10 +15,10 @@ on:
   # Workflows that are in required checks have to run in merge queue.
   # Otherwise their status is not reported and merge fails:
   # https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/managing-a-merge-queue#triggering-merge-group-checks-with-github-actions
-  merge_group:
+#  merge_group:
   # It is currently required to also have pull_request trigger for merge_group to work:
   # https://github.com/orgs/community/discussions/51120#discussioncomment-6312578
-  pull_request:
+#  pull_request:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 

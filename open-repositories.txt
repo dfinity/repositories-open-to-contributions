@@ -21,6 +21,7 @@ grant-rfps
 hardware-wallet-cli
 http-gateway
 ic-docutrack
+ic-eth-starter
 ic-hs
 ic-js
 ic-repl

@@ -10,9 +10,9 @@ canister-profiling
 cdk-rs
 cns
 conventional-pr-title-action
+decentralization
 dfn-components
 dfx-extensions
-decentralization
 examples
 exchange-rate-canister
 experimental-minting-tool

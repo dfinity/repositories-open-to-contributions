@@ -46,6 +46,7 @@ rules_motoko
 sdk
 setup-dfx
 stable-structures
+standalone-sig-verifier-web
 test-compliant-repository-public
 test-state-machine-client
 threshold

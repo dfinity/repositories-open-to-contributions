@@ -26,26 +26,29 @@ def test_init():
 
 def test_bot_comment_exists():
     cla = CLAHandler(mock.Mock())
-    issue = mock.Mock()
+    comments_iterator = mock.Mock()
     comment1 = mock.Mock()
     comment1.user.login = "username"
     comment2 = mock.Mock()
-    comment2.user.login = "dfnitowner"
-    issue.comments.return_value = [comment1, comment2, comment1]
+    comment2.user.login = "sa-github-api"
+    comments_iterator.__iter__ = mock.Mock(
+        return_value=iter([comment1, comment2, comment1])
+    )
+    #  comments_iterator.return_value = [comment1, comment2, comment1]
 
-    bot_comment = cla.check_comment_already_exists(issue)
+    bot_comment = cla.check_comment_already_exists(comments_iterator)
 
     assert bot_comment == True
 
 
 def test_no_bot_comment():
     cla = CLAHandler(mock.Mock())
-    issue = mock.Mock()
+    issue_comments = mock.Mock()
     comment1 = mock.Mock()
     comment1.user.login = "username"
-    issue.comments.return_value = [comment1, comment1]
+    issue_comments.__iter__ = mock.Mock(return_value=iter([comment1, comment1]))
 
-    bot_comment = cla.check_comment_already_exists(issue)
+    bot_comment = cla.check_comment_already_exists(issue_comments)
 
     assert bot_comment == False
 
@@ -103,6 +106,7 @@ def test_get_cla_issue_success():
     cla_repo = mock.Mock()
     issue = mock.Mock()
     issue.title = "cla: @username"
+    issue.user.login = "sa-github-api"
     cla_repo.issues.return_value = [mock.Mock(), issue]
     cla.cla_repo = cla_repo
 
@@ -140,7 +144,6 @@ def test_create_cla_issue():
     cla_repo.create_issue.assert_called_with(
         "cla: @username",
         body=cla_agreement_message,
-        labels=["cla:gh-wf-pending"],
     )
 
 
@@ -222,12 +225,14 @@ def test_end_to_end_no_issue(cla_mock, gh_login_mock):
     gh.pull_request.return_value = pr
     cla = mock.Mock()
     cla.get_cla_issue.return_value = None
+    cla.check_if_cla_signed.return_value = False
     cla_mock.return_value = cla
 
-    main()
+    with pytest.raises(SystemExit):
+        main()
 
     cla.create_cla_issue.assert_called_once()
-    pr.create_comment.assert_called_once()
+    cla.comment_on_pr.assert_called_once()
 
 
 @mock.patch.dict(
@@ -251,11 +256,11 @@ def test_end_to_end_cla_not_signed(cla_mock, gh_login_mock, capfd):
     with pytest.raises(SystemExit):
         main()
         out, err = capfd.readouterr()
-
-        cla.create_cla_issue.assert_not_called()
-        pr.create_comment.assert_not_called()
-        cla.check_if_cla_signed.assert_called_with(issue, mock.Mock())
         assert out == "The CLA has not been signed. Please sign the CLA agreement: url"
+
+    cla.create_cla_issue.assert_not_called()
+    cla.check_if_cla_signed.assert_called_with(issue, pr.user.login)
+    cla.comment_on_pr.assert_called_once()
 
 
 @mock.patch.dict(
@@ -280,4 +285,22 @@ def test_end_to_end_cla_signed(cla_mock, gh_login_mock, capfd):
     out, err = capfd.readouterr()
 
     assert out == "CLA has been signed.\n"
+    cla.create_cla_issue.assert_not_called()
     cla.check_if_cla_signed.assert_called_with(issue, "username")
+    cla.comment_on_pr.assert_not_called()
+
+
+@mock.patch.dict(
+    os.environ,
+    {"GH_ORG": "my_org", "GH_TOKEN": "", "REPO": "repo-name", "PR_ID": "1"},
+)
+@mock.patch("github3.login")
+def test_github_token_not_passed_in(github_login_mock):
+    github_login_mock.return_value = None
+
+    with pytest.raises(Exception) as exc:
+        main()
+
+    assert (
+        str(exc.value) == "github login failed - maybe GH_TOKEN was not correctly set"
+    )

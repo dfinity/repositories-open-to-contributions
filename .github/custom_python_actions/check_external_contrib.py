@@ -27,6 +27,9 @@ def main() -> None:
 
     gh = github3.login(token=gh_token)
 
+    if not gh:
+        raise Exception("github login failed - maybe GH_TOKEN was not correctly set")
+
     repo_list = get_repos_open_to_contributions(gh)
     accepts_contrib = repo in repo_list
 

@@ -12,6 +12,7 @@ cns
 conventional-pr-title-action
 dfn-components
 dfx-extensions
+dfxvm
 examples
 exchange-rate-canister
 experimental-minting-tool

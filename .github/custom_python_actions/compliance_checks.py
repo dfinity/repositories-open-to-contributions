@@ -111,11 +111,11 @@ class RepoPermissions(ComplianceCheck):
             self.message = f"Raised error: {error}"
             return
 
-        if role in ["maintain", "write"]:
+        if role in ["admin", "maintain", "write"]:
             self.succeeds = True
             self.message = f"Team {team_name} has {role} permissions."
         else:
-            self.message = f"Insufficient permissions. Requires write or maintain, but team {team_name} has {role}."  # noqa: E501
+            self.message = f"Insufficient permissions. Requires write, maintain or admin, but team {team_name} has {role}."  # noqa: E501
 
 
 @dataclass

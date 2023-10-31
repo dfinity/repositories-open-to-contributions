@@ -115,7 +115,7 @@ class RepoPermissions(ComplianceCheck):
             self.succeeds = True
             self.message = f"Team {team_name} has {role} permissions."
         else:
-            self.message = f"""Incorrect team-level permissions. Teams may not have admin permissions for public repositories, 
+            self.message = f"""Incorrect team-level permissions. Teams may not have admin permissions for public repositories,
             but must have at least write or maintain permissions. Team {team_name} has {role}."""  # noqa: E501
 
 

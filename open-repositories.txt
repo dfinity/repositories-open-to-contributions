@@ -32,6 +32,7 @@ ic-websocket-poc
 icx-proxy
 idl2json
 interface-spec
+journald-parser
 keysmith
 linkedup
 metrics-encoder

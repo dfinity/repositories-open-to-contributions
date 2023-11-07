@@ -36,6 +36,7 @@ journald-parser
 keysmith
 linkedup
 metrics-encoder
+metrics-proxy
 motoko
 motoko-base
 motoko-dev-server

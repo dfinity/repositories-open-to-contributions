@@ -10,6 +10,7 @@ canister-profiling
 cdk-rs
 cns
 conventional-pr-title-action
+decentralization
 dfn-components
 dfx-extensions
 dfxvm
@@ -32,9 +33,11 @@ ic-websocket-poc
 icx-proxy
 idl2json
 interface-spec
+journald-parser
 keysmith
 linkedup
 metrics-encoder
+metrics-proxy
 motoko
 motoko-base
 motoko-dev-server
@@ -47,6 +50,7 @@ rules_motoko
 sdk
 setup-dfx
 stable-structures
+test-compliant-repository-public
 test-state-machine-client
 threshold
 vessel

@@ -17,6 +17,7 @@ dfxvm
 examples
 exchange-rate-canister
 experimental-minting-tool
+fake-repository
 feedback
 getting-started
 grant-rfps

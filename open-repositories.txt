@@ -13,6 +13,7 @@ conventional-pr-title-action
 decentralization
 dfn-components
 dfx-extensions
+dfxvm
 examples
 exchange-rate-canister
 experimental-minting-tool

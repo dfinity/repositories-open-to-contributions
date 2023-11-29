@@ -10,6 +10,7 @@ canister-profiling
 cdk-rs
 cns
 conventional-pr-title-action
+cycles-ledger
 decentralization
 dfn-components
 dfx-extensions

@@ -43,6 +43,7 @@ motoko
 motoko-base
 motoko-dev-server
 motoko-playground
+motoko.rs
 nodeprovider-scripts
 portal
 quill

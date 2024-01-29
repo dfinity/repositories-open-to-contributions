@@ -47,7 +47,7 @@ motoko.rs
 nodeprovider-scripts
 portal
 quill
-response-verification
+canister-certification
 rules_motoko
 sdk
 setup-dfx

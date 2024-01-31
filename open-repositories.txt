@@ -3,7 +3,6 @@ ICRC-1
 agent-js
 agent-rs
 awesome-internet-computer
-bench
 bigmap-poc
 cancan
 candid

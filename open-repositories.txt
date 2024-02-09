@@ -4,6 +4,7 @@ agent-js
 agent-rs
 awesome-internet-computer
 bigmap-poc
+canbench
 cancan
 candid
 canister-profiling

@@ -63,3 +63,4 @@ vscode-motoko
 wasmtime-hs
 wg-governance
 wg-identity-authentication
+test

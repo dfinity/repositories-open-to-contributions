@@ -6,7 +6,7 @@
 #
 attrs==22.2.0
     # via pytest
-black==23.1.0
+black==24.3.0
     # via -r requirements.in
 certifi==2023.7.22
     # via requests

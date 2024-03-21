@@ -28,7 +28,6 @@ ic-docutrack
 ic-eth-starter
 ic-hs
 ic-js
-# https://dfinity.atlassian.net/browse/IC-1726
 ic-observability-stack
 ic-repl
 ic-staking-documentation

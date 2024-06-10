@@ -8,6 +8,7 @@ canbench
 cancan
 candid
 canister-profiling
+canister-sig-util
 cdk-rs
 cns
 conventional-pr-title-action

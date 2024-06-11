@@ -8,7 +8,6 @@ canbench
 cancan
 candid
 canister-profiling
-canister-sig-util
 cdk-rs
 cns
 conventional-pr-title-action
@@ -25,6 +24,7 @@ getting-started
 grant-rfps
 hardware-wallet-cli
 http-gateway
+ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter
 ic-hs

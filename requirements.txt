@@ -75,5 +75,5 @@ typing-extensions==4.5.0
     #   mypy
 uritemplate==4.1.1
     # via github3-py
-urllib3==1.26.18
+urllib3==1.26.19
     # via requests

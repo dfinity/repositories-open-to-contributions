@@ -36,6 +36,7 @@ ic-websocket-poc
 icx-proxy
 idl2json
 interface-spec
+internet-identity-playwright
 journald-parser
 keysmith
 linkedup

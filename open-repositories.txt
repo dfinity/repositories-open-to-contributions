@@ -24,6 +24,7 @@ getting-started
 grant-rfps
 hardware-wallet-cli
 http-gateway
+ic-burp-extension
 ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter

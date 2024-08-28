@@ -1,5 +1,6 @@
 ICRC
 ICRC-1
+actions
 agent-js
 agent-rs
 awesome-internet-computer

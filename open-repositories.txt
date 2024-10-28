@@ -8,6 +8,7 @@ bigmap-poc
 canbench
 cancan
 candid
+canfund
 canister-profiling
 cdk-rs
 cns

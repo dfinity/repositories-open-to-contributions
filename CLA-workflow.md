@@ -12,4 +12,4 @@ The workflow works as follows:
     - check if an issue exists, if not, create one
     - if an issue exists but has not been signed, post a link to the issue and remind the user to sign it
 
-The code for the CLA workflow is located [here](.github/workflows/check_cla.yml) and is (will be) applied to all repositories within the `dfinity` org by default. For issues or feedback feel free to contact the IDX team.
+The code for the CLA workflow is located [here](.github/actions/check_compliance) and is applied to all repositories within the `dfinity` org by default. For issues or feedback feel free to contact the IDX team.

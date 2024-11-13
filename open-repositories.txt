@@ -1,6 +1,5 @@
 ICRC
 ICRC-1
-actions
 agent-js
 agent-rs
 awesome-internet-computer
@@ -11,6 +10,7 @@ candid
 canfund
 canister-profiling
 cdk-rs
+ci-tools
 cns
 conventional-pr-title-action
 cycles-ledger

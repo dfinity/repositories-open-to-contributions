@@ -16,6 +16,13 @@ jobs:
     name: Check if repository is compliant
     runs-on: ubuntu-latest
     steps:
+      - name: Create GitHub App Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.REPO_COMPLIANCE_BOT_APP_ID }}
+          private-key: ${{ secrets.REPO_COMPLIANCE_BOT_PRIVATE_KEY }}
+    
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -32,4 +39,4 @@ jobs:
         uses: ./.github/actions/check_compliance/
         with:
           repo-name: ${{ steps.get-repo-name.outputs.repo-name }}
-          github-token: ${{ secrets.COMPLIANCE_READ_REPO_PERMISSIONS }}
+          github-token: ${{ steps.app-token.outputs.token }}

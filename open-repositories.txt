@@ -60,7 +60,7 @@ sdk
 setup-dfx
 stable-structures
 standalone-sig-verifier-web
-test-compliant-repository-public
+test-compliant-repository
 test-state-machine-client
 threshold
 vessel
@@ -69,4 +69,3 @@ vscode-motoko
 wasmtime-hs
 wg-governance
 wg-identity-authentication
-test-compliant-repository

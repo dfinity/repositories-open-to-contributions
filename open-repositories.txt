@@ -15,10 +15,10 @@ cns
 conventional-pr-title-action
 cycles-ledger
 decentralization
-dre
 dfn-components
 dfx-extensions
 dfxvm
+dre
 examples
 exchange-rate-canister
 experimental-minting-tool

@@ -18,6 +18,7 @@ decentralization
 dfn-components
 dfx-extensions
 dfxvm
+evm-rpc-canister
 examples
 exchange-rate-canister
 experimental-minting-tool

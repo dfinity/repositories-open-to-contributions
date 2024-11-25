@@ -120,19 +120,6 @@ class RepoPermissions(ComplianceCheck):
 
 
 @dataclass
-class BranchProtection(ComplianceCheck):
-    name: str = "branch_protection"
-    succeeds: bool = False
-    message: Optional[str] = None
-
-    def check(self, helper: ComplianceCheckHelper):
-        repo = helper.repo
-        branch = repo.branch(repo.default_branch)
-
-        self.succeeds = branch.protected
-
-
-@dataclass
 class License(ComplianceCheck):
     name: str = "license"
     succeeds: bool = False

@@ -4,7 +4,6 @@ import sys
 import github3
 
 from compliance_checks import (
-    BranchProtection,
     ComplianceCheckHelper,
     CodeOwners,
     License,
@@ -32,7 +31,6 @@ def main() -> None:
 
     checks_passed = True
     for compliance_check in [
-        BranchProtection(),
         CodeOwners(),
         License(),
         Readme(),

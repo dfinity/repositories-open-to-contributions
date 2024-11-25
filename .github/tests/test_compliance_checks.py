@@ -6,7 +6,6 @@ import pytest
 from github3.exceptions import NotFoundError
 
 from custom_python_actions.compliance_checks import (
-    BranchProtection,
     CodeOwners,
     ComplianceCheckHelper,
     get_code_owners,
@@ -156,37 +155,6 @@ def test_check_code_owners_fails_other_error():
 
     assert code_owners_check.succeeds == False
     assert code_owners_check.message == "Raised error: some other error"
-
-
-def test_branch_protection_enabled():
-    helper = mock.Mock()
-    repo = mock.Mock()
-    repo.default_branch = "main"
-    branch = mock.Mock()
-    branch.protected = True
-    helper.repo.branch.return_value = branch
-    branch_protection_check = BranchProtection()
-
-    branch_protection_check.check(helper)
-
-    assert repo.branch.called_with("main")
-    assert branch_protection_check.name == "branch_protection"
-    assert branch_protection_check.succeeds == True
-
-
-def test_branch_protection_disabled():
-    helper = mock.Mock()
-    repo = mock.Mock()
-    repo.default_branch = "main"
-    branch = mock.Mock()
-    branch.protected = False
-    helper.repo.branch.return_value = branch
-    branch_protection_check = BranchProtection()
-
-    branch_protection_check.check(helper)
-
-    assert repo.branch.called_with("main")
-    assert branch_protection_check.succeeds == False
 
 
 def test_check_license_exists():

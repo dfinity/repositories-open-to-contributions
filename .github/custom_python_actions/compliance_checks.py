@@ -24,22 +24,22 @@ def get_code_owners(repo: github3.github.repo) -> str:
 def get_team_name(code_owners: str, org_name: str) -> str:
     code_owner_file = code_owners.strip("\n")
     regex_output = re.findall(
-        r"(?!^(?:\*\s+)?(?:@\S+\s+)*)(@\S+)",
+        r"^(?:\* +)?(@\S+(?: +@\S+)*)+",
         code_owner_file,
         re.MULTILINE,
     )
-    print(f"Codeowners found {regex_output}")
+    codeowners = [s for codeowners in regex_output for s in codeowners.split()]
+    print(f"Codeowners found {codeowners}")
     if len(regex_output) == 0:
         raise Exception(
             "No repo-level team owner found. Double check the format of your CODEOWNERS file."
         )
-    if len(regex_output) > 1:
+    codeowner_teams = regex_output[0].split()
+    if len(codeowner_teams) > 1:
         raise Exception("Only one team can be listed for repo-level codeowners.")
     codeowner_team = regex_output[0].lower()
     team_name = codeowner_team.replace(f"@{org_name.lower()}/", "")
     return team_name
-    
-print(get_team_name('\n* @dfinity/languages\n', 'dfinity'))
 
 
 class ComplianceCheckHelper:

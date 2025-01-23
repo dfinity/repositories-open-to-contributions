@@ -21,6 +21,7 @@ runs:
         run: |
           set +e # curl exists with the code 1 when nothing found. This is not an error here, it just means no new repositories added.
           NEW_REPO=$(curl --silent --retry 5 https://raw.githubusercontent.com/dfinity/repositories-open-to-contributions/master/open-repositories.txt | grep -vFxf- open-repositories.txt)
+          NEW_REPO=$(echo "$NEW_REPO" | sed 's/#.*//' | xargs)
           E=$?
           if [ "$E" -gt 1 ]; then
             echo "curl exited with the code $E" >&2

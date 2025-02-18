@@ -45,6 +45,7 @@ internet-identity-playwright
 journald-parser
 keysmith
 linkedup
+llm
 metrics-encoder
 metrics-proxy
 motoko

@@ -55,6 +55,7 @@ motoko.rs
 new-motoko-base
 node-motoko
 nodeprovider-scripts
+pic-js
 portal
 quill
 response-verification

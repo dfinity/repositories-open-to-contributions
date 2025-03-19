@@ -69,6 +69,7 @@ test-state-machine-client
 threshold
 vessel
 vessel-package-set
+vetkd-devkit
 vscode-motoko
 wasmtime-hs
 wg-governance

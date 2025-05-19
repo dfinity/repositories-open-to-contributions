@@ -9,6 +9,7 @@ cancan
 candid
 canfund
 canister-profiling
+cbor
 cdk-rs
 ci-tools
 cns

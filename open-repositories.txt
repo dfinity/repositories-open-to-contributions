@@ -49,6 +49,7 @@ metrics-encoder
 metrics-proxy
 motoko
 motoko-base
+motoko-bitcoin
 motoko-core
 motoko-dev-server
 motoko-playground

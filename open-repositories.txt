@@ -44,6 +44,7 @@ interface-spec
 internet-identity-playwright
 journald-parser
 keysmith
+ledger-faucet
 linkedup
 metrics-encoder
 metrics-proxy

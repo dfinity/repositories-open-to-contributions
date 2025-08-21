@@ -46,6 +46,7 @@ journald-parser
 keysmith
 ledger-faucet
 linkedup
+lintoko
 metrics-encoder
 metrics-proxy
 motoko

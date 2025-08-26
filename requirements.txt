@@ -60,7 +60,7 @@ pytest==7.2.1
     # via -r requirements.in
 python-dateutil==2.8.2
     # via github3-py
-requests==2.32.0
+requests==2.32.4
     # via github3-py
 six==1.16.0
     # via python-dateutil
@@ -75,5 +75,5 @@ typing-extensions==4.5.0
     #   mypy
 uritemplate==4.1.1
     # via github3-py
-urllib3==1.26.19
+urllib3==2.5.0
     # via requests

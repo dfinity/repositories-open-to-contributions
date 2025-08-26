@@ -1,6 +1,5 @@
 ICRC
 ICRC-1
-agent-js
 agent-rs
 awesome-internet-computer
 bigmap-poc
@@ -42,6 +41,7 @@ icx-proxy
 idl2json
 interface-spec
 internet-identity-playwright
+icp-sdk-js-core
 journald-parser
 keysmith
 linkedup

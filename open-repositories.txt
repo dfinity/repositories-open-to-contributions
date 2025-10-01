@@ -39,6 +39,7 @@ ic-staking-documentation
 ic-wasm
 ic-websocket-poc
 icp-js-auth
+icp-js-bindgen
 icp-js-core
 icp-js-sdk-docs
 icx-proxy

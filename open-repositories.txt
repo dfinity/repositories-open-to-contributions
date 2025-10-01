@@ -53,6 +53,10 @@ linkedup
 lintoko
 metrics-encoder
 metrics-proxy
+mops
+mops-bench
+mops-ic
+mops-test
 motoko
 motoko-base
 motoko-bitcoin
@@ -63,6 +67,7 @@ motoko.rs
 node-motoko
 nodeprovider-scripts
 pic-js
+pic-js-mops
 pocketic-py
 portal
 quill
@@ -70,6 +75,7 @@ response-verification
 rules_motoko
 sdk
 setup-dfx
+setup-mops
 stable-structures
 standalone-sig-verifier-web
 test-compliant-repository-public # temporarily adding for testing purposes, will remove again later

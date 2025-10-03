@@ -81,6 +81,7 @@ standalone-sig-verifier-web
 test-compliant-repository-public # temporarily adding for testing purposes, will remove again later
 test-state-machine-client
 threshold
+typedoc-plugin-icp-docs
 vessel
 vessel-package-set
 vscode-motoko

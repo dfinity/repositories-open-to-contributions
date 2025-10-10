@@ -26,6 +26,7 @@ feedback
 getting-started
 grant-rfps
 hardware-wallet-cli
+http-auth-poc
 http-gateway
 ic-burp-extension
 ic-canister-sig-creation

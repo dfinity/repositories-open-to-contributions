@@ -89,3 +89,5 @@ vscode-motoko
 wasmtime-hs
 wg-governance
 wg-identity-authentication
+wg-web-experience
+

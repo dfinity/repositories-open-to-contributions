@@ -39,6 +39,7 @@ ic-repl
 ic-staking-documentation
 ic-wasm
 ic-websocket-poc
+icp-cli
 icp-cli-recipes
 icp-js-auth
 icp-js-bindgen

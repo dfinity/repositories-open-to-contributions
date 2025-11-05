@@ -33,7 +33,6 @@ ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter
 ic-hs
-ic-js
 ic-observability-stack
 ic-repl
 ic-staking-documentation
@@ -43,6 +42,7 @@ icp-cli
 icp-cli-recipes
 icp-js-auth
 icp-js-bindgen
+icp-js-canisters
 icp-js-core
 icp-js-sdk-docs
 icx-proxy

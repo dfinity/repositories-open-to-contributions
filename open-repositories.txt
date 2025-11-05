@@ -33,7 +33,7 @@ ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter
 ic-hs
-ic-js
+icp-js-canisters
 ic-observability-stack
 ic-repl
 ic-staking-documentation

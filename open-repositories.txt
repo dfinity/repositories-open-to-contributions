@@ -40,6 +40,7 @@ ic-wasm
 ic-websocket-poc
 icp-cli
 icp-cli-recipes
+icp-cli-templates
 icp-js-auth
 icp-js-bindgen
 icp-js-canisters

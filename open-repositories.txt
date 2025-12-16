@@ -28,6 +28,7 @@ grant-rfps
 hardware-wallet-cli
 http-auth-poc
 http-gateway
+ic
 ic-burp-extension
 ic-canister-sig-creation
 ic-docutrack

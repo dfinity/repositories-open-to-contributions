@@ -7,6 +7,7 @@ canbench
 cancan
 candid
 canfund
+canhttp
 canister-profiling
 cbor-js
 cdk-rs

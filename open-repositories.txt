@@ -35,8 +35,8 @@ ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter
 ic-hs
-ic-pub-key
 ic-observability-stack
+ic-pub-key
 ic-repl
 ic-staking-documentation
 ic-wasm

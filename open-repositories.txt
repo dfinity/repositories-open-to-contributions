@@ -36,6 +36,7 @@ ic-docutrack
 ic-eth-starter
 ic-hs
 ic-observability-stack
+ic-pub-key
 ic-repl
 ic-staking-documentation
 ic-wasm

@@ -52,7 +52,7 @@ pycparser==2.21
     # via cffi
 pyflakes==3.0.1
     # via flake8
-pyjwt[crypto]==2.6.0
+pyjwt[crypto]==2.12.0
     # via
     #   github3-py
     #   pyjwt

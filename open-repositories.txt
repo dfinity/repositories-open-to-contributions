@@ -34,6 +34,7 @@ ic-burp-extension
 ic-canister-sig-creation
 ic-docutrack
 ic-eth-starter
+ic-gateway
 ic-hs
 ic-observability-stack
 ic-repl

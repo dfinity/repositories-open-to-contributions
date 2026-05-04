@@ -16,6 +16,7 @@ cns
 conventional-pr-title-action
 cycles-ledger
 decentralization
+developer-docs
 dfn-components
 dfx-extensions
 dfxvm

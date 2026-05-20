@@ -71,6 +71,7 @@ motoko-base
 motoko-bitcoin
 motoko-core
 motoko-dev-server
+motoko-identity-attributes
 motoko-playground
 motoko.rs
 node-motoko

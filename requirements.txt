@@ -52,7 +52,7 @@ pycparser==2.21
     # via cffi
 pyflakes==3.0.1
     # via flake8
-pyjwt[crypto]==2.12.0
+pyjwt[crypto]==2.13.0
     # via
     #   github3-py
     #   pyjwt
@@ -73,6 +73,7 @@ typing-extensions==4.5.0
     # via
     #   black
     #   mypy
+    #   pyjwt
 uritemplate==4.1.1
     # via github3-py
 urllib3==2.6.3

@@ -50,6 +50,7 @@ icp-js-bindgen
 icp-js-canisters
 icp-js-core
 icp-js-sdk-docs
+icskills
 icx-proxy
 idl2json
 interface-spec

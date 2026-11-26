@@ -78,6 +78,7 @@ motoko-playground
 motoko.rs
 node-motoko
 nodeprovider-scripts
+oisy-trade
 pic-js
 pic-js-mops
 pocketic-py
